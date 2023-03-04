@@ -15,6 +15,8 @@
 		FFA9ED7F29B3B57B00ECF980 /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7E29B3B57B00ECF980 /* Ray.swift */; };
 		FFA9ED8129B3B62600ECF980 /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8029B3B62600ECF980 /* Sphere.swift */; };
 		FFA9ED8329B3B69300ECF980 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8229B3B69300ECF980 /* Plane.swift */; };
+		FFA9ED8629B3B9B600ECF980 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8529B3B9B600ECF980 /* Scene.swift */; };
+		FFA9ED8829B3BA8D00ECF980 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8729B3BA8D00ECF980 /* Camera.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +41,8 @@
 		FFA9ED7E29B3B57B00ECF980 /* Ray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
 		FFA9ED8029B3B62600ECF980 /* Sphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; };
 		FFA9ED8229B3B69300ECF980 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		FFA9ED8529B3B9B600ECF980 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		FFA9ED8729B3BA8D00ECF980 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 		FF56902729B3961B0000AC1E /* RayTracer */ = {
 			isa = PBXGroup;
 			children = (
+				FFA9ED8429B3B9A700ECF980 /* Tracer */,
 				FF6C020829B39D3900D9A700 /* Structs */,
 				FF6C020729B39D3000D9A700 /* App */,
 			);
@@ -113,6 +118,15 @@
 				FFA9ED7E29B3B57B00ECF980 /* Ray.swift */,
 			);
 			path = Vectors;
+			sourceTree = "<group>";
+		};
+		FFA9ED8429B3B9A700ECF980 /* Tracer */ = {
+			isa = PBXGroup;
+			children = (
+				FFA9ED8529B3B9B600ECF980 /* Scene.swift */,
+				FFA9ED8729B3BA8D00ECF980 /* Camera.swift */,
+			);
+			path = Tracer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,8 +193,10 @@
 				FFA9ED7F29B3B57B00ECF980 /* Ray.swift in Sources */,
 				FF56902929B3961B0000AC1E /* main.swift in Sources */,
 				FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */,
+				FFA9ED8829B3BA8D00ECF980 /* Camera.swift in Sources */,
 				FFA9ED8329B3B69300ECF980 /* Plane.swift in Sources */,
 				FFA9ED7D29B3B55200ECF980 /* Object3D.swift in Sources */,
+				FFA9ED8629B3B9B600ECF980 /* Scene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

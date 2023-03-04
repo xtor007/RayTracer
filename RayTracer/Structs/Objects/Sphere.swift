@@ -9,8 +9,8 @@ import Foundation
 
 struct Sphere: Object3D {
     
-    private let center: Point3D
-    private let radius: Float
+    let center: Point3D
+    let radius: Float
     
     func distance(forRay ray: Ray) -> Float? {
         return 1

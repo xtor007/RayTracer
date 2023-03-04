@@ -9,8 +9,8 @@ import Foundation
 
 struct Plane: Object3D {
     
-    private let point: Point3D
-    private let normal: Vector3D
+    let point: Point3D
+    let normal: Vector3D
     
     func distance(forRay ray: Ray) -> Float? {
         return 1
