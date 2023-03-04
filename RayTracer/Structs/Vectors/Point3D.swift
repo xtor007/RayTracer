@@ -24,9 +24,17 @@ struct Point3D: VectorValue {
             z: left.z - right.z
         )
     }
+    
+    static func * (left: Point3D, right: VectorValue) -> Float {
+        return left.x * right.x + left.y * right.y + left.z * right.z
+    }
 
     private(set) var x: Float
     private(set) var y: Float
     private(set) var z: Float
+    
+    func scalarSquare() -> Float {
+        return self * self
+    }
 
 }

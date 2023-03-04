@@ -25,7 +25,7 @@ struct Vector3D: VectorValue {
         )
     }
     
-    static func * (left: Vector3D, right: Vector3D) -> Float {
+    static func * (left: Vector3D, right: VectorValue) -> Float {
         return left.x * right.x + left.y * right.y + left.z * right.z
     }
     
