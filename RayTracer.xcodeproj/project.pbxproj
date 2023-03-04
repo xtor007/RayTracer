@@ -11,6 +11,10 @@
 		FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7629B3B2FA00ECF980 /* Vector3D.swift */; };
 		FFA9ED7A29B3B2FA00ECF980 /* VectorValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7729B3B2FA00ECF980 /* VectorValue.swift */; };
 		FFA9ED7B29B3B2FA00ECF980 /* Point3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7829B3B2FA00ECF980 /* Point3D.swift */; };
+		FFA9ED7D29B3B55200ECF980 /* Object3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7C29B3B55200ECF980 /* Object3D.swift */; };
+		FFA9ED7F29B3B57B00ECF980 /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7E29B3B57B00ECF980 /* Ray.swift */; };
+		FFA9ED8129B3B62600ECF980 /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8029B3B62600ECF980 /* Sphere.swift */; };
+		FFA9ED8329B3B69300ECF980 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8229B3B69300ECF980 /* Plane.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +35,10 @@
 		FFA9ED7629B3B2FA00ECF980 /* Vector3D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3D.swift; sourceTree = "<group>"; };
 		FFA9ED7729B3B2FA00ECF980 /* VectorValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorValue.swift; sourceTree = "<group>"; };
 		FFA9ED7829B3B2FA00ECF980 /* Point3D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point3D.swift; sourceTree = "<group>"; };
+		FFA9ED7C29B3B55200ECF980 /* Object3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object3D.swift; sourceTree = "<group>"; };
+		FFA9ED7E29B3B57B00ECF980 /* Ray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
+		FFA9ED8029B3B62600ECF980 /* Sphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; };
+		FFA9ED8229B3B69300ECF980 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +71,6 @@
 		FF56902729B3961B0000AC1E /* RayTracer */ = {
 			isa = PBXGroup;
 			children = (
-				FF6C020929B39D4800D9A700 /* Objects */,
 				FF6C020829B39D3900D9A700 /* Structs */,
 				FF6C020729B39D3000D9A700 /* App */,
 			);
@@ -81,6 +88,7 @@
 		FF6C020829B39D3900D9A700 /* Structs */ = {
 			isa = PBXGroup;
 			children = (
+				FF6C020929B39D4800D9A700 /* Objects */,
 				FF6C020A29B39D8600D9A700 /* Vectors */,
 			);
 			path = Structs;
@@ -89,6 +97,9 @@
 		FF6C020929B39D4800D9A700 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				FFA9ED7C29B3B55200ECF980 /* Object3D.swift */,
+				FFA9ED8029B3B62600ECF980 /* Sphere.swift */,
+				FFA9ED8229B3B69300ECF980 /* Plane.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -99,6 +110,7 @@
 				FFA9ED7829B3B2FA00ECF980 /* Point3D.swift */,
 				FFA9ED7629B3B2FA00ECF980 /* Vector3D.swift */,
 				FFA9ED7729B3B2FA00ECF980 /* VectorValue.swift */,
+				FFA9ED7E29B3B57B00ECF980 /* Ray.swift */,
 			);
 			path = Vectors;
 			sourceTree = "<group>";
@@ -161,10 +173,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFA9ED8129B3B62600ECF980 /* Sphere.swift in Sources */,
 				FFA9ED7A29B3B2FA00ECF980 /* VectorValue.swift in Sources */,
 				FFA9ED7B29B3B2FA00ECF980 /* Point3D.swift in Sources */,
+				FFA9ED7F29B3B57B00ECF980 /* Ray.swift in Sources */,
 				FF56902929B3961B0000AC1E /* main.swift in Sources */,
 				FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */,
+				FFA9ED8329B3B69300ECF980 /* Plane.swift in Sources */,
+				FFA9ED7D29B3B55200ECF980 /* Object3D.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
