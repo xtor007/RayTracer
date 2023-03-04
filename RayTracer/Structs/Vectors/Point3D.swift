@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Point3D: Scalar3D {
+struct Point3D: VectorValue {
     
-    static func + (left: Point3D, right: Scalar3D) -> Point3D {
+    static func + (left: Point3D, right: VectorValue) -> Point3D {
         return Point3D(
             x: left.x + right.x,
             y: left.y + right.y,
@@ -17,7 +17,7 @@ struct Point3D: Scalar3D {
         )
     }
 
-    static func - (left: Point3D, right: Scalar3D) -> Point3D {
+    static func - (left: Point3D, right: VectorValue) -> Point3D {
         return Point3D(
             x: left.x - right.x,
             y: left.y - right.y,

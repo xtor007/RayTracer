@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		FF56902929B3961B0000AC1E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF56902829B3961B0000AC1E /* main.swift */; };
-		FF6C020C29B39DA200D9A700 /* Scalar3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6C020B29B39DA200D9A700 /* Scalar3D.swift */; };
-		FF6C020E29B39E2000D9A700 /* Point3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6C020D29B39E2000D9A700 /* Point3D.swift */; };
-		FF6C021029B3A06800D9A700 /* Vector3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6C020F29B3A06800D9A700 /* Vector3D.swift */; };
+		FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7629B3B2FA00ECF980 /* Vector3D.swift */; };
+		FFA9ED7A29B3B2FA00ECF980 /* VectorValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7729B3B2FA00ECF980 /* VectorValue.swift */; };
+		FFA9ED7B29B3B2FA00ECF980 /* Point3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7829B3B2FA00ECF980 /* Point3D.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,9 +28,9 @@
 /* Begin PBXFileReference section */
 		FF56902529B3961B0000AC1E /* RayTracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RayTracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF56902829B3961B0000AC1E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		FF6C020B29B39DA200D9A700 /* Scalar3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scalar3D.swift; sourceTree = "<group>"; };
-		FF6C020D29B39E2000D9A700 /* Point3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point3D.swift; sourceTree = "<group>"; };
-		FF6C020F29B3A06800D9A700 /* Vector3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector3D.swift; sourceTree = "<group>"; };
+		FFA9ED7629B3B2FA00ECF980 /* Vector3D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3D.swift; sourceTree = "<group>"; };
+		FFA9ED7729B3B2FA00ECF980 /* VectorValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorValue.swift; sourceTree = "<group>"; };
+		FFA9ED7829B3B2FA00ECF980 /* Point3D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point3D.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +81,7 @@
 		FF6C020829B39D3900D9A700 /* Structs */ = {
 			isa = PBXGroup;
 			children = (
-				FF6C020A29B39D8600D9A700 /* Scalars */,
+				FF6C020A29B39D8600D9A700 /* Vectors */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -93,14 +93,14 @@
 			path = Objects;
 			sourceTree = "<group>";
 		};
-		FF6C020A29B39D8600D9A700 /* Scalars */ = {
+		FF6C020A29B39D8600D9A700 /* Vectors */ = {
 			isa = PBXGroup;
 			children = (
-				FF6C020B29B39DA200D9A700 /* Scalar3D.swift */,
-				FF6C020D29B39E2000D9A700 /* Point3D.swift */,
-				FF6C020F29B3A06800D9A700 /* Vector3D.swift */,
+				FFA9ED7829B3B2FA00ECF980 /* Point3D.swift */,
+				FFA9ED7629B3B2FA00ECF980 /* Vector3D.swift */,
+				FFA9ED7729B3B2FA00ECF980 /* VectorValue.swift */,
 			);
-			path = Scalars;
+			path = Vectors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,10 +161,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF6C020E29B39E2000D9A700 /* Point3D.swift in Sources */,
+				FFA9ED7A29B3B2FA00ECF980 /* VectorValue.swift in Sources */,
+				FFA9ED7B29B3B2FA00ECF980 /* Point3D.swift in Sources */,
 				FF56902929B3961B0000AC1E /* main.swift in Sources */,
-				FF6C020C29B39DA200D9A700 /* Scalar3D.swift in Sources */,
-				FF6C021029B3A06800D9A700 /* Vector3D.swift in Sources */,
+				FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

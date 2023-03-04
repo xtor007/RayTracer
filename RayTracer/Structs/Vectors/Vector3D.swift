@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Vector3D: Scalar3D {
+struct Vector3D: VectorValue {
     
-    static func + (left: Vector3D, right: Scalar3D) -> Vector3D {
+    static func + (left: Vector3D, right: VectorValue) -> Vector3D {
         return Vector3D(
             x: left.x + right.x,
             y: left.y + right.y,
@@ -17,7 +17,7 @@ struct Vector3D: Scalar3D {
         )
     }
 
-    static func - (left: Vector3D, right: Scalar3D) -> Vector3D {
+    static func - (left: Vector3D, right: VectorValue) -> Vector3D {
         return Vector3D(
             x: left.x - right.x,
             y: left.y - right.y,
@@ -40,6 +40,18 @@ struct Vector3D: Scalar3D {
     private(set) var x: Float
     private(set) var y: Float
     private(set) var z: Float
+    
+    var lenght: Float {
+        return sqrt(x * x + y * y + z * z)
+    }
+    
+    var isUnit: Bool {
+        return lenght == 1
+    }
+    
+    var unitVector: Vector3D {
+        return (1 / lenght) * self
+    }
     
     func scalarSquare() -> Float {
         return self * self

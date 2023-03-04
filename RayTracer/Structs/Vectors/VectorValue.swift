@@ -1,5 +1,5 @@
 //
-//  Scalar3D.swift
+//  VectorValue.swift
 //  RayTracer
 //
 //  Created by Anatoliy Khramchenko on 04.03.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Scalar3D {
+protocol VectorValue {
     
     var x: Float { get }
     var y: Float { get }
