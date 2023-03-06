@@ -9,7 +9,12 @@ import Foundation
 
 struct Ray {
 
-    private let startPoint: Point3D
-    private let vector: Vector3D
+    let startPoint: Point3D
+    let vector: Vector3D
+    
+    init(startPoint: Point3D, vector: Vector3D) {
+        self.startPoint = startPoint
+        self.vector = vector.unitVector
+    }
 
 }

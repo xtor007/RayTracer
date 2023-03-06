@@ -13,4 +13,6 @@ protocol VectorValue {
     var y: Float { get }
     var z: Float { get }
     
+    func scalarSquare() -> Float
+    
 }

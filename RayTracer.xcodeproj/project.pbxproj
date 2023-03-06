@@ -18,6 +18,21 @@
 		FFA9ED8629B3B9B600ECF980 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8529B3B9B600ECF980 /* Scene.swift */; };
 		FFA9ED8829B3BA8D00ECF980 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8729B3BA8D00ECF980 /* Camera.swift */; };
 		FFA9ED8A29B3BECF00ECF980 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8929B3BECF00ECF980 /* Light.swift */; };
+		FFA9ED8D29B3C46700ECF980 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8C29B3C46700ECF980 /* Math.swift */; };
+		FFA9ED8F29B3C48E00ECF980 /* QuadraticEquation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8E29B3C48E00ECF980 /* QuadraticEquation.swift */; };
+		FFA9ED9C29B507AB00ECF980 /* ObjectDistantionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED9B29B507AB00ECF980 /* ObjectDistantionTest.swift */; };
+		FFA9EDA429B645BE00ECF980 /* Object3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7C29B3B55200ECF980 /* Object3D.swift */; };
+		FFA9EDA529B645D800ECF980 /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7E29B3B57B00ECF980 /* Ray.swift */; };
+		FFA9EDA629B645DC00ECF980 /* Point3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7829B3B2FA00ECF980 /* Point3D.swift */; };
+		FFA9EDA729B645DE00ECF980 /* Vector3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7629B3B2FA00ECF980 /* Vector3D.swift */; };
+		FFA9EDA829B645E000ECF980 /* VectorValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7729B3B2FA00ECF980 /* VectorValue.swift */; };
+		FFA9EDA929B645E300ECF980 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8C29B3C46700ECF980 /* Math.swift */; };
+		FFA9EDAA29B645E500ECF980 /* QuadraticEquation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8E29B3C48E00ECF980 /* QuadraticEquation.swift */; };
+		FFA9EDAB29B645E900ECF980 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8529B3B9B600ECF980 /* Scene.swift */; };
+		FFA9EDAC29B645EB00ECF980 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8729B3BA8D00ECF980 /* Camera.swift */; };
+		FFA9EDAD29B645ED00ECF980 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8929B3BECF00ECF980 /* Light.swift */; };
+		FFA9EDAE29B645F200ECF980 /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8029B3B62600ECF980 /* Sphere.swift */; };
+		FFA9EDAF29B645F400ECF980 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8229B3B69300ECF980 /* Plane.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,10 +60,21 @@
 		FFA9ED8529B3B9B600ECF980 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		FFA9ED8729B3BA8D00ECF980 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		FFA9ED8929B3BECF00ECF980 /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
+		FFA9ED8C29B3C46700ECF980 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		FFA9ED8E29B3C48E00ECF980 /* QuadraticEquation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadraticEquation.swift; sourceTree = "<group>"; };
+		FFA9ED9429B506FC00ECF980 /* RayTracerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RayTracerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFA9ED9B29B507AB00ECF980 /* ObjectDistantionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDistantionTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FF56902229B3961B0000AC1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFA9ED9129B506FC00ECF980 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -62,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				FF56902729B3961B0000AC1E /* RayTracer */,
+				FFA9ED9529B506FC00ECF980 /* RayTracerTests */,
 				FF56902629B3961B0000AC1E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				FF56902529B3961B0000AC1E /* RayTracer */,
+				FFA9ED9429B506FC00ECF980 /* RayTracerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -77,6 +105,7 @@
 		FF56902729B3961B0000AC1E /* RayTracer */ = {
 			isa = PBXGroup;
 			children = (
+				FFA9ED8B29B3C45700ECF980 /* Math */,
 				FFA9ED8429B3B9A700ECF980 /* Tracer */,
 				FF6C020829B39D3900D9A700 /* Structs */,
 				FF6C020729B39D3000D9A700 /* App */,
@@ -132,6 +161,23 @@
 			path = Tracer;
 			sourceTree = "<group>";
 		};
+		FFA9ED8B29B3C45700ECF980 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				FFA9ED8C29B3C46700ECF980 /* Math.swift */,
+				FFA9ED8E29B3C48E00ECF980 /* QuadraticEquation.swift */,
+			);
+			path = Math;
+			sourceTree = "<group>";
+		};
+		FFA9ED9529B506FC00ECF980 /* RayTracerTests */ = {
+			isa = PBXGroup;
+			children = (
+				FFA9ED9B29B507AB00ECF980 /* ObjectDistantionTest.swift */,
+			);
+			path = RayTracerTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,6 +198,23 @@
 			productReference = FF56902529B3961B0000AC1E /* RayTracer */;
 			productType = "com.apple.product-type.tool";
 		};
+		FFA9ED9329B506FC00ECF980 /* RayTracerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FFA9ED9A29B506FC00ECF980 /* Build configuration list for PBXNativeTarget "RayTracerTests" */;
+			buildPhases = (
+				FFA9ED9029B506FC00ECF980 /* Sources */,
+				FFA9ED9129B506FC00ECF980 /* Frameworks */,
+				FFA9ED9229B506FC00ECF980 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RayTracerTests;
+			productName = RayTracerTests;
+			productReference = FFA9ED9429B506FC00ECF980 /* RayTracerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -164,6 +227,10 @@
 				TargetAttributes = {
 					FF56902429B3961B0000AC1E = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					FFA9ED9329B506FC00ECF980 = {
+						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 				};
 			};
@@ -181,9 +248,20 @@
 			projectRoot = "";
 			targets = (
 				FF56902429B3961B0000AC1E /* RayTracer */,
+				FFA9ED9329B506FC00ECF980 /* RayTracerTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FFA9ED9229B506FC00ECF980 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FF56902129B3961B0000AC1E /* Sources */ = {
@@ -199,8 +277,30 @@
 				FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */,
 				FFA9ED8829B3BA8D00ECF980 /* Camera.swift in Sources */,
 				FFA9ED8329B3B69300ECF980 /* Plane.swift in Sources */,
+				FFA9ED8F29B3C48E00ECF980 /* QuadraticEquation.swift in Sources */,
 				FFA9ED7D29B3B55200ECF980 /* Object3D.swift in Sources */,
 				FFA9ED8629B3B9B600ECF980 /* Scene.swift in Sources */,
+				FFA9ED8D29B3C46700ECF980 /* Math.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFA9ED9029B506FC00ECF980 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFA9EDA829B645E000ECF980 /* VectorValue.swift in Sources */,
+				FFA9ED9C29B507AB00ECF980 /* ObjectDistantionTest.swift in Sources */,
+				FFA9EDAE29B645F200ECF980 /* Sphere.swift in Sources */,
+				FFA9EDAF29B645F400ECF980 /* Plane.swift in Sources */,
+				FFA9EDA629B645DC00ECF980 /* Point3D.swift in Sources */,
+				FFA9EDAD29B645ED00ECF980 /* Light.swift in Sources */,
+				FFA9EDA929B645E300ECF980 /* Math.swift in Sources */,
+				FFA9EDA429B645BE00ECF980 /* Object3D.swift in Sources */,
+				FFA9EDA729B645DE00ECF980 /* Vector3D.swift in Sources */,
+				FFA9EDAC29B645EB00ECF980 /* Camera.swift in Sources */,
+				FFA9EDAA29B645E500ECF980 /* QuadraticEquation.swift in Sources */,
+				FFA9EDA529B645D800ECF980 /* Ray.swift in Sources */,
+				FFA9EDAB29B645E900ECF980 /* Scene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +442,49 @@
 			};
 			name = Release;
 		};
+		FFA9ED9829B506FC00ECF980 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3MZDX9DG27;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lastivky.RayTracerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		FFA9ED9929B506FC00ECF980 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3MZDX9DG27;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lastivky.RayTracerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -359,6 +502,15 @@
 			buildConfigurations = (
 				FF56902D29B3961B0000AC1E /* Debug */,
 				FF56902E29B3961B0000AC1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FFA9ED9A29B506FC00ECF980 /* Build configuration list for PBXNativeTarget "RayTracerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFA9ED9829B506FC00ECF980 /* Debug */,
+				FFA9ED9929B506FC00ECF980 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
