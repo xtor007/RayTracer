@@ -28,10 +28,9 @@ struct Disc: Object3D {
             return nil
         }
         
-        let p = ray.startPoint + distance * ray.vector
-        let dp = p - center
+        let intersectsPoint = ray.startPoint + distance * ray.vector
 
-        if p.distance(to: center) > radius {
+        if intersectsPoint.distance(to: center) > radius {
             return nil
         }
 
