@@ -7,4 +7,4 @@
 
 import Foundation
 
-class Math {}
+enum Math {}
