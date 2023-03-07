@@ -13,6 +13,8 @@
 		9716CA5229B6B4AA0097EEEF /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA4F29B6B26C0097EEEF /* Collection+Extension.swift */; };
 		9716CA5629B7CD3D0097EEEF /* Disc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA5529B7CD3D0097EEEF /* Disc.swift */; };
 		9716CA5729B7CD9D0097EEEF /* Disc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA5529B7CD3D0097EEEF /* Disc.swift */; };
+		9716CA5A29B7CF350097EEEF /* Viewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA5929B7CF350097EEEF /* Viewport.swift */; };
+		9716CA5C29B7CFDE0097EEEF /* ConsoleViewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA5B29B7CFDE0097EEEF /* ConsoleViewport.swift */; };
 		FF56902929B3961B0000AC1E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF56902829B3961B0000AC1E /* main.swift */; };
 		FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7629B3B2FA00ECF980 /* Vector3D.swift */; };
 		FFA9ED7A29B3B2FA00ECF980 /* VectorValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7729B3B2FA00ECF980 /* VectorValue.swift */; };
@@ -57,6 +59,8 @@
 		9716CA4C29B6AEBB0097EEEF /* Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frame.swift; sourceTree = "<group>"; };
 		9716CA4F29B6B26C0097EEEF /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		9716CA5529B7CD3D0097EEEF /* Disc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disc.swift; sourceTree = "<group>"; };
+		9716CA5929B7CF350097EEEF /* Viewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viewport.swift; sourceTree = "<group>"; };
+		9716CA5B29B7CFDE0097EEEF /* ConsoleViewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleViewport.swift; sourceTree = "<group>"; };
 		FF56902529B3961B0000AC1E /* RayTracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RayTracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF56902829B3961B0000AC1E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		FFA9ED7629B3B2FA00ECF980 /* Vector3D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3D.swift; sourceTree = "<group>"; };
@@ -101,6 +105,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		9716CA5829B7CF0D0097EEEF /* Output */ = {
+			isa = PBXGroup;
+			children = (
+				9716CA5929B7CF350097EEEF /* Viewport.swift */,
+				9716CA5B29B7CFDE0097EEEF /* ConsoleViewport.swift */,
+			);
+			path = Output;
+			sourceTree = "<group>";
+		};
 		FF56901C29B3961B0000AC1E = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +135,7 @@
 		FF56902729B3961B0000AC1E /* RayTracer */ = {
 			isa = PBXGroup;
 			children = (
+				9716CA5829B7CF0D0097EEEF /* Output */,
 				9716CA4E29B6B25D0097EEEF /* Extensions */,
 				FFA9ED8B29B3C45700ECF980 /* Math */,
 				FFA9ED8429B3B9A700ECF980 /* Tracer */,
@@ -289,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFA9ED8129B3B62600ECF980 /* Sphere.swift in Sources */,
+				9716CA5C29B7CFDE0097EEEF /* ConsoleViewport.swift in Sources */,
 				FFA9ED7A29B3B2FA00ECF980 /* VectorValue.swift in Sources */,
 				FFA9ED7B29B3B2FA00ECF980 /* Point3D.swift in Sources */,
 				FFA9ED8A29B3BECF00ECF980 /* Light.swift in Sources */,
@@ -296,6 +311,7 @@
 				FF56902929B3961B0000AC1E /* main.swift in Sources */,
 				FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */,
 				FFA9ED8829B3BA8D00ECF980 /* Camera.swift in Sources */,
+				9716CA5A29B7CF350097EEEF /* Viewport.swift in Sources */,
 				9716CA5629B7CD3D0097EEEF /* Disc.swift in Sources */,
 				FFA9ED8329B3B69300ECF980 /* Plane.swift in Sources */,
 				FFA9ED8F29B3C48E00ECF980 /* QuadraticEquation.swift in Sources */,
