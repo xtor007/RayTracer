@@ -103,7 +103,7 @@ private extension Camera {
 private extension Camera {
     
     func getPixelCoordinates(basedOnX x: Int, y: Int) -> Point3D {
-        topLeftFramePoint + ((Float(x) * pixelWidth + pixelHalfWidth) * u) - ((Float(y) * pixelHeight - pixelHalfHeight) * v)
+        topLeftFramePoint + ((Float(x) * pixelWidth + pixelHalfWidth) * u) - ((Float(y) * pixelHeight + pixelHalfHeight) * v)
     }
     
 }

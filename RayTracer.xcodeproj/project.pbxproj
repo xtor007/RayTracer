@@ -15,6 +15,7 @@
 		9716CA5729B7CD9D0097EEEF /* Disc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA5529B7CD3D0097EEEF /* Disc.swift */; };
 		9716CA5A29B7CF350097EEEF /* Viewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA5929B7CF350097EEEF /* Viewport.swift */; };
 		9716CA5C29B7CFDE0097EEEF /* ConsoleViewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA5B29B7CFDE0097EEEF /* ConsoleViewport.swift */; };
+		9716CA6129B7DAFB0097EEEF /* ContrastViewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA6029B7DAFB0097EEEF /* ContrastViewport.swift */; };
 		FF56902929B3961B0000AC1E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF56902829B3961B0000AC1E /* main.swift */; };
 		FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7629B3B2FA00ECF980 /* Vector3D.swift */; };
 		FFA9ED7A29B3B2FA00ECF980 /* VectorValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7729B3B2FA00ECF980 /* VectorValue.swift */; };
@@ -61,6 +62,7 @@
 		9716CA5529B7CD3D0097EEEF /* Disc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disc.swift; sourceTree = "<group>"; };
 		9716CA5929B7CF350097EEEF /* Viewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viewport.swift; sourceTree = "<group>"; };
 		9716CA5B29B7CFDE0097EEEF /* ConsoleViewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleViewport.swift; sourceTree = "<group>"; };
+		9716CA6029B7DAFB0097EEEF /* ContrastViewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastViewport.swift; sourceTree = "<group>"; };
 		FF56902529B3961B0000AC1E /* RayTracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RayTracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF56902829B3961B0000AC1E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		FFA9ED7629B3B2FA00ECF980 /* Vector3D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3D.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			children = (
 				9716CA5929B7CF350097EEEF /* Viewport.swift */,
 				9716CA5B29B7CFDE0097EEEF /* ConsoleViewport.swift */,
+				9716CA6029B7DAFB0097EEEF /* ContrastViewport.swift */,
 			);
 			path = Output;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				9716CA5029B6B26C0097EEEF /* Collection+Extension.swift in Sources */,
 				FFA9ED7D29B3B55200ECF980 /* Object3D.swift in Sources */,
 				9716CA4D29B6AEBB0097EEEF /* Frame.swift in Sources */,
+				9716CA6129B7DAFB0097EEEF /* ContrastViewport.swift in Sources */,
 				FFA9ED8629B3B9B600ECF980 /* Scene.swift in Sources */,
 				FFA9ED8D29B3C46700ECF980 /* Math.swift in Sources */,
 			);
