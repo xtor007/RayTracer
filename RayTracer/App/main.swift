@@ -25,10 +25,5 @@ let camera = Camera(
 
 camera.scene = scene
 let frame = camera.capture()
-
-for x in 0..<frame.width {
-    for y in 0..<frame.height {
-        print(frame[x, y] == 1 ? "⬜️" : "⬛️", terminator: "")
-    }
-    print()
-}
+let viewport = ConsoleViewport(frame: frame)
+viewport.display()
