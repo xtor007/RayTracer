@@ -32,6 +32,7 @@ struct Frame<T> {
             return matrix[y][x]
         }
         set(newValue) {
+            
             matrix[y][x] = newValue
         }
     }
