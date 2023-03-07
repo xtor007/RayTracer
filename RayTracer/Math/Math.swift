@@ -7,4 +7,10 @@
 
 import Foundation
 
-class Math {}
+enum Math {
+    
+    static func degToRad(_ number: Float) -> Float {
+        return number * .pi / 180
+    }
+    
+}

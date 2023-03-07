@@ -41,6 +41,17 @@ struct Vector3D: VectorValue {
     private(set) var y: Float
     private(set) var z: Float
     
+    init(x: Float, y: Float, z: Float) {
+        self.x = x
+        self.y = y
+        self.z = z
+    }
+    
+    init(start: Point3D, end: Point3D) {
+        let pointRepr = end - start
+        self.init(x: pointRepr.x, y: pointRepr.y, z: pointRepr.z)
+    }
+    
     var lenght: Float {
         return sqrt(x * x + y * y + z * z)
     }

@@ -28,6 +28,8 @@ struct Point3D: VectorValue {
     static func * (left: Point3D, right: VectorValue) -> Float {
         return left.x * right.x + left.y * right.y + left.z * right.z
     }
+    
+    static let zero = Point3D(x: 0, y: 0, z: 0)
 
     private(set) var x: Float
     private(set) var y: Float
@@ -41,4 +43,6 @@ struct Point3D: VectorValue {
         return sqrt(pow((self.x - point.x), 2) + pow((self.y - point.y), 2) + pow((self.z - point.z), 2))
     }
 
+    
+    
 }
