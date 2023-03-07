@@ -36,5 +36,9 @@ struct Point3D: VectorValue {
     func scalarSquare() -> Float {
         return self * self
     }
+    
+    func distance(to point: Point3D) -> Float {
+        return sqrt(pow((self.x - point.x), 2) + pow((self.y - point.y), 2) + pow((self.z - point.z), 2))
+    }
 
 }

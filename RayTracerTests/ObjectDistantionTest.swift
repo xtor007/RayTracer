@@ -12,6 +12,7 @@ final class ObjectDistantionTest: XCTestCase {
     let camera = Point3D(x: 0, y: 0, z: 0)
     let sphere = Sphere(center: Point3D(x: 3, y: 5, z: 5), radius: 2)
     let plane = Plane(point: Point3D(x: 3, y: 0, z: 0), normal: Vector3D(x: 1, y: 0, z: 0))
+    let disc = Disc(center: Point3D(x: 0, y: 0, z: 3), normal: Vector3D(x: 1, y: 1, z: 1), radius: 1)
     
     func testSphere1() {
         let distanceToSphere = sphere.distance(forRay: Ray(
@@ -100,4 +101,28 @@ final class ObjectDistantionTest: XCTestCase {
         XCTAssertEqual(distanceToPlane!, 3 * sqrt(Float(3)), accuracy: 0.01)
     }
 
+    func testDisc1() {
+        let distanceToDisc = disc.distance(forRay: Ray(
+            startPoint: camera,
+            vector: Vector3D(
+                x: 0,
+                y: 0.1,
+                z: 1.1)
+        ))
+        
+        XCTAssertNotNil(distanceToDisc)
+        XCTAssertEqual(distanceToDisc!, camera.distance(to: Point3D(x: 0, y: 0.25, z: 2.75)), accuracy: 0.01)
+    }
+    
+    func testDisc2() {
+        let distanceToDisc = disc.distance(forRay: Ray(
+            startPoint: camera,
+            vector: Vector3D(
+                x: 0,
+                y: 1.1,
+                z: 1.1)
+        ))
+        
+        XCTAssertNil(distanceToDisc)
+    }
 }
