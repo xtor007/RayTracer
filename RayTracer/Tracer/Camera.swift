@@ -77,7 +77,8 @@ final class Camera: CameraProtocol {
                         end: pixelCoordinates
                     )
                 )
-                frame[xOffset, yOffset] = scene.checkIntersection(usingRay: ray) ? 1 : 0
+                
+                frame[xOffset, yOffset] = scene.checkIntersectionWithLighting(usingRay: ray)
             }
         }
         

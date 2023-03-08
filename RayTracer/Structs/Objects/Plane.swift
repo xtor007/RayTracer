@@ -25,6 +25,19 @@ struct Plane: Object3D {
         return distance
     }
     
+    func getIntersectionPoint(forRay ray: Ray) -> Point3D? {
+        
+        if let distance = distance(forRay: ray) {
+            return ray.startPoint + distance * ray.vector
+        }
+        
+        return nil
+    }
+    
+    func getNormal(forPoint point: Point3D) -> Vector3D {
+        return normal
+    }
+    
     init(point: Point3D, normal: Vector3D) {
         self.point = point
         self.normal = normal.unitVector

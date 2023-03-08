@@ -28,13 +28,25 @@ struct Disc: Object3D {
             return nil
         }
         
-        let intersectsPoint = ray.startPoint + distance * ray.vector
+        let intersectionPoint = ray.startPoint + distance * ray.vector
 
-        if intersectsPoint.distance(to: center) > radius {
+        if intersectionPoint.distance(to: center) > radius {
             return nil
         }
 
         return distance
     }
+    
+    func getIntersectionPoint(forRay ray: Ray) -> Point3D? {
+        
+        if let distance = distance(forRay: ray) {
+            return ray.startPoint + distance * ray.vector
+        }
+        
+        return nil
+    }
 
+    func getNormal(forPoint point: Point3D) -> Vector3D {
+        return normal
+    }
 }

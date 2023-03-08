@@ -34,4 +34,19 @@ struct Sphere: Object3D {
         }
     }
     
+    func getIntersectionPoint(forRay ray: Ray) -> Point3D? {
+        
+        if let distance = distance(forRay: ray) {
+            return ray.startPoint + distance * ray.vector
+        }
+        
+        return nil
+    }
+    
+    func getNormal(forPoint point: Point3D) -> Vector3D {
+        
+        let normal = center - point
+        return Vector3D(x: normal.x, y: normal.y, z: normal.z)
+    }
+    
 }
