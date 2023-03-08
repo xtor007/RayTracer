@@ -13,6 +13,12 @@ struct Disc: Object3D {
     let normal: Vector3D
     let radius: Float
     
+    init(center: Point3D, normal: Vector3D, radius: Float) {
+        self.center = center
+        self.normal = normal.unitVector
+        self.radius = radius
+    }
+    
     func distance(forRay ray: Ray) -> Float? {
         
         let D = -(normal * center)

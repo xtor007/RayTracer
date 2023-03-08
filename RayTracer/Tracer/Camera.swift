@@ -49,8 +49,7 @@ final class Camera: CameraProtocol {
         upOrientation: Vector3D,
         fov: Float,
         aspectRatio: Float,
-        verticalResolutoion: Int,
-        horizontalResolution: Int
+        verticalResolutoion: Int
     ) {
         self.origin = origin
         self.pointOfInterest = pointOfInterest
@@ -58,7 +57,7 @@ final class Camera: CameraProtocol {
         self.fov = fov
         self.aspectRatio = aspectRatio
         self.verticalResolutoion = verticalResolutoion
-        self.horizontalResolution = horizontalResolution
+        self.horizontalResolution = Int(Float(verticalResolutoion) * aspectRatio)
     }
     
     func setScene(_ scene: Scene) {

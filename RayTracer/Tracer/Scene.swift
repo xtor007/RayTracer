@@ -15,14 +15,6 @@ class Scene {
         objects.append(object)
     }
     
-    func checkIntersection(usingRay ray: Ray) -> Bool {
-        for object in objects where object.distance(forRay: ray) != nil {
-            return true
-        }
-        
-        return false
-    }
-    
     func checkIntersectionWithLighting(usingRay ray: Ray) -> Float {
         
         var closestObject: Object3D?
