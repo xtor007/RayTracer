@@ -32,7 +32,7 @@ final class Camera: CameraProtocol {
     private var horizontalResolution: Int
 
     private lazy var n = Vector3D(start: origin, end: pointOfInterest).unitVector
-    private lazy var v: Vector3D = n.crossProduct(upOrientation).unitVector
+    private lazy var v: Vector3D = -1 * n.crossProduct(upOrientation).unitVector
     private lazy var u: Vector3D = -1 * upOrientation
 
     private lazy var topLeftFramePoint = getTopLeftFramePoint()
@@ -91,7 +91,7 @@ final class Camera: CameraProtocol {
 private extension Camera {
     
     func getTopLeftFramePoint() -> Point3D {
-        pointOfInterest - ((width / 2) * u) + ((height / 2) * v)
+        pointOfInterest - ((width / 2) * v) + ((height / 2) * u)
     }
     
     func getHeight() -> Float {
@@ -104,7 +104,7 @@ private extension Camera {
 private extension Camera {
     
     func getPixelCoordinates(basedOnX x: Int, y: Int) -> Point3D {
-        topLeftFramePoint + ((Float(x) * pixelWidth + pixelHalfWidth) * u) - ((Float(y) * pixelHeight + pixelHalfHeight) * v)
+        topLeftFramePoint + ((Float(x) * pixelWidth + pixelHalfWidth) * v) - ((Float(y) * pixelHeight + pixelHalfHeight) * u)
     }
     
 }
