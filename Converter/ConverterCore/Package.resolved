@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "pluginbuilder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Lastivky/PluginBuilder.git",
+      "state" : {
+        "branch" : "test",
+        "revision" : "cee174b850fda1c328b3e1f46453eb93f59ff694"
+      }
+    },
+    {
+      "identity" : "swift-argument-parser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-argument-parser.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "c5050aa63ed5bb23209e7120b7ff6618ee06e0ee"
+      }
+    }
+  ],
+  "version" : 2
+}
