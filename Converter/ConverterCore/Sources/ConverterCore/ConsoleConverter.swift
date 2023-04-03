@@ -7,6 +7,7 @@
 
 import ArgumentParser
 import Foundation
+import PluginInterface
 
 struct ConsoleConverter: ParsableCommand {
     
@@ -48,6 +49,7 @@ struct ConsoleConverter: ParsableCommand {
         }
         let destData = writer.write(matrix: pixelMap)
         
+        print("🟢", goalURL)
         try destData.write(to: goalURL)
     }
     
