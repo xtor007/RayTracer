@@ -47,8 +47,6 @@ final class LibsFactory {
                 do {
                     return try getPlugin(ofType: T.self, atPath: $0.relativePath)
                 } catch {
-                    // TODO: Create a logger
-                    print(error)
                     return nil
                 }
             }
