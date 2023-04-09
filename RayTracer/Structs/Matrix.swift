@@ -11,7 +11,7 @@ struct Matrix {
 
     private(set) var values: [[Float]]
 
-    static func * (left: Matrix, right: Vector3D) throws -> Vector3D {
+    static func *<T: VectorValue> (left: Matrix, right: T) throws -> T {
         if left.values.isEmpty {
             throw MatrixError.notRightSizeForMultiplication
         }
@@ -25,7 +25,7 @@ struct Matrix {
             [1]
         ])
         let resultMartix = try left * vectorMatrix
-        return Vector3D(
+        return T(
             x: resultMartix.values[0][0],
             y: resultMartix.values[1][0],
             z: resultMartix.values[2][0]
