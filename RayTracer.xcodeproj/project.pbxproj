@@ -17,6 +17,7 @@
 		9716CA5C29B7CFDE0097EEEF /* ConsoleViewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA5B29B7CFDE0097EEEF /* ConsoleViewport.swift */; };
 		9716CA6129B7DAFB0097EEEF /* ContrastViewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA6029B7DAFB0097EEEF /* ContrastViewport.swift */; };
 		FF56902929B3961B0000AC1E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF56902829B3961B0000AC1E /* main.swift */; };
+		FF9476CC29E2BF7C009AA5F1 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */; };
 		FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7629B3B2FA00ECF980 /* Vector3D.swift */; };
 		FFA9ED7A29B3B2FA00ECF980 /* VectorValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7729B3B2FA00ECF980 /* VectorValue.swift */; };
 		FFA9ED7B29B3B2FA00ECF980 /* Point3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7829B3B2FA00ECF980 /* Point3D.swift */; };
@@ -65,6 +66,7 @@
 		9716CA6029B7DAFB0097EEEF /* ContrastViewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastViewport.swift; sourceTree = "<group>"; };
 		FF56902529B3961B0000AC1E /* RayTracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RayTracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF56902829B3961B0000AC1E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 		FFA9ED7629B3B2FA00ECF980 /* Vector3D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3D.swift; sourceTree = "<group>"; };
 		FFA9ED7729B3B2FA00ECF980 /* VectorValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorValue.swift; sourceTree = "<group>"; };
 		FFA9ED7829B3B2FA00ECF980 /* Point3D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point3D.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				FFA9ED7C29B3B55200ECF980 /* Object3D.swift */,
 				FFA9ED8029B3B62600ECF980 /* Sphere.swift */,
 				FFA9ED8229B3B69300ECF980 /* Plane.swift */,
+				FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				FFA9ED8A29B3BECF00ECF980 /* Light.swift in Sources */,
 				FFA9ED7F29B3B57B00ECF980 /* Ray.swift in Sources */,
 				FF56902929B3961B0000AC1E /* main.swift in Sources */,
+				FF9476CC29E2BF7C009AA5F1 /* Triangle.swift in Sources */,
 				FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */,
 				FFA9ED8829B3BA8D00ECF980 /* Camera.swift in Sources */,
 				9716CA5A29B7CF350097EEEF /* Viewport.swift in Sources */,
