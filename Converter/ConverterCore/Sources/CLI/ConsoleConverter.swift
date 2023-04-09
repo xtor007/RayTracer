@@ -8,6 +8,7 @@
 import ArgumentParser
 import Foundation
 import PluginInterface
+import ConverterCore
 
 struct ConsoleConverter: ParsableCommand {
     
@@ -28,6 +29,7 @@ struct ConsoleConverter: ParsableCommand {
     var goalFormat: String
     
     func run() throws {
+        let libsFactory = LibsFactory()
         let sourceURL = URL(fileURLWithPath: "\(FileManager.default.currentDirectoryPath)/\(source)")
         let goalURL = sourceURL.deletingPathExtension().appendingPathExtension(goalFormat)
 
@@ -37,19 +39,18 @@ struct ConsoleConverter: ParsableCommand {
         }
         
         let data = try Data(contentsOf: sourceURL)
-        guard let reader = try LibsFactory.getReader(forData: data) else {
-            print("Error: unable to parse passed file. Supported formats: \(try LibsFactory.getSupportedReadingFormats())")
+        guard let reader = try libsFactory.getReader(forData: data) else {
+            print("Error: unable to parse passed file. Supported formats: \(try libsFactory.getSupportedReadingFormats())")
             return
         }
         let pixelMap = reader.read(data: data)
         
-        guard let writer = try LibsFactory.getWriter(forExtension: goalFormat) else {
-            print("Error: unable to create a file of the given format \(goalFormat). Supported formats: \(try LibsFactory.getSupportedWritingFormats())")
+        guard let writer = try libsFactory.getWriter(forExtension: goalFormat) else {
+            print("Error: unable to create a file of the given format \(goalFormat). Supported formats: \(try libsFactory.getSupportedWritingFormats())")
             return
         }
         let destData = writer.write(matrix: pixelMap)
         
-        print("🟢", goalURL)
         try destData.write(to: goalURL)
     }
     

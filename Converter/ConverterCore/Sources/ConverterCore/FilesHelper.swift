@@ -7,10 +7,10 @@
 
 import Foundation
 
-final class FilesHelper {
+public final class FilesHelper {
     private init() {}
     
-    static func fileExists(
+    public static func fileExists(
         filename: String,
         basePath: String = FileManager.default.currentDirectoryPath
     ) -> Bool {
@@ -20,7 +20,7 @@ final class FilesHelper {
         return exists && !isDirectory.boolValue
     }
     
-    static func directoryExists(
+    public static func directoryExists(
         directory: String,
         basePath: String = FileManager.default.currentDirectoryPath
     ) -> Bool {
@@ -30,7 +30,7 @@ final class FilesHelper {
         return exists && isDirectory.boolValue
     }
     
-    static func getFileUrls(
+    public static func getFileUrls(
         withExtension aExtension: String,
         inDirectory directory: String,
         usingBasePath basePath: URL = URL(string: FileManager.default.currentDirectoryPath)!

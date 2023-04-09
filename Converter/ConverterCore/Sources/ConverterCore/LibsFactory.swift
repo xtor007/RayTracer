@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  LibsFactory.swift
 //  
 //
 //  Created by Illia Kniaziev on 02.04.2023.
@@ -8,33 +8,33 @@
 import Foundation
 import PluginInterface
 
-final class LibsFactory {
+public final class LibsFactory {
     
     private typealias InitFunction = @convention(c) () -> UnsafeMutableRawPointer
     
-    private init() {}
+    public init() {}
     
-    static func getSupportedReadingFormats() throws -> [String] {
+    public func getSupportedReadingFormats() throws -> [String] {
         try getPlugins(ofType: ReaderPlugin.self)
             .map { $0.supportedFileType }
     }
     
-    static func getSupportedWritingFormats() throws -> [String] {
+    public func getSupportedWritingFormats() throws -> [String] {
         try getPlugins(ofType: WriterPlugin.self)
             .map { $0.supportedFileType }
     }
     
-    static func getReader(forData data: Data) throws -> ReaderPlugin? {
+    public func getReader(forData data: Data) throws -> ReaderPlugin? {
         let plugins = try getPlugins(ofType: ReaderPlugin.self)
         return plugins.first { $0.validate(data: data) }
     }
     
-    static func getWriter(forExtension aExtension: String) throws -> WriterPlugin? {
+    public func getWriter(forExtension aExtension: String) throws -> WriterPlugin? {
         let plugins = try getPlugins(ofType: WriterPlugin.self)
         return plugins.first { $0.supportedFileType == aExtension }
     }
     
-    private static func getPlugins<T: FilePlugin>(ofType: T.Type) throws -> [T] {
+    private func getPlugins<T: FilePlugin>(ofType: T.Type) throws -> [T] {
         guard
             FilesHelper.directoryExists(directory: Configuration.pluginsDirName) else {
             throw ReadError.pluginsDirectoryNotFound
@@ -52,7 +52,7 @@ final class LibsFactory {
             }
     }
     
-    private static func getPlugin<T: FilePlugin>(ofType: T.Type, atPath path: String) throws -> T {
+    private func getPlugin<T: FilePlugin>(ofType: T.Type, atPath path: String) throws -> T {
         let openRes = dlopen(path, RTLD_NOW|RTLD_LOCAL)
         if openRes != nil {
             defer {
@@ -104,7 +104,7 @@ private extension LibsFactory {
 }
 
 // MARK: - Errors
-private extension LibsFactory {
+public extension LibsFactory {
     
     enum ReadError: Error, LocalizedError {
         case symbolNotFound(symbolName: String, path: String)
@@ -112,7 +112,7 @@ private extension LibsFactory {
         case unknownError(path: String)
         case pluginsDirectoryNotFound
         
-        var errorDescription: String? {
+        public var errorDescription: String? {
             switch self {
             case .symbolNotFound(let symbolName, let path):
                 return "error loading lib: symbol \(symbolName) not found, path: \(path)"
