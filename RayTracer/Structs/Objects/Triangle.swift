@@ -21,23 +21,26 @@ final class Triangle: Object3D {
 
     /// Möller–Trumbore intersection algorithm https://en.wikipedia.org/wiki/Möller–Trumbore_intersection_algorithm
     func distance(forRay ray: Ray) -> Float? {
-        let normal = getNormal(forPoint: point1)
-        let scalar = normal * ray.vector.unitVector
+        let e1 = Vector3D(start: point1, end: point2)
+        let e2 = Vector3D(start: point1, end: point3)
+        let pvec = e2.crossProduct(ray.vector)
+        let scalar = e1 * pvec
         if -0.000001...0.000001 ~= scalar {
             return nil
         }
         let invScalar = 1 / scalar // 1 / cos
-        let inclinedLineToTriangle = Vector3D(start: ray.startPoint, end: point1).unitVector
-        let u = (inclinedLineToTriangle * normal) * invScalar
+        let inclinedLineToTriangle = Vector3D(start: ray.startPoint, end: point1)
+        let u = abs((inclinedLineToTriangle * pvec) * invScalar)
         guard 0...1 ~= u else {
             return nil
         }
-        let qvec = inclinedLineToTriangle.crossProduct(Vector3D(start: point1, end: point2)).unitVector
+        let qvec = inclinedLineToTriangle.crossProduct(e1)
         let v = (ray.vector.unitVector * qvec) * invScalar
         if v < 0 || u + v > 1 {
             return nil
         }
-        return (Vector3D(start: point1, end: point3).unitVector * qvec) * invScalar
+        let result = (e2 * qvec) * invScalar
+        return result < 0 ? nil : result
     }
     
     func getIntersectionPoint(forRay ray: Ray) -> Point3D? {
