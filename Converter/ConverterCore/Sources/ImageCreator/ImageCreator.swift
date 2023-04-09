@@ -11,6 +11,10 @@ import PluginInterface
 
 public final class ImageCreator {
     
+    enum ImageCreationError: Error {
+        case noWriterFound
+    }
+    
     private let libsFactory = LibsFactory()
     
     public init() {}
@@ -21,7 +25,7 @@ public final class ImageCreator {
             .appendingPathExtension(aExtension)
         
         guard let writer = try libsFactory.getWriter(forExtension: aExtension) else {
-            return
+            throw ImageCreationError.noWriterFound
         }
         
         let destData = writer.write(matrix: matrix)
