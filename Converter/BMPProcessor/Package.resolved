@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "pluginbuilder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Lastivky/PluginBuilder.git",
+      "state" : {
+        "branch" : "test",
+        "revision" : "f1adcc58f3c07a4d97199d099563f62fdb2d875c"
+      }
+    }
+  ],
+  "version" : 2
+}
