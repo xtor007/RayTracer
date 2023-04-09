@@ -12,7 +12,9 @@ protocol VectorValue {
     var x: Float { get }
     var y: Float { get }
     var z: Float { get }
-    
+
+    init(x: Float, y: Float, z: Float)
+
     func scalarSquare() -> Float
     
 }
