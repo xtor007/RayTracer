@@ -27,4 +27,20 @@ final class TriangleDistanceTest: XCTestCase {
         XCTAssertNil(distance)
     }
 
+    func testPoint() {
+        let distance = triange.distance(forRay: Ray(startPoint: startPoint, vector: Vector3D(x: 1, y: 2, z: 2)))
+        XCTAssertNotNil(distance)
+        XCTAssertEqual(distance ?? 0, 3, accuracy: 0.01)
+    }
+
+    func testBeyond() {
+        let distance = triange.distance(forRay: Ray(startPoint: startPoint, vector: Vector3D(x: 1, y: 2, z: 3.8)))
+        XCTAssertNil(distance)
+    }
+
+    func testParalel() {
+        let distance = triange.distance(forRay: Ray(startPoint: startPoint, vector: Vector3D(x: 0, y: 1, z: 0)))
+        XCTAssertNil(distance)
+    }
+
 }
