@@ -20,6 +20,9 @@
 		FF9476CC29E2BF7C009AA5F1 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */; };
 		FF9476CD29E2CCDD009AA5F1 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */; };
 		FF9476CF29E2CD27009AA5F1 /* TriangleDistanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476CE29E2CD27009AA5F1 /* TriangleDistanceTest.swift */; };
+		FF9476D129E2F664009AA5F1 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476D029E2F664009AA5F1 /* Matrix.swift */; };
+		FF9476D229E2FBF4009AA5F1 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476D029E2F664009AA5F1 /* Matrix.swift */; };
+		FF9476D429E2FC07009AA5F1 /* MatrixTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476D329E2FC07009AA5F1 /* MatrixTest.swift */; };
 		FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7629B3B2FA00ECF980 /* Vector3D.swift */; };
 		FFA9ED7A29B3B2FA00ECF980 /* VectorValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7729B3B2FA00ECF980 /* VectorValue.swift */; };
 		FFA9ED7B29B3B2FA00ECF980 /* Point3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7829B3B2FA00ECF980 /* Point3D.swift */; };
@@ -70,6 +73,8 @@
 		FF56902829B3961B0000AC1E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 		FF9476CE29E2CD27009AA5F1 /* TriangleDistanceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleDistanceTest.swift; sourceTree = "<group>"; };
+		FF9476D029E2F664009AA5F1 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		FF9476D329E2FC07009AA5F1 /* MatrixTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixTest.swift; sourceTree = "<group>"; };
 		FFA9ED7629B3B2FA00ECF980 /* Vector3D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3D.swift; sourceTree = "<group>"; };
 		FFA9ED7729B3B2FA00ECF980 /* VectorValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorValue.swift; sourceTree = "<group>"; };
 		FFA9ED7829B3B2FA00ECF980 /* Point3D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point3D.swift; sourceTree = "<group>"; };
@@ -167,6 +172,7 @@
 				9716CA4C29B6AEBB0097EEEF /* Frame.swift */,
 				FF6C020929B39D4800D9A700 /* Objects */,
 				FF6C020A29B39D8600D9A700 /* Vectors */,
+				FF9476D029E2F664009AA5F1 /* Matrix.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -218,6 +224,7 @@
 			children = (
 				FFA9ED9B29B507AB00ECF980 /* ObjectDistantionTest.swift */,
 				FF9476CE29E2CD27009AA5F1 /* TriangleDistanceTest.swift */,
+				FF9476D329E2FC07009AA5F1 /* MatrixTest.swift */,
 			);
 			path = RayTracerTests;
 			sourceTree = "<group>";
@@ -326,6 +333,7 @@
 				9716CA5629B7CD3D0097EEEF /* Disc.swift in Sources */,
 				FFA9ED8329B3B69300ECF980 /* Plane.swift in Sources */,
 				FFA9ED8F29B3C48E00ECF980 /* QuadraticEquation.swift in Sources */,
+				FF9476D129E2F664009AA5F1 /* Matrix.swift in Sources */,
 				9716CA5029B6B26C0097EEEF /* Collection+Extension.swift in Sources */,
 				FFA9ED7D29B3B55200ECF980 /* Object3D.swift in Sources */,
 				9716CA4D29B6AEBB0097EEEF /* Frame.swift in Sources */,
@@ -347,12 +355,14 @@
 				9716CA5229B6B4AA0097EEEF /* Collection+Extension.swift in Sources */,
 				FFA9EDA629B645DC00ECF980 /* Point3D.swift in Sources */,
 				FFA9EDAD29B645ED00ECF980 /* Light.swift in Sources */,
+				FF9476D429E2FC07009AA5F1 /* MatrixTest.swift in Sources */,
 				FFA9EDA929B645E300ECF980 /* Math.swift in Sources */,
 				9716CA5729B7CD9D0097EEEF /* Disc.swift in Sources */,
 				FFA9EDA429B645BE00ECF980 /* Object3D.swift in Sources */,
 				FFA9EDA729B645DE00ECF980 /* Vector3D.swift in Sources */,
 				FF9476CF29E2CD27009AA5F1 /* TriangleDistanceTest.swift in Sources */,
 				FFA9EDAC29B645EB00ECF980 /* Camera.swift in Sources */,
+				FF9476D229E2FBF4009AA5F1 /* Matrix.swift in Sources */,
 				FFA9EDAA29B645E500ECF980 /* QuadraticEquation.swift in Sources */,
 				9716CA5129B6B3400097EEEF /* Frame.swift in Sources */,
 				FFA9EDA529B645D800ECF980 /* Ray.swift in Sources */,
