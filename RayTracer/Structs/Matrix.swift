@@ -52,6 +52,58 @@ struct Matrix {
         return Matrix(values: newValues)
     }
 
+    init(values: [[Float]]) {
+        self.values = values
+    }
+
+    /// angle in radians
+    init(rotateAroundXForAngle angle: Float) {
+        values = [
+            [1, 0, 0, 0],
+            [0, cos(angle), -sin(angle), 0],
+            [0, sin(angle), cos(angle), 0],
+            [0, 0, 0, 1]
+        ]
+    }
+
+    /// angle in radians
+    init(rotateAroundYForAngle angle: Float) {
+        values = [
+            [cos(angle), 0, sin(angle), 0],
+            [0, 1, 0, 0],
+            [-sin(angle), 0, cos(angle), 0],
+            [0, 0, 0, 1]
+        ]
+    }
+
+    /// angle in radians
+    init(rotateAroundZForAngle angle: Float) {
+        values = [
+            [cos(angle), -sin(angle), 0, 0],
+            [sin(angle), cos(angle), 0, 0],
+            [0, 0, 1, 0],
+            [0, 0, 0, 1]
+        ]
+    }
+
+    init(translation vector: Vector3D) {
+        values = [
+            [1, 0, 0, vector.x],
+            [0, 1, 0, vector.y],
+            [0, 0, 1, vector.z],
+            [0, 0, 0, 1]
+        ]
+    }
+
+    init(scale vector: Vector3D) {
+        values = [
+            [vector.x, 0, 0, 0],
+            [0, vector.y, 0, 0],
+            [0, 0, vector.z, 0],
+            [0, 0, 0, 1]
+        ]
+    }
+
 }
 
 enum MatrixError: Error {

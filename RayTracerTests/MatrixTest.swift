@@ -25,4 +25,43 @@ final class MatrixTest: XCTestCase {
         }
     }
 
+    func testScale() {
+        let matrix = Matrix(scale: Vector3D(x: 2, y: 2, z: 2))
+        let vector = Vector3D(x: 1, y: -1, z: 2)
+        do {
+            let newVector = try matrix * vector
+            XCTAssertEqual(newVector.x, 2, accuracy: 0.01)
+            XCTAssertEqual(newVector.y, -2, accuracy: 0.01)
+            XCTAssertEqual(newVector.z, 4, accuracy: 0.01)
+        } catch {
+            XCTAssertTrue(false)
+        }
+    }
+
+    func testTranslation() {
+        let matrix = Matrix(translation: Vector3D(x: 1, y: 1, z: -2))
+        let vector = Vector3D(x: 1, y: -1, z: 2)
+        do {
+            let newVector = try matrix * vector
+            XCTAssertEqual(newVector.x, 2, accuracy: 0.01)
+            XCTAssertEqual(newVector.y, 0, accuracy: 0.01)
+            XCTAssertEqual(newVector.z, 0, accuracy: 0.01)
+        } catch {
+            XCTAssertTrue(false)
+        }
+    }
+
+    func testRotetion() {
+        let matrix = Matrix(rotateAroundXForAngle: Float.pi / 2)
+        let vector = Vector3D(x: 1, y: -1, z: 2)
+        do {
+            let newVector = try matrix * vector
+            XCTAssertEqual(newVector.x, 1, accuracy: 0.01)
+            XCTAssertEqual(newVector.y, -2, accuracy: 0.01)
+            XCTAssertEqual(newVector.z, -1, accuracy: 0.01)
+        } catch {
+            XCTAssertTrue(false)
+        }
+    }
+
 }
