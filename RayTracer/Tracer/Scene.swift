@@ -18,7 +18,7 @@ class Scene {
     
     func checkIntersectionWithLighting(usingRay ray: Ray) -> Float {
         
-        let closestIntersection: (object: Object3D, distance: Float, point: Point3D, index: Int)? = Scene.getClosestIntersection(withObjects: objects, usingRay: ray)
+        let closestIntersection: (object: Object3D, distance: Float, point: Point3D, index: Int)? = getClosestIntersection(usingRay: ray)
         
         
         guard let closestIntersection = closestIntersection else {
@@ -36,14 +36,14 @@ class Scene {
         let normal = closestIntersection.object.getNormal(forPoint: closestIntersection.point)
         let lighting = normal.unitVector * Light.direction.unitVector
 
-        if Scene.getClosestIntersection(withObjects: newObjects, usingRay: newRay) == nil {
-            return lighting
-        } else {
+        if Scene.checkIntersection(withObjects: newObjects, usingRay: newRay) {
             return lighting * Scene.shadowBrightness
+        } else {
+            return lighting
         }
     }
     
-    static func getClosestIntersection(withObjects objects: [Object3D], usingRay ray: Ray) -> (Object3D, Float, Point3D, Int)? {
+    func getClosestIntersection(usingRay ray: Ray) -> (Object3D, Float, Point3D, Int)? {
 
         var intersections = [(object: Object3D, distance: Float, point: Point3D, index: Int)]()
         var index = 0
@@ -58,5 +58,15 @@ class Scene {
             
         }
         return intersections.min(by: { $0.distance < $1.distance })
+    }
+    
+    static func checkIntersection(withObjects objects: [Object3D], usingRay ray: Ray) -> Bool {
+        for object in objects {
+            if object.getIntersectionPoint(forRay: ray) != nil {
+                return true
+            }
+        }
+
+        return false
     }
 }
