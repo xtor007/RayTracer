@@ -52,8 +52,8 @@ struct ConsoleRenderer: ParsableCommand {
             pointOfInterest: Point3D(x: 0, y: 0, z: 1),
             upOrientation: Vector3D(x: 1, y: 0, z: 0),
             fov: 60,
-            aspectRatio: 1,
-            verticalResolutoion: 2048
+            aspectRatio: 1720 / 1080,
+            verticalResolutoion: 1080
         )
         
         camera.scene = scene
