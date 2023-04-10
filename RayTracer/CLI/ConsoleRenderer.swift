@@ -44,8 +44,8 @@ struct ConsoleRenderer: ParsableCommand {
         scene.addObject(Disc(center: Point3D(x: -20, y: 10, z: 50),
                              normal: Vector3D(x: 60, y: 0, z: 35),
                              radius: 10))
-        scene.addObject(Plane(point: Point3D(x: 10, y: -10, z: 0),
-                              normal: Vector3D(x: 1, y: 0, z: 0)))
+//        scene.addObject(Plane(point: Point3D(x: 10, y: -10, z: 0),
+//                              normal: Vector3D(x: 1, y: 0, z: 0)))
         
         let camera = Camera(
             origin: .zero,
@@ -53,7 +53,7 @@ struct ConsoleRenderer: ParsableCommand {
             upOrientation: Vector3D(x: 1, y: 0, z: 0),
             fov: 60,
             aspectRatio: 1,
-            verticalResolutoion: 2000
+            verticalResolutoion: 2048
         )
         
         camera.scene = scene

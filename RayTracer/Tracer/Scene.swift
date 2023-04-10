@@ -17,29 +17,46 @@ class Scene {
     
     func checkIntersectionWithLighting(usingRay ray: Ray) -> Float {
         
-        var closestObject: Object3D?
-        var intersectionPoint: Point3D?
-        var minDistance = Float.greatestFiniteMagnitude
+        let intersections: [(object: Object3D, distance: Float, point: Point3D, index: Int)] = Scene.getIntersections(withObjects: objects, usingRay: ray)
+        
+        let closestIntersection = intersections.min(by: { $0.distance < $1.distance })
+        
+        guard let closestIntersection = closestIntersection else {
+            return 0
+        }
+        
+        var newObjects = objects
+        newObjects.remove(at: closestIntersection.index)
+        
+        
+        let directionToLight = Vector3D(
+            x: -Light.direction.x,
+            y: -Light.direction.y,
+            z: -Light.direction.z) - closestIntersection.point
+        let newRay = Ray(startPoint: closestIntersection.point, vector: directionToLight)
+        
+        if Scene.getIntersections(withObjects: newObjects, usingRay: newRay).isEmpty {
+            let normal = closestIntersection.object.getNormal(forPoint: closestIntersection.point)
+            return normal.unitVector * Light.direction.unitVector
+        }
+                    
+        return 0
+    }
+    
+    static func getIntersections(withObjects objects: [Object3D], usingRay ray: Ray) -> [(Object3D, Float, Point3D, Int)] {
+
+        var intersections = [(object: Object3D, distance: Float, point: Point3D, index: Int)]()
+        var index = 0
         
         for object in objects {
             
             if let point = object.getIntersectionPoint(forRay: ray) {
                 let distance = point.distance(to: ray.startPoint)
-                if minDistance > distance {
-                    minDistance = distance
-                    intersectionPoint = point
-                    closestObject = object
-                }
+                intersections.append((object, distance, point, index))
             }
+            index += 1
             
         }
-        
-        if let object = closestObject, let point = intersectionPoint {
-            let normal = object.getNormal(forPoint: point)
-            return normal.unitVector * Light.direction.unitVector
-        }
-        
-        return 0
+        return intersections
     }
-    
 }
