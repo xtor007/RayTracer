@@ -14,7 +14,7 @@ struct Frame<T> {
     let width: Int
     let height: Int
     
-    private var matrix: Matrix
+    private(set) var matrix: Matrix
     
     init(width: Int, height: Int, defaultValue: T) {
         self.width = width

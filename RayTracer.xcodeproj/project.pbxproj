@@ -16,6 +16,10 @@
 		9716CA5A29B7CF350097EEEF /* Viewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA5929B7CF350097EEEF /* Viewport.swift */; };
 		9716CA5C29B7CFDE0097EEEF /* ConsoleViewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA5B29B7CFDE0097EEEF /* ConsoleViewport.swift */; };
 		9716CA6129B7DAFB0097EEEF /* ContrastViewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA6029B7DAFB0097EEEF /* ContrastViewport.swift */; };
+		976DDD6D29E37BF400908926 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 976DDD6C29E37BF400908926 /* ArgumentParser */; };
+		9772622829E3701600554749 /* ImageCreator in Frameworks */ = {isa = PBXBuildFile; productRef = 9772622729E3701600554749 /* ImageCreator */; };
+		9772622B29E372B600554749 /* ConsoleRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9772622A29E372B600554749 /* ConsoleRenderer.swift */; };
+		9772622D29E3771F00554749 /* ImageViewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9772622C29E3771F00554749 /* ImageViewport.swift */; };
 		FF56902929B3961B0000AC1E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF56902829B3961B0000AC1E /* main.swift */; };
 		FF9476CC29E2BF7C009AA5F1 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */; };
 		FF9476CD29E2CCDD009AA5F1 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */; };
@@ -69,6 +73,10 @@
 		9716CA5929B7CF350097EEEF /* Viewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viewport.swift; sourceTree = "<group>"; };
 		9716CA5B29B7CFDE0097EEEF /* ConsoleViewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleViewport.swift; sourceTree = "<group>"; };
 		9716CA6029B7DAFB0097EEEF /* ContrastViewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastViewport.swift; sourceTree = "<group>"; };
+		976DDD6E29E3800700908926 /* RayTracer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RayTracer.entitlements; sourceTree = "<group>"; };
+		9772622529E36FFF00554749 /* ConverterCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ConverterCore; path = Converter/ConverterCore; sourceTree = "<group>"; };
+		9772622A29E372B600554749 /* ConsoleRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleRenderer.swift; sourceTree = "<group>"; };
+		9772622C29E3771F00554749 /* ImageViewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewport.swift; sourceTree = "<group>"; };
 		FF56902529B3961B0000AC1E /* RayTracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RayTracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF56902829B3961B0000AC1E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
@@ -96,6 +104,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				976DDD6D29E37BF400908926 /* ArgumentParser in Frameworks */,
+				9772622829E3701600554749 /* ImageCreator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,16 +133,34 @@
 				9716CA5929B7CF350097EEEF /* Viewport.swift */,
 				9716CA5B29B7CFDE0097EEEF /* ConsoleViewport.swift */,
 				9716CA6029B7DAFB0097EEEF /* ContrastViewport.swift */,
+				9772622C29E3771F00554749 /* ImageViewport.swift */,
 			);
 			path = Output;
+			sourceTree = "<group>";
+		};
+		9772622629E3701600554749 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9772622929E3709D00554749 /* CLI */ = {
+			isa = PBXGroup;
+			children = (
+				9772622A29E372B600554749 /* ConsoleRenderer.swift */,
+			);
+			path = CLI;
 			sourceTree = "<group>";
 		};
 		FF56901C29B3961B0000AC1E = {
 			isa = PBXGroup;
 			children = (
+				9772622529E36FFF00554749 /* ConverterCore */,
 				FF56902729B3961B0000AC1E /* RayTracer */,
 				FFA9ED9529B506FC00ECF980 /* RayTracerTests */,
 				FF56902629B3961B0000AC1E /* Products */,
+				9772622629E3701600554749 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,6 +176,8 @@
 		FF56902729B3961B0000AC1E /* RayTracer */ = {
 			isa = PBXGroup;
 			children = (
+				976DDD6E29E3800700908926 /* RayTracer.entitlements */,
+				9772622929E3709D00554749 /* CLI */,
 				9716CA5829B7CF0D0097EEEF /* Output */,
 				9716CA4E29B6B25D0097EEEF /* Extensions */,
 				FFA9ED8B29B3C45700ECF980 /* Math */,
@@ -245,6 +275,10 @@
 			dependencies = (
 			);
 			name = RayTracer;
+			packageProductDependencies = (
+				9772622729E3701600554749 /* ImageCreator */,
+				976DDD6C29E37BF400908926 /* ArgumentParser */,
+			);
 			productName = RayTracer;
 			productReference = FF56902529B3961B0000AC1E /* RayTracer */;
 			productType = "com.apple.product-type.tool";
@@ -294,6 +328,9 @@
 				Base,
 			);
 			mainGroup = FF56901C29B3961B0000AC1E;
+			packageReferences = (
+				976DDD6B29E37BF400908926 /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+			);
 			productRefGroup = FF56902629B3961B0000AC1E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -325,6 +362,7 @@
 				FFA9ED7B29B3B2FA00ECF980 /* Point3D.swift in Sources */,
 				FFA9ED8A29B3BECF00ECF980 /* Light.swift in Sources */,
 				FFA9ED7F29B3B57B00ECF980 /* Ray.swift in Sources */,
+				9772622B29E372B600554749 /* ConsoleRenderer.swift in Sources */,
 				FF56902929B3961B0000AC1E /* main.swift in Sources */,
 				FF9476CC29E2BF7C009AA5F1 /* Triangle.swift in Sources */,
 				FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */,
@@ -333,6 +371,7 @@
 				9716CA5629B7CD3D0097EEEF /* Disc.swift in Sources */,
 				FFA9ED8329B3B69300ECF980 /* Plane.swift in Sources */,
 				FFA9ED8F29B3C48E00ECF980 /* QuadraticEquation.swift in Sources */,
+				9772622D29E3771F00554749 /* ImageViewport.swift in Sources */,
 				FF9476D129E2F664009AA5F1 /* Matrix.swift in Sources */,
 				9716CA5029B6B26C0097EEEF /* Collection+Extension.swift in Sources */,
 				FFA9ED7D29B3B55200ECF980 /* Object3D.swift in Sources */,
@@ -489,8 +528,9 @@
 		FF56902D29B3961B0000AC1E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = RayTracer/RayTracer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3MZDX9DG27;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -501,8 +541,9 @@
 		FF56902E29B3961B0000AC1E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = RayTracer/RayTracer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3MZDX9DG27;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -586,6 +627,29 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		976DDD6B29E37BF400908926 /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		976DDD6C29E37BF400908926 /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 976DDD6B29E37BF400908926 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+		9772622729E3701600554749 /* ImageCreator */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ImageCreator;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FF56901D29B3961B0000AC1E /* Project object */;
 }

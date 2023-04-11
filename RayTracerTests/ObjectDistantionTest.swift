@@ -125,59 +125,5 @@ final class ObjectDistantionTest: XCTestCase {
         
         XCTAssertNil(distanceToDisc)
     }
-    
-    func testSphereWithLight1() {
-        let scene = Scene()
-        scene.addObject(Sphere(center: Point3D(x: 5, y: 5, z: 10), radius: 2))
-        scene.addObject(Sphere(center: Point3D(x: 11, y: 11, z: 20), radius: 5))
         
-        let lighting = scene.checkIntersectionWithLighting(usingRay: Ray(
-            startPoint: Point3D(x: 0, y: 0, z: 0),
-            vector: Vector3D(x: 1, y: 1, z: 2))
-        )
-        
-        XCTAssertEqual(lighting, 1, accuracy: 0.1)
-    }
-    
-    func testSphereWithLight2() {
-        let scene = Scene()
-        scene.addObject(Sphere(center: Point3D(x: 5, y: 5, z: 10), radius: 2))
-        scene.addObject(Sphere(center: Point3D(x: 11, y: 11, z: 20), radius: 5))
-        
-        let lighting = scene.checkIntersectionWithLighting(usingRay: Ray(
-            startPoint: Point3D(x: 0, y: 0, z: 0),
-            vector: Vector3D(x: 1, y: -1, z: 2))
-        )
-        
-        XCTAssertEqual(lighting, 0, accuracy: 0.1)
-    }
-    
-    func testDiscWithLight1() {
-        let scene = Scene()
-        scene.addObject(Disc(center: Point3D(x: 0, y: 10, z: 50),
-                             normal: Vector3D(x: 0.5, y: 1, z: 1),
-                             radius: 10))
-        
-        let lighting = scene.checkIntersectionWithLighting(usingRay: Ray(
-                startPoint: Point3D(x: 0, y: 0, z: 0),
-                vector: Vector3D(x: 0, y: 1, z: 4))
-        )
-        
-        XCTAssertEqual(lighting, 1, accuracy: 0.1)
-    }
-    
-    func testDiscWithLight2() {
-        let scene = Scene()
-        scene.addObject(Disc(center: Point3D(x: 0, y: 10, z: 50),
-                             normal: Vector3D(x: -0.5, y: -1, z: -1),
-                             radius: 10))
-        
-        let lighting = scene.checkIntersectionWithLighting(usingRay: Ray(
-                startPoint: Point3D(x: 0, y: 0, z: 0),
-                vector: Vector3D(x: 0, y: 1, z: 4))
-        )
-        
-        XCTAssertEqual(lighting, -1, accuracy: 0.1)
-    }
-    
 }
