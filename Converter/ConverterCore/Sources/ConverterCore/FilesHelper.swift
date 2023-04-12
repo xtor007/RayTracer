@@ -20,6 +20,12 @@ public final class FilesHelper {
         return exists && !isDirectory.boolValue
     }
     
+    public static func fileExists(atPath path: String) -> Bool {
+        var isDirectory: ObjCBool = false
+        let exists = FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory)
+        return exists && !isDirectory.boolValue
+    }
+    
     public static func directoryExists(
         directory: String,
         basePath: String = FileManager.default.currentDirectoryPath

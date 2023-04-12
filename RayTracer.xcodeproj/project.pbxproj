@@ -20,6 +20,15 @@
 		9772622829E3701600554749 /* ImageCreator in Frameworks */ = {isa = PBXBuildFile; productRef = 9772622729E3701600554749 /* ImageCreator */; };
 		9772622B29E372B600554749 /* ConsoleRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9772622A29E372B600554749 /* ConsoleRenderer.swift */; };
 		9772622D29E3771F00554749 /* ImageViewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9772622C29E3771F00554749 /* ImageViewport.swift */; };
+		97A9200829E61449009E5053 /* ObjParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9200729E61449009E5053 /* ObjParser.swift */; };
+		97A9200D29E61672009E5053 /* ObjFieldParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9200C29E61672009E5053 /* ObjFieldParser.swift */; };
+		97A9200F29E616D7009E5053 /* PointObjFieldParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9200E29E616D7009E5053 /* PointObjFieldParser.swift */; };
+		97A9201129E61891009E5053 /* FaceObjFieldParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9201029E61891009E5053 /* FaceObjFieldParser.swift */; };
+		97A9201329E63CDF009E5053 /* ParsingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9201229E63CDF009E5053 /* ParsingTest.swift */; };
+		97A9201429E63D74009E5053 /* ObjFieldParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9200C29E61672009E5053 /* ObjFieldParser.swift */; };
+		97A9201529E63D77009E5053 /* PointObjFieldParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9200E29E616D7009E5053 /* PointObjFieldParser.swift */; };
+		97A9201629E63D7A009E5053 /* FaceObjFieldParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9201029E61891009E5053 /* FaceObjFieldParser.swift */; };
+		97A9201729E63D7C009E5053 /* ObjParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9200729E61449009E5053 /* ObjParser.swift */; };
 		FF56902929B3961B0000AC1E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF56902829B3961B0000AC1E /* main.swift */; };
 		FF9476CC29E2BF7C009AA5F1 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */; };
 		FF9476CD29E2CCDD009AA5F1 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */; };
@@ -77,6 +86,11 @@
 		9772622529E36FFF00554749 /* ConverterCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ConverterCore; path = Converter/ConverterCore; sourceTree = "<group>"; };
 		9772622A29E372B600554749 /* ConsoleRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleRenderer.swift; sourceTree = "<group>"; };
 		9772622C29E3771F00554749 /* ImageViewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewport.swift; sourceTree = "<group>"; };
+		97A9200729E61449009E5053 /* ObjParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjParser.swift; sourceTree = "<group>"; };
+		97A9200C29E61672009E5053 /* ObjFieldParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjFieldParser.swift; sourceTree = "<group>"; };
+		97A9200E29E616D7009E5053 /* PointObjFieldParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointObjFieldParser.swift; sourceTree = "<group>"; };
+		97A9201029E61891009E5053 /* FaceObjFieldParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceObjFieldParser.swift; sourceTree = "<group>"; };
+		97A9201229E63CDF009E5053 /* ParsingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingTest.swift; sourceTree = "<group>"; };
 		FF56902529B3961B0000AC1E /* RayTracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RayTracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF56902829B3961B0000AC1E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
@@ -153,6 +167,25 @@
 			path = CLI;
 			sourceTree = "<group>";
 		};
+		97A9200629E6140B009E5053 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				97A9200929E615C4009E5053 /* FieldParsers */,
+				97A9200729E61449009E5053 /* ObjParser.swift */,
+			);
+			path = Input;
+			sourceTree = "<group>";
+		};
+		97A9200929E615C4009E5053 /* FieldParsers */ = {
+			isa = PBXGroup;
+			children = (
+				97A9200C29E61672009E5053 /* ObjFieldParser.swift */,
+				97A9200E29E616D7009E5053 /* PointObjFieldParser.swift */,
+				97A9201029E61891009E5053 /* FaceObjFieldParser.swift */,
+			);
+			path = FieldParsers;
+			sourceTree = "<group>";
+		};
 		FF56901C29B3961B0000AC1E = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +212,7 @@
 				976DDD6E29E3800700908926 /* RayTracer.entitlements */,
 				9772622929E3709D00554749 /* CLI */,
 				9716CA5829B7CF0D0097EEEF /* Output */,
+				97A9200629E6140B009E5053 /* Input */,
 				9716CA4E29B6B25D0097EEEF /* Extensions */,
 				FFA9ED8B29B3C45700ECF980 /* Math */,
 				FFA9ED8429B3B9A700ECF980 /* Tracer */,
@@ -255,6 +289,7 @@
 				FFA9ED9B29B507AB00ECF980 /* ObjectDistantionTest.swift */,
 				FF9476CE29E2CD27009AA5F1 /* TriangleDistanceTest.swift */,
 				FF9476D329E2FC07009AA5F1 /* MatrixTest.swift */,
+				97A9201229E63CDF009E5053 /* ParsingTest.swift */,
 			);
 			path = RayTracerTests;
 			sourceTree = "<group>";
@@ -365,7 +400,10 @@
 				9772622B29E372B600554749 /* ConsoleRenderer.swift in Sources */,
 				FF56902929B3961B0000AC1E /* main.swift in Sources */,
 				FF9476CC29E2BF7C009AA5F1 /* Triangle.swift in Sources */,
+				97A9200F29E616D7009E5053 /* PointObjFieldParser.swift in Sources */,
 				FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */,
+				97A9200829E61449009E5053 /* ObjParser.swift in Sources */,
+				97A9201129E61891009E5053 /* FaceObjFieldParser.swift in Sources */,
 				FFA9ED8829B3BA8D00ECF980 /* Camera.swift in Sources */,
 				9716CA5A29B7CF350097EEEF /* Viewport.swift in Sources */,
 				9716CA5629B7CD3D0097EEEF /* Disc.swift in Sources */,
@@ -377,6 +415,7 @@
 				FFA9ED7D29B3B55200ECF980 /* Object3D.swift in Sources */,
 				9716CA4D29B6AEBB0097EEEF /* Frame.swift in Sources */,
 				9716CA6129B7DAFB0097EEEF /* ContrastViewport.swift in Sources */,
+				97A9200D29E61672009E5053 /* ObjFieldParser.swift in Sources */,
 				FFA9ED8629B3B9B600ECF980 /* Scene.swift in Sources */,
 				FFA9ED8D29B3C46700ECF980 /* Math.swift in Sources */,
 			);
@@ -388,15 +427,20 @@
 			files = (
 				FFA9EDA829B645E000ECF980 /* VectorValue.swift in Sources */,
 				FFA9ED9C29B507AB00ECF980 /* ObjectDistantionTest.swift in Sources */,
+				97A9201529E63D77009E5053 /* PointObjFieldParser.swift in Sources */,
 				FFA9EDAE29B645F200ECF980 /* Sphere.swift in Sources */,
 				FFA9EDAF29B645F400ECF980 /* Plane.swift in Sources */,
 				FF9476CD29E2CCDD009AA5F1 /* Triangle.swift in Sources */,
+				97A9201629E63D7A009E5053 /* FaceObjFieldParser.swift in Sources */,
 				9716CA5229B6B4AA0097EEEF /* Collection+Extension.swift in Sources */,
 				FFA9EDA629B645DC00ECF980 /* Point3D.swift in Sources */,
 				FFA9EDAD29B645ED00ECF980 /* Light.swift in Sources */,
 				FF9476D429E2FC07009AA5F1 /* MatrixTest.swift in Sources */,
 				FFA9EDA929B645E300ECF980 /* Math.swift in Sources */,
 				9716CA5729B7CD9D0097EEEF /* Disc.swift in Sources */,
+				97A9201429E63D74009E5053 /* ObjFieldParser.swift in Sources */,
+				97A9201729E63D7C009E5053 /* ObjParser.swift in Sources */,
+				97A9201329E63CDF009E5053 /* ParsingTest.swift in Sources */,
 				FFA9EDA429B645BE00ECF980 /* Object3D.swift in Sources */,
 				FFA9EDA729B645DE00ECF980 /* Vector3D.swift in Sources */,
 				FF9476CF29E2CD27009AA5F1 /* TriangleDistanceTest.swift in Sources */,
