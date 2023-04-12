@@ -9,7 +9,7 @@ import Foundation
 
 protocol CameraProtocol {
     var origin: Point3D { get }
-    var pointOfInterest: Point3D { get }
+    var direction: Vector3D { get }
     var upOrientation: Vector3D { get }
     var fov: Float { get }
     
@@ -20,7 +20,7 @@ protocol CameraProtocol {
 final class Camera: CameraProtocol {
     
     var origin: Point3D
-    var pointOfInterest: Point3D
+    var direction: Vector3D
     var upOrientation: Vector3D
     /// degrees
     var fov: Float
@@ -31,7 +31,7 @@ final class Camera: CameraProtocol {
     private var verticalResolutoion: Int
     private var horizontalResolution: Int
 
-    private lazy var n = Vector3D(start: origin, end: pointOfInterest).unitVector
+    private lazy var n = direction.unitVector
     private lazy var v: Vector3D = -1 * n.crossProduct(upOrientation).unitVector
     private lazy var u: Vector3D = -1 * upOrientation
 
@@ -42,18 +42,17 @@ final class Camera: CameraProtocol {
     private lazy var pixelWidth = width / Float(horizontalResolution)
     private lazy var pixelHalfHeight: Float = pixelHeight / 2
     private lazy var pixelHalfWidth: Float = pixelWidth / 2
+    private lazy var pointOfInterest: Point3D = origin + direction
     
     init(
-        origin: Point3D,
-        pointOfInterest: Point3D,
-        upOrientation: Vector3D,
+        matrix: Matrix,
         fov: Float,
         aspectRatio: Float,
         verticalResolutoion: Int
     ) {
-        self.origin = origin
-        self.pointOfInterest = pointOfInterest
-        self.upOrientation = upOrientation.unitVector
+        self.origin = try! matrix * Point3D(x: 0, y: 0, z: 0)
+        self.direction = try! matrix * Vector3D(x: 1, y: 1, z: 0)
+        self.upOrientation = try! matrix * Vector3D(x: 1, y: 1, z: 1).unitVector
         self.fov = fov
         self.aspectRatio = aspectRatio
         self.verticalResolutoion = verticalResolutoion
@@ -103,7 +102,7 @@ private extension Camera {
 private extension Camera {
     
     func getPixelCoordinates(basedOnX x: Int, y: Int) -> Point3D {
-        topLeftFramePoint + ((Float(x) * pixelWidth + pixelHalfWidth) * v) - ((Float(y) * pixelHeight + pixelHalfHeight) * u)
+        return topLeftFramePoint + ((Float(x) * pixelWidth + pixelHalfWidth) * v) - ((Float(y) * pixelHeight + pixelHalfHeight) * u)
     }
     
 }
