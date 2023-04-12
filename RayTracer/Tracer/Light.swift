@@ -8,5 +8,5 @@
 import Foundation
 
 class Light {
-    static let direction = Vector3D(x: 1, y: -1, z: -1)
+    static let direction = Vector3D(x: -1, y: 1, z: -2)
 }
