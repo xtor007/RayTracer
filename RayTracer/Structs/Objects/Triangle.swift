@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Triangle: Object3D {
+struct Triangle: Object3D {
 
     let point1: Point3D
     let point2: Point3D
@@ -51,7 +51,7 @@ final class Triangle: Object3D {
     }
     
     func getNormal(forPoint point: Point3D) -> Vector3D {
-        return Vector3D(start: point1, end: point2).crossProduct(Vector3D(start: point1, end: point3)).unitVector
+        return Vector3D(start: point3, end: point1).crossProduct(Vector3D(start: point2, end: point1)).unitVector
     }
 
 }

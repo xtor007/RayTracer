@@ -24,12 +24,8 @@ class Scene {
         guard let closestIntersection = closestIntersection else {
             return 0
         }
-                
-        let directionToLight = Vector3D(
-            x: -Light.direction.x,
-            y: -Light.direction.y,
-            z: -Light.direction.z) - closestIntersection.point
-        let newRay = Ray(startPoint: closestIntersection.point, vector: directionToLight)
+
+        let newRay = Ray(startPoint: closestIntersection.point, vector: -1 * Light.direction)
         var newObjects = objects
         newObjects.remove(at: closestIntersection.index)
         
