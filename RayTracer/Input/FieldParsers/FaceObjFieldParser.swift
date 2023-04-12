@@ -19,7 +19,7 @@ struct FaceObjFieldParser: ObjFieldParser {
     
     private let separator = "//"
     
-    func parse(components: Components) -> Result? {
+    func parse(components: StringComponents) -> Result? {
         guard
             let firstPart = components[safe: 1], let firstPivot = parsePivot(fromString: firstPart),
             let secondPart = components[safe: 2], let secondPivot = parsePivot(fromString: secondPart),

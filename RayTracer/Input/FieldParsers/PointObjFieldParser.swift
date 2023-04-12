@@ -9,7 +9,7 @@ import Foundation
 
 struct PointObjFieldParser: ObjFieldParser {
     
-    func parse(components: Components) -> Point3D? {
+    func parse(components: StringComponents) -> Point3D? {
         guard
             let x = components[safe: 1], let floatX = Float(x),
             let y = components[safe: 2], let floatY = Float(y),

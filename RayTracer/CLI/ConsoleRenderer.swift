@@ -21,8 +21,8 @@ struct ConsoleRenderer: ParsableCommand {
         helpNames: [.short, .long, .customLong("hlp")]
     )
     
-//    @Option(name: .shortAndLong, help: "The source image file.")
-    var source: String = "objects/sphere.obj"
+    @Option(name: .shortAndLong, help: "The source image file.")
+    var source: String
 
 //    @Option(name: .shortAndLong, help: "The format to convert the image to.")
 //    var output: String
@@ -42,18 +42,17 @@ struct ConsoleRenderer: ParsableCommand {
         guard let stringData = String(data: data, encoding: .utf8) else { return }
         
         let fileParser = ObjParser(stringData: stringData)
-        guard let triangles = fileParser.getTriangles() else { return }
+        let triangles = try fileParser.getTriangles()
         
         let scene = Scene()
-
         triangles.forEach(scene.addObject)
         
         let camera = Camera(
-            origin: Point3D(x: 0, y: 0, z: 3),
+            origin: Point3D(x: -3, y: 3, z: 3),
             pointOfInterest: Point3D(x: 0, y: 0, z: 0),
             upOrientation: Vector3D(x: 1, y: 0, z: 0),
             fov: 60,
-            aspectRatio: 1,
+            aspectRatio: 16 / 9,
             verticalResolutoion: 256
         )
         

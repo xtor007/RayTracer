@@ -7,12 +7,12 @@
 
 import Foundation
 
-typealias Components = [String]
+typealias StringComponents = [String]
 
 protocol ObjFieldParser {
     
     associatedtype Result
     
-    func parse(components: Components) -> Result?
+    func parse(components: StringComponents) -> Result?
     
 }
