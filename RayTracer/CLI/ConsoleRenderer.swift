@@ -43,25 +43,30 @@ struct ConsoleRenderer: ParsableCommand {
         
         let fileParser = ObjParser(stringData: stringData)
         let triangles = try fileParser.getTriangles()
-
-        let cowChangeColors = Matrix(translation: Vector3D(x: 0, y: 1, z: -0.2))
+        
+        let scaleMatrix = Matrix(scale: Vector3D(x: 3, y: 3, z: 3))
+        let translateMatrix = Matrix(translation: Vector3D(x: 1, y: 0, z: 0))
+        let rotateXMatrix = Matrix(rotateAroundXForAngle: 0)
+        let rotateZMatrix = Matrix(rotateAroundZForAngle: Float.pi / 2)
         var newTriangles = [Object3D]()
+        
         triangles.forEach { triangle in
-            let point1 = try! cowChangeColors * triangle.point1
-            let point2 = try! cowChangeColors * triangle.point2
-            let point3 = try! cowChangeColors * triangle.point3
+            let point1 = try! scaleMatrix * translateMatrix * rotateXMatrix * rotateZMatrix * triangle.point1
+            let point2 = try! scaleMatrix * translateMatrix * rotateXMatrix * rotateZMatrix * triangle.point2
+            let point3 = try! scaleMatrix * translateMatrix * rotateXMatrix * rotateZMatrix * triangle.point3
             newTriangles.append(Triangle(point1: point1, point2: point2, point3: point3))
         }
         
         let scene = Scene()
         newTriangles.forEach(scene.addObject)
-        scene.addObject(Sphere(center: Point3D(x: 0, y: 0, z: -100.92), radius: 100))
+        scene.addObject(Sphere(center: Point3D(x: 0, y: 0, z: -100.8), radius: 100))
 
         let camera = Camera(
-            matrix: try! Matrix(translation: Vector3D(x: 1, y: 0, z: 0)) * Matrix(rotateAroundZForAngle: Float.pi / 4),
+//            matrix: try! Matrix(translation: Vector3D(x: 3, y: 3, z: 0.5)) * Matrix(rotateAroundZForAngle: -Float.pi / 2) * Matrix(rotateAroundYForAngle: 0) * Matrix(rotateAroundXForAngle: 0),
+            matrix: Matrix(translation: Vector3D(x: 0, y: 0, z: 0)),
             fov: 60,
             aspectRatio: 16 / 9,
-            verticalResolutoion: 128
+            verticalResolutoion: 64
         )
         
         camera.scene = scene
