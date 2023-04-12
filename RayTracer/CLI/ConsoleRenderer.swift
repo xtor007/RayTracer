@@ -22,7 +22,7 @@ struct ConsoleRenderer: ParsableCommand {
     )
     
     @Option(name: .shortAndLong, help: "The source image file.")
-    var source: String
+    var source: String = "cow.obj"
 
 //    @Option(name: .shortAndLong, help: "The format to convert the image to.")
 //    var output: String
@@ -43,8 +43,8 @@ struct ConsoleRenderer: ParsableCommand {
         
         let fileParser = ObjParser(stringData: stringData)
         let triangles = try fileParser.getTriangles()
-        
-        let scaleMatrix = Matrix(scale: Vector3D(x: 3, y: 3, z: 3))
+
+        let scaleMatrix = Matrix(translation: Vector3D(x: 0, y: 1, z: -0.2))
         var newTriangles = [Object3D]()
         triangles.forEach { triangle in
             let point1 = try! scaleMatrix * triangle.point1
@@ -58,7 +58,7 @@ struct ConsoleRenderer: ParsableCommand {
         scene.addObject(Sphere(center: Point3D(x: 0, y: 0, z: -100.92), radius: 100))
 
         let camera = Camera(
-            matrix: try! Matrix(translation: Vector3D(x: 2, y: 2, z: 0.5)) * Matrix(rotateAroundZForAngle: -Float.pi * 1.05) * Matrix(rotateAroundYForAngle: Float.pi / 18) * Matrix(rotateAroundXForAngle: Float.pi / 18),
+            matrix: try! Matrix(translation: Vector3D(x: 1, y: 0, z: 0)) * Matrix(rotateAroundZForAngle: Float.pi / 4),
             fov: 60,
             aspectRatio: 16 / 9,
             verticalResolutoion: 128

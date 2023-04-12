@@ -112,6 +112,15 @@ struct Matrix {
         ]
     }
 
+    init() {
+        values = [
+            [1, 0, 0, 0],
+            [0, 1, 0, 0],
+            [0, 0, 1, 0],
+            [0, 0, 0, 1]
+        ]
+    }
+
 }
 
 enum MatrixError: Error {
