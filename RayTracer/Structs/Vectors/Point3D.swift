@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Point3D: VectorValue {
+struct Point3D: VectorValue, Equatable {
     
     static func + (left: Point3D, right: VectorValue) -> Point3D {
         return Point3D(
@@ -43,6 +43,4 @@ struct Point3D: VectorValue {
         return sqrt(pow((self.x - point.x), 2) + pow((self.y - point.y), 2) + pow((self.z - point.z), 2))
     }
 
-    
-    
 }
