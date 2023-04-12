@@ -44,16 +44,29 @@ struct ConsoleRenderer: ParsableCommand {
         let fileParser = ObjParser(stringData: stringData)
         let triangles = try fileParser.getTriangles()
         
-        let scene = Scene()
-        triangles.forEach(scene.addObject)
+        let rotateXMatrix = Matrix(rotateAroundXForAngle: 0)
+        let rotateZMatrix = Matrix(rotateAroundZForAngle: 0)
+        let rotateYMatrix = Matrix(rotateAroundYForAngle: 0)
+        let scaleMatrix = Matrix(scale: Vector3D(x: 3, y: 3, z: 3))
+        var newTriangles = [Object3D]()
+        triangles.forEach { triangle in
+            let point1 = try! scaleMatrix * rotateYMatrix * rotateZMatrix * rotateXMatrix * triangle.point1
+            let point2 = try! scaleMatrix * rotateYMatrix * rotateZMatrix * rotateXMatrix * triangle.point2
+            let point3 = try! scaleMatrix * rotateYMatrix * rotateZMatrix * rotateXMatrix * triangle.point3
+            newTriangles.append(Triangle(point1: point1, point2: point2, point3: point3))
+        }
         
+        let scene = Scene()
+        newTriangles.forEach(scene.addObject)
+        scene.addObject(Sphere(center: Point3D(x: 0, y: 0, z: -100.92), radius: 100))
+
         let camera = Camera(
-            origin: Point3D(x: -3, y: 3, z: 3),
+            origin: Point3D(x: 1, y: 3, z: 0),
             pointOfInterest: Point3D(x: 0, y: 0, z: 0),
-            upOrientation: Vector3D(x: 1, y: 0, z: 0),
+            upOrientation: Vector3D(x: 0, y: 0, z: 1),
             fov: 60,
             aspectRatio: 16 / 9,
-            verticalResolutoion: 256
+            verticalResolutoion: 1080
         )
         
         camera.scene = scene
