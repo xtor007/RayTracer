@@ -24,7 +24,15 @@ struct Matrix {
             [right.z],
             [1]
         ])
-        let resultMartix = try left * vectorMatrix
+        
+        var matrix = left
+        if T.self == Vector3D.self {
+            matrix.values[0][3] = 0
+            matrix.values[1][3] = 0
+            matrix.values[2][3] = 0
+        }
+        
+        let resultMartix = try matrix * vectorMatrix
         return T(
             x: resultMartix.values[0][0],
             y: resultMartix.values[1][0],
@@ -100,6 +108,15 @@ struct Matrix {
             [vector.x, 0, 0, 0],
             [0, vector.y, 0, 0],
             [0, 0, vector.z, 0],
+            [0, 0, 0, 1]
+        ]
+    }
+
+    init() {
+        values = [
+            [1, 0, 0, 0],
+            [0, 1, 0, 0],
+            [0, 0, 1, 0],
             [0, 0, 0, 1]
         ]
     }
