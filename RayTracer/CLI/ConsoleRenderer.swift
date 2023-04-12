@@ -22,7 +22,7 @@ struct ConsoleRenderer: ParsableCommand {
     )
     
     @Option(name: .shortAndLong, help: "The source image file.")
-    var source: String = "cow.obj"
+    var source: String
 
 //    @Option(name: .shortAndLong, help: "The format to convert the image to.")
 //    var output: String
@@ -44,12 +44,12 @@ struct ConsoleRenderer: ParsableCommand {
         let fileParser = ObjParser(stringData: stringData)
         let triangles = try fileParser.getTriangles()
 
-        let scaleMatrix = Matrix(translation: Vector3D(x: 0, y: 1, z: -0.2))
+        let cowChangeColors = Matrix(translation: Vector3D(x: 0, y: 1, z: -0.2))
         var newTriangles = [Object3D]()
         triangles.forEach { triangle in
-            let point1 = try! scaleMatrix * triangle.point1
-            let point2 = try! scaleMatrix * triangle.point2
-            let point3 = try! scaleMatrix * triangle.point3
+            let point1 = try! cowChangeColors * triangle.point1
+            let point2 = try! cowChangeColors * triangle.point2
+            let point3 = try! cowChangeColors * triangle.point3
             newTriangles.append(Triangle(point1: point1, point2: point2, point3: point3))
         }
         
