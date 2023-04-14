@@ -8,6 +8,7 @@
 import Foundation
 import ArgumentParser
 import ConverterCore
+import PluginInterface
 
 struct ConsoleRenderer: ParsableCommand {
     
@@ -44,7 +45,7 @@ struct ConsoleRenderer: ParsableCommand {
         let fileParser = ObjParser(stringData: stringData)
         let triangles = try fileParser.getTriangles()
         
-        let cowChangeColors = Matrix (translation: Vector3D(x: 0, y: 1, z: -0.2))
+        let cowChangeColors = Matrix (translation: Vector3D(x: 0, y: 1, z: -0.1))
         var newTriangles = [Object3D]()
         triangles.forEach { triangle in
             let point1 = try! cowChangeColors * triangle.point1
@@ -55,10 +56,18 @@ struct ConsoleRenderer: ParsableCommand {
         
         let scene = Scene()
         newTriangles.forEach(scene.addObject)
-        scene.addObject(Sphere(center: Point3D(x: 0, y: 0, z: -100.92), radius: 100))
+        scene.addObject(Sphere(center: Point3D(x: 0, y: 0, z: -100.4), radius: 100))
+        scene.addLight(Light(
+            direction: Vector3D(x: -0.5, y: 0.5, z: -1),
+            color: Pixel(red: 0, green: 0, blue: 255)
+        ))
+        scene.addLight(Light(
+            direction: Vector3D(x: 0.5, y: 0.5, z: -1),
+            color: Pixel(red: 255, green: 0, blue: 0)
+        ))
 
         let camera = Camera(
-            matrix: try! Matrix(translation: Vector3D(x: 1, y: 0, z: 0)) * Matrix(rotateAroundZForAngle: Float.pi / 4),
+            matrix: try! Matrix(translation: Vector3D(x: 0, y: 0, z: 0)) * Matrix(rotateAroundZForAngle: 0),
             fov: 60,
             aspectRatio: 16 / 9,
             verticalResolutoion: 128

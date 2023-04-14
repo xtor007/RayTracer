@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PluginInterface
 
 protocol CameraProtocol {
     var origin: Point3D { get }
@@ -14,7 +15,7 @@ protocol CameraProtocol {
     var fov: Float { get }
     
     func setScene(_ scene: Scene)
-    func capture() -> Frame<Float>
+    func capture() -> Frame<Pixel>
 }
 
 final class Camera: CameraProtocol {
@@ -63,8 +64,8 @@ final class Camera: CameraProtocol {
         self.scene = scene
     }
     
-    func capture() -> Frame<Float> {
-        var frame = Frame<Float>(width: horizontalResolution, height: verticalResolutoion, defaultValue: 0)
+    func capture() -> Frame<Pixel> {
+        var frame = Frame<Pixel>(width: horizontalResolution, height: verticalResolutoion, defaultValue: Pixel(red: 0, green: 0, blue: 0))
         for yOffset in 0..<verticalResolutoion {
             for xOffset in 0..<horizontalResolution {
                 let pixelCoordinates = getPixelCoordinates(basedOnX: xOffset, y: yOffset)
