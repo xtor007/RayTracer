@@ -29,7 +29,7 @@ final class Camera: CameraProtocol {
     
     /// width/height ratio
     private var aspectRatio: Float
-    private var verticalResolutoion: Int
+    private var verticalResolution: Int
     private var horizontalResolution: Int
 
     private lazy var n = direction.unitVector
@@ -39,11 +39,12 @@ final class Camera: CameraProtocol {
     private lazy var topLeftFramePoint = getTopLeftFramePoint()
     private lazy var height = getHeight()
     private lazy var width = height * aspectRatio
-    private lazy var pixelHeight = height / Float(verticalResolutoion)
+    private lazy var pixelHeight = height / Float(verticalResolution)
     private lazy var pixelWidth = width / Float(horizontalResolution)
     private lazy var pixelHalfHeight: Float = pixelHeight / 2
     private lazy var pixelHalfWidth: Float = pixelWidth / 2
     private lazy var pointOfInterest: Point3D = origin + direction
+    var progress = 0.0
     
     init(
         matrix: Matrix,
@@ -56,7 +57,7 @@ final class Camera: CameraProtocol {
         self.upOrientation = try! matrix * Vector3D(x: 0, y: 0, z: 1).unitVector
         self.fov = fov
         self.aspectRatio = aspectRatio
-        self.verticalResolutoion = verticalResolutoion
+        self.verticalResolution = verticalResolutoion
         self.horizontalResolution = Int(Float(verticalResolutoion) * aspectRatio)
     }
     
@@ -65,22 +66,56 @@ final class Camera: CameraProtocol {
     }
     
     func capture() -> Frame<Pixel> {
-        var frame = Frame<Pixel>(width: horizontalResolution, height: verticalResolutoion, defaultValue: Pixel(red: 0, green: 0, blue: 0))
-        for yOffset in 0..<verticalResolutoion {
-            for xOffset in 0..<horizontalResolution {
-                let pixelCoordinates = getPixelCoordinates(basedOnX: xOffset, y: yOffset)
-                let ray = Ray(
-                    startPoint: origin,
-                    vector: Vector3D(
-                        start: origin,
-                        end: pixelCoordinates
-                    )
-                )
-                
-                frame[xOffset, yOffset] = scene.checkIntersectionWithLighting(usingRay: ray)
-            }
-        }
+        var threads = [Thread]()
+        let countOfThreads = verticalResolution / 4
         
+        var frame = Frame<Pixel>(
+            width: horizontalResolution,
+            height: verticalResolution,
+            defaultValue: Pixel(red: 0, green: 0, blue: 0)
+        )
+        
+        for i in 0..<countOfThreads {
+            threads.append(
+                Thread {
+                    let start = i * self.verticalResolution / countOfThreads
+                    let end = start + self.verticalResolution / countOfThreads
+                    for yOffset in start..<end {
+                        for xOffset in 0..<self.horizontalResolution {
+                            let pixelCoordinates = self.getPixelCoordinates(basedOnX: xOffset, y: yOffset)
+                            let ray = Ray(
+                                startPoint: self.origin,
+                                vector: Vector3D(
+                                    start: self.origin,
+                                    end: pixelCoordinates
+                                )
+                            )
+                            
+                            frame[xOffset, yOffset] = self.scene.checkIntersectionWithLighting(usingRay: ray)
+                        }
+                        self.progress += round((100 / (Double(self.verticalResolution))) * 100) / 100
+                        print("progress: \(self.progress)%")
+                    }
+                }
+            )
+        }
+
+        threads.forEach {
+            $0.threadPriority = 0.1
+            $0.start()
+        }
+
+        outerloop: while(true) {
+            for thread in threads {
+                if !thread.isFinished {
+                    sleep(1)
+                    continue outerloop
+                }
+                threads.remove(at: 0)
+                continue outerloop
+            }
+            break
+        }
         return frame
     }
     

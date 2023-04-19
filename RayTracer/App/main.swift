@@ -7,6 +7,10 @@
 
 import Foundation
 
+let start = Date.timeIntervalSinceReferenceDate
 print("Exec path: \(FileManager.default.currentDirectoryPath)\n")
 
 ConsoleRenderer.main()
+let end = Date.timeIntervalSinceReferenceDate
+print(end - start)
+
