@@ -7,6 +7,7 @@
 
 import Foundation
 import PluginInterface
+import MetalKit
 
 protocol CameraProtocol {
     var origin: Point3D { get }
@@ -66,8 +67,22 @@ final class Camera: CameraProtocol {
     }
     
     func capture() -> Frame<Pixel> {
-        var threads = [Thread]()
-        let countOfThreads = verticalResolution / 4
+        
+        var rays = [Ray]()
+
+        for yOffset in 0..<verticalResolution {
+            for xOffset in 0..<horizontalResolution {
+                let pixelCoordinates = getPixelCoordinates(basedOnX: xOffset, y: yOffset)
+                let ray = Ray(
+                    startPoint: origin,
+                    vector: Vector3D(
+                        start: origin,
+                        end: pixelCoordinates
+                    )
+                )
+                rays.append(ray)
+            }
+        }
         
         var frame = Frame<Pixel>(
             width: horizontalResolution,
@@ -75,47 +90,109 @@ final class Camera: CameraProtocol {
             defaultValue: Pixel(red: 0, green: 0, blue: 0)
         )
         
-        for i in 0..<countOfThreads {
-            threads.append(
-                Thread {
-                    let start = i * self.verticalResolution / countOfThreads
-                    let end = start + self.verticalResolution / countOfThreads
-                    for yOffset in start..<end {
-                        for xOffset in 0..<self.horizontalResolution {
-                            let pixelCoordinates = self.getPixelCoordinates(basedOnX: xOffset, y: yOffset)
-                            let ray = Ray(
-                                startPoint: self.origin,
-                                vector: Vector3D(
-                                    start: self.origin,
-                                    end: pixelCoordinates
-                                )
-                            )
-                            
-                            frame[xOffset, yOffset] = self.scene.checkIntersectionWithLighting(usingRay: ray)
-                        }
-                        self.progress += round((100 / (Double(self.verticalResolution))) * 100) / 100
-                        print("progress: \(self.progress)%")
-                    }
-                }
-            )
+        let device = MTLCreateSystemDefaultDevice()
+        let commandQueue = device?.makeCommandQueue()
+        let gpuFunctionLibrary = device?.makeDefaultLibrary()
+        let checkIntersectionGpuFunction = gpuFunctionLibrary?.makeFunction(name: "gpuCheckIntersection")
+        var checkIntersectionPipelineState: MTLComputePipelineState!
+        do {
+            checkIntersectionPipelineState = try device?.makeComputePipelineState(function: checkIntersectionGpuFunction!)
+        } catch {
+            print(error)
         }
+        
+        let raysBuff = device?.makeBuffer(
+            bytes: rays,
+            length: MemoryLayout<Ray>.stride * rays.count,
+            options: .storageModeShared
+        )
+                
+        let triangles = scene.objects.map { $0 as! Triangle }
 
-        threads.forEach {
-            $0.threadPriority = 0.1
-            $0.start()
-        }
+        let trianglesBuff = device?.makeBuffer(
+            bytes: triangles,
+            length: MemoryLayout<Triangle>.stride * triangles.count,
+            options: .storageModeShared
+        )
 
-        outerloop: while(true) {
-            for thread in threads {
-                if !thread.isFinished {
-                    sleep(1)
-                    continue outerloop
-                }
-                threads.remove(at: 0)
-                continue outerloop
+        let trianglesCountBuff = device?.makeBuffer(
+            bytes: [triangles.count],
+            length: MemoryLayout<Int>.stride,
+            options: .storageModeShared
+        )
+        
+        let lightsBuff = device?.makeBuffer(
+            bytes: scene.lights,
+            length: MemoryLayout<Light>.stride * scene.lights.count,
+            options: .storageModeShared
+        )
+        
+        let lightsCountBuff = device?.makeBuffer(
+            bytes: [scene.lights.count],
+            length: MemoryLayout<Int>.stride,
+            options: .storageModeShared
+        )
+
+        
+        let pixelBuff = device?.makeBuffer(
+            length: MemoryLayout<Pixel>.stride * rays.count,
+            options: .storageModeShared
+        )
+                
+        let commandBuffer = commandQueue?.makeCommandBuffer()
+        let commandEncoder = commandBuffer?.makeComputeCommandEncoder()
+        commandEncoder?.setComputePipelineState(checkIntersectionPipelineState)
+        
+        commandEncoder?.setBuffer(raysBuff, offset: 0, index: 0)
+        commandEncoder?.setBuffer(trianglesBuff, offset: 0, index: 1)
+        commandEncoder?.setBuffer(trianglesCountBuff, offset: 0, index: 2)
+        commandEncoder?.setBuffer(lightsBuff, offset: 0, index: 3)
+        commandEncoder?.setBuffer(lightsCountBuff, offset: 0, index: 4)
+        commandEncoder?.setBuffer(pixelBuff, offset: 0, index: 5)
+        
+        let threadsPerGrid = MTLSize(width: rays.count, height: 1, depth: 1)
+        let maxThreadsPerThreadgroup = checkIntersectionPipelineState.maxTotalThreadsPerThreadgroup
+        let threadsPerThreadgroup = MTLSize(width: maxThreadsPerThreadgroup, height: 1, depth: 1)
+
+        commandEncoder?.dispatchThreads(threadsPerGrid,
+                                        threadsPerThreadgroup: threadsPerThreadgroup)
+
+        let start = Date.timeIntervalSinceReferenceDate
+        commandEncoder?.endEncoding()
+        commandBuffer?.commit()
+        commandBuffer?.waitUntilCompleted()
+        let end = Date.timeIntervalSinceReferenceDate
+        print("rendering time: \(end - start)")
+        
+        var pixelBufferPointer = pixelBuff?.contents().bindMemory(to: Pixel.self,
+                                                                  capacity: MemoryLayout<Pixel>.stride * rays.count)
+        
+        for i in 0..<verticalResolution {
+            for j in 0..<horizontalResolution {
+                frame[j, i] = pixelBufferPointer!.pointee
+                pixelBufferPointer = pixelBufferPointer?.advanced(by: 1)
             }
-            break
         }
+        return frame
+    }
+    
+    func capture(with type: Pixel.Type) -> Frame<Pixel> {
+        var frame = Frame<Pixel>(width: horizontalResolution, height: verticalResolution, defaultValue: Pixel(red: 0, green: 0, blue: 0))
+        for yOffset in 0..<verticalResolution {
+            for xOffset in 0..<horizontalResolution {
+                let pixelCoordinates = getPixelCoordinates(basedOnX: xOffset, y: yOffset)
+                let ray = Ray(
+                    startPoint: origin,
+                    vector: Vector3D(
+                        start: origin,
+                        end: pixelCoordinates
+                    )
+                )
+                
+                frame[xOffset, yOffset] = scene.checkIntersectionWithLighting(usingRay: ray)
+            }
+        }
+        
         return frame
     }
     
