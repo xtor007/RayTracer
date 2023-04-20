@@ -29,6 +29,8 @@
 		97A9201529E63D77009E5053 /* PointObjFieldParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9200E29E616D7009E5053 /* PointObjFieldParser.swift */; };
 		97A9201629E63D7A009E5053 /* FaceObjFieldParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9201029E61891009E5053 /* FaceObjFieldParser.swift */; };
 		97A9201729E63D7C009E5053 /* ObjParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9200729E61449009E5053 /* ObjParser.swift */; };
+		D32ED0B729F1C0A00093A0A1 /* Compute.metal in Sources */ = {isa = PBXBuildFile; fileRef = D32ED0B629F1C0A00093A0A1 /* Compute.metal */; };
+		D32ED0B829F1C0A00093A0A1 /* Compute.metal in Sources */ = {isa = PBXBuildFile; fileRef = D32ED0B629F1C0A00093A0A1 /* Compute.metal */; };
 		FF56902929B3961B0000AC1E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF56902829B3961B0000AC1E /* main.swift */; };
 		FF9476CC29E2BF7C009AA5F1 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */; };
 		FF9476CD29E2CCDD009AA5F1 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */; };
@@ -91,6 +93,7 @@
 		97A9200E29E616D7009E5053 /* PointObjFieldParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointObjFieldParser.swift; sourceTree = "<group>"; };
 		97A9201029E61891009E5053 /* FaceObjFieldParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceObjFieldParser.swift; sourceTree = "<group>"; };
 		97A9201229E63CDF009E5053 /* ParsingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingTest.swift; sourceTree = "<group>"; };
+		D32ED0B629F1C0A00093A0A1 /* Compute.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Compute.metal; sourceTree = "<group>"; };
 		FF56902529B3961B0000AC1E /* RayTracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RayTracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF56902829B3961B0000AC1E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
@@ -186,6 +189,14 @@
 			path = FieldParsers;
 			sourceTree = "<group>";
 		};
+		D32ED0B529F1C0A00093A0A1 /* Metal */ = {
+			isa = PBXGroup;
+			children = (
+				D32ED0B629F1C0A00093A0A1 /* Compute.metal */,
+			);
+			path = Metal;
+			sourceTree = "<group>";
+		};
 		FF56901C29B3961B0000AC1E = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +220,7 @@
 		FF56902729B3961B0000AC1E /* RayTracer */ = {
 			isa = PBXGroup;
 			children = (
+				D32ED0B529F1C0A00093A0A1 /* Metal */,
 				976DDD6E29E3800700908926 /* RayTracer.entitlements */,
 				9772622929E3709D00554749 /* CLI */,
 				9716CA5829B7CF0D0097EEEF /* Output */,
@@ -398,6 +410,7 @@
 				FFA9ED8A29B3BECF00ECF980 /* Light.swift in Sources */,
 				FFA9ED7F29B3B57B00ECF980 /* Ray.swift in Sources */,
 				9772622B29E372B600554749 /* ConsoleRenderer.swift in Sources */,
+				D32ED0B729F1C0A00093A0A1 /* Compute.metal in Sources */,
 				FF56902929B3961B0000AC1E /* main.swift in Sources */,
 				FF9476CC29E2BF7C009AA5F1 /* Triangle.swift in Sources */,
 				97A9200F29E616D7009E5053 /* PointObjFieldParser.swift in Sources */,
@@ -430,6 +443,7 @@
 				97A9201529E63D77009E5053 /* PointObjFieldParser.swift in Sources */,
 				FFA9EDAE29B645F200ECF980 /* Sphere.swift in Sources */,
 				FFA9EDAF29B645F400ECF980 /* Plane.swift in Sources */,
+				D32ED0B829F1C0A00093A0A1 /* Compute.metal in Sources */,
 				FF9476CD29E2CCDD009AA5F1 /* Triangle.swift in Sources */,
 				97A9201629E63D7A009E5053 /* FaceObjFieldParser.swift in Sources */,
 				9716CA5229B6B4AA0097EEEF /* Collection+Extension.swift in Sources */,
@@ -576,7 +590,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -589,7 +603,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -608,7 +622,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = lastivky.RayTracerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -631,7 +645,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = lastivky.RayTracerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

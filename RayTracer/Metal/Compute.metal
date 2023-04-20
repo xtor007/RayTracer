@@ -75,11 +75,7 @@ struct Vector3D {
     }
     
     Vector3D unitVector() {
-        return Vector3D(
-            this->x * (1 / (sqrt(x * x + y * y + z * z))),
-            this->y * (1 / (sqrt(x * x + y * y + z * z))),
-            this->z * (1 / (sqrt(x * x + y * y + z * z)))
-        );
+        return *this * (1 / (sqrt(x * x + y * y + z * z)));
     }
 };
 
@@ -97,7 +93,6 @@ struct Ray {
 
 struct Pixel {
 public:
-//    uint8_t off;
     uint8_t red;
     uint8_t green;
     uint8_t blue;
@@ -127,8 +122,7 @@ struct Light {
 public:
     Vector3D direction;
     Pixel color;
-    uint8_t one;
-//    uint8_t two;
+    uint8_t one; // just for allignment :(
 
     Light(Vector3D direction, Pixel color) {
         this->direction = direction;
@@ -185,7 +179,6 @@ public:
 bool checkIntersection(const constant Triangle triangles[], Ray ray, int count) {
     for(int i = 0; i < count; i++) {
         Point3D point = triangles[i].getIntersectionPoint(ray);
-//        Point3D point = triangle.getIntersectionPoint(ray);
         if (point.x != -100 && point.y != -100 && point.z != -100) {
             return true;
         }
@@ -229,10 +222,6 @@ kernel void gpuCheckIntersection(constant Ray      *rays          [[ buffer(0) ]
         return;
     }
     
-//    int red = 0;
-//    int green = 0;
-//    int blue = 0;
-    
     Pixel pixel = Pixel(0, 0, 0);
     
     for(int i = 0; i < *countOfLights; i++) {
@@ -242,36 +231,18 @@ kernel void gpuCheckIntersection(constant Ray      *rays          [[ buffer(0) ]
         Ray newRay = Ray(closestPoint, direction * -1);
         float lighting = normal.unitVector() * direction.unitVector();
         if (lighting > 0) {
-//            pixels[index].red = color.red * lighting;
-//            pixels[index].green = color.green * lighting;
-//            pixels[index].blue = 100 * lighting;
-//            return;
             
             if (checkIntersection(triangles, newRay, *size)) {
                 pixel = pixel + color * lighting * 0.2;
-                //                red = lights[i].color * lighting;
             } else {
                 pixel = pixel + color * lighting;
             }
         }
     }
 
-    
-    
-//    Vector3D light = Vector3D(0, 1, 1);
-//    float lighting = triangles[closestIndex].getNormal(closestPoint).unitVector() * light.unitVector();
-//
-//    if (lighting > 0) {
-//        pixels[index].red = 255 * lighting;
-//        pixels[index].green = 255 * lighting;
-//        pixels[index].blue = 255 * lighting;
-//        return;
-//        pixel = pixel * lighting;
-//        pixel = pixel + pixel;
-//    }
-
     pixels[index].red = pixel.red;
     pixels[index].green = pixel.green;
     pixels[index].blue = pixel.blue;
     return;
 }
+#pragma pack(pop)

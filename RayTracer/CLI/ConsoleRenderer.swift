@@ -70,24 +70,6 @@ struct ConsoleRenderer: ParsableCommand {
             color: Pixel(red: 0, green: 122, blue: 0)
         ))
         
-//        scene.addLight(Light(
-//            direction: Vector3D(x: 0, y: 0.3, z: -1),
-//            color: Pixel(red: 0, green: 87, blue: 183)
-//        ))
-//        print(MemoryLayout<Light>.stride)
-//        scene.addLight(Light(
-//            direction: Vector3D(x: 0, y: 1, z: 0),
-//            color: Pixel(red: 255, green: 255, blue: 0)
-//        ))
-        
-//        for i in 0...5 {
-//            scene.addLight(Light(
-//                direction: Vector3D(x: -1 + Float(i) * 0.4, y: 1, z: -1),
-//                color: Pixel(red: UInt8(100 - i * 10), green: 40 / 2, blue: UInt8(40 + i * 10))
-//            ))
-//        }
-        
-//        triangles = [
         scene.addObject(
             Triangle(
                 point1: Point3D(x: 200, y: 20, z: -0.31),
@@ -95,14 +77,13 @@ struct ConsoleRenderer: ParsableCommand {
                 point3: Point3D(x: 0, y: 0.2, z: -0.31)
             )
         )
-//        ]
         
         let camera = Camera(
 //            matrix: try! Matrix(translation: Vector3D(x: -0.25, y: 0, z: 0)) * Matrix(rotateAroundZForAngle: -Float.pi / 18),
             matrix: Matrix(),
             fov: 60,
-            aspectRatio: 2560 / 1600,
-            verticalResolutoion: 3200
+            aspectRatio: 16 / 9,
+            verticalResolutoion: 2160
         )
         
         camera.scene = scene

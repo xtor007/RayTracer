@@ -45,7 +45,7 @@ final class Camera: CameraProtocol {
     private lazy var pixelHalfHeight: Float = pixelHeight / 2
     private lazy var pixelHalfWidth: Float = pixelWidth / 2
     private lazy var pointOfInterest: Point3D = origin + direction
-    var progress = 0.0
+    var progress: Float = 0.0
     
     init(
         matrix: Matrix,
@@ -81,7 +81,6 @@ final class Camera: CameraProtocol {
             lights.append(light)
         }
 
-
         var threads = [Thread]()
         
         let device = MTLCreateSystemDefaultDevice()
@@ -95,15 +94,34 @@ final class Camera: CameraProtocol {
             print(error)
         }
         
-//        let threadsPerGrid = MTLSize(width: verticalResolution * horizontalResolution, height: 1, depth: 1)
         let maxThreadsPerThreadgroup = checkIntersectionPipelineState.maxTotalThreadsPerThreadgroup
-//        print(maxThreadsPerThreadgroup) // 1024
         let threadsPerThreadgroup = MTLSize(width: maxThreadsPerThreadgroup, height: 1, depth: 1)
 
+        let trianglesBuff = device?.makeBuffer(
+            bytes: triangles,
+            length: MemoryLayout<Triangle>.stride * triangles.count,
+            options: .storageModeShared
+        )
 
-        let countOfThreads = (verticalResolution * horizontalResolution) / (maxThreadsPerThreadgroup * maxThreadsPerThreadgroup)
-//        let countOfThreads = verticalResolution
+        let trianglesCountBuff = device?.makeBuffer(
+            bytes: [triangles.count],
+            length: MemoryLayout<Int>.stride,
+            options: .storageModeShared
+        )
 
+        let lightsBuff = device?.makeBuffer(
+            bytes: lights,
+            length: MemoryLayout<Light>.stride * lights.count,
+            options: .storageModeShared
+        )
+
+        let lightsCountBuff = device?.makeBuffer(
+            bytes: [lights.count],
+            length: MemoryLayout<Int>.stride,
+            options: .storageModeShared
+        )
+        
+        let countOfThreads = max((verticalResolution * horizontalResolution) / (maxThreadsPerThreadgroup * maxThreadsPerThreadgroup), 1)
         print(countOfThreads)
         
         for i in 0..<countOfThreads {
@@ -125,41 +143,13 @@ final class Camera: CameraProtocol {
                         )
                         rays.append(ray)
                     }
-                    
-                    
                 }
                                 
                 let threadsPerGrid = MTLSize(width: rays.count, height: 1, depth: 1)
-//                let maxThreadsPerThreadgroup = checkIntersectionPipelineState.maxTotalThreadsPerThreadgroup
-//                let threadsPerThreadgroup = MTLSize(width: maxThreadsPerThreadgroup, height: 1, depth: 1)
                 
                 let raysBuff = device?.makeBuffer(
                     bytes: rays,
                     length: MemoryLayout<Ray>.stride * rays.count,
-                    options: .storageModeShared
-                )
-                                
-                let trianglesBuff = device?.makeBuffer(
-                    bytes: triangles,
-                    length: MemoryLayout<Triangle>.stride * triangles.count,
-                    options: .storageModeShared
-                )
-                
-                let trianglesCountBuff = device?.makeBuffer(
-                    bytes: [triangles.count],
-                    length: MemoryLayout<Int>.stride,
-                    options: .storageModeShared
-                )
-                                
-                let lightsBuff = device?.makeBuffer(
-                    bytes: lights,
-                    length: MemoryLayout<Light>.stride * lights.count,
-                    options: .storageModeShared
-                )
-                
-                let lightsCountBuff = device?.makeBuffer(
-                    bytes: [lights.count],
-                    length: MemoryLayout<Int>.stride,
                     options: .storageModeShared
                 )
                 
@@ -171,7 +161,7 @@ final class Camera: CameraProtocol {
                 let commandBuffer = commandQueue?.makeCommandBuffer()
                 let commandEncoder = commandBuffer?.makeComputeCommandEncoder()
                 commandEncoder?.setComputePipelineState(checkIntersectionPipelineState)
-                
+
                 commandEncoder?.setBuffer(raysBuff, offset: 0, index: 0)
                 commandEncoder?.setBuffer(trianglesBuff, offset: 0, index: 1)
                 commandEncoder?.setBuffer(trianglesCountBuff, offset: 0, index: 2)
@@ -185,6 +175,8 @@ final class Camera: CameraProtocol {
                 commandEncoder?.endEncoding()
                 commandBuffer?.commit()
                 commandBuffer?.waitUntilCompleted()
+                self.progress += 100 / Float(countOfThreads)
+                print("Rendering progress: \(round(self.progress * 100) / 100)%")
                 
                 var pixelBufferPointer = pixelBuff?.contents().bindMemory(to: Pixel.self,
                                                                           capacity: MemoryLayout<Pixel>.stride * rays.count)
@@ -199,24 +191,12 @@ final class Camera: CameraProtocol {
         }
         
         for thread in threads {
-            thread.threadPriority = 0.2
             thread.start()
-        }
-        
-    outerloop: while true {
-        for i in 0..<threads.count {
-            if !threads[i].isFinished {
+            while !thread.isFinished {
                 sleep(1)
-                continue outerloop
             }
-            //            threads.remove(at: i)
         }
-        break
-    }
         
-        
-        //        for i in 0..<verticalResolution {
-        //        }
         return frame
     }
     
