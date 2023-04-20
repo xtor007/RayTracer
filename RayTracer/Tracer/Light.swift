@@ -8,7 +8,7 @@
 import Foundation
 import PluginInterface
 
-class Light {
+struct Light {
     let direction: Vector3D
     let color: Pixel
     

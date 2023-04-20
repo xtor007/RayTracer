@@ -121,9 +121,15 @@ final class Camera: CameraProtocol {
             options: .storageModeShared
         )
         
+        print(MemoryLayout<Light>.stride)
+        var lights = [Light]()
+        for light in scene.lights {
+            lights.append(light)
+        }
+        
         let lightsBuff = device?.makeBuffer(
-            bytes: scene.lights,
-            length: MemoryLayout<Light>.stride * scene.lights.count,
+            bytes: lights,
+            length: MemoryLayout<Light>.stride * lights.count,
             options: .storageModeShared
         )
         
