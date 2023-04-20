@@ -57,35 +57,35 @@ struct ConsoleRenderer: ParsableCommand {
         let scene = Scene()
         newTriangles.forEach(scene.addObject)
 //        scene.addObject(Sphere(center: Point3D(x: 0, y: 0, z: -100.3), radius: 100))
-        //        scene.addLight(Light(
-        //            direction: Vector3D(x: -0.5, y: 0.5, z: -1),
-        //            color: Pixel(red: 0, green: 0, blue: 255)
-        //        ))
-        //        scene.addLight(Light(
-        //            direction: Vector3D(x: 0.5, y: 0.5, z: -1),
-        //            color: Pixel(red: 255, green: 0, blue: 0)
-        //        ))
-        //        scene.addLight(Light(
-        //            direction: Vector3D(x: 0, y: 0.5, z: -0.3),
-        //            color: Pixel(red: 0, green: 122, blue: 0)
-        //        ))
+        scene.addLight(Light(
+            direction: Vector3D(x: -1, y: 0.7, z: -1),
+            color: Pixel(red: 0, green: 0, blue: 255)
+        ))
+        scene.addLight(Light(
+            direction: Vector3D(x: 0.5, y: 0.6, z: -1),
+            color: Pixel(red: 255, green: 0, blue: 0)
+        ))
+        scene.addLight(Light(
+            direction: Vector3D(x: 0, y: 0.5, z: -0.5),
+            color: Pixel(red: 0, green: 122, blue: 0)
+        ))
         
-        //        scene.addLight(Light(
-        //            direction: Vector3D(x: 0, y: 0.3, z: -1),
-        //            color: Pixel(red: 0, green: 87, blue: 183)
-        //        ))
+//        scene.addLight(Light(
+//            direction: Vector3D(x: 0, y: 0.3, z: -1),
+//            color: Pixel(red: 0, green: 87, blue: 183)
+//        ))
 //        print(MemoryLayout<Light>.stride)
 //        scene.addLight(Light(
 //            direction: Vector3D(x: 0, y: 1, z: 0),
 //            color: Pixel(red: 255, green: 255, blue: 0)
 //        ))
         
-        for i in 0...3 {
-            scene.addLight(Light(
-                direction: Vector3D(x: -0.5 + Float(i) * 0.3, y: 1, z: -1),
-                color: Pixel(red: 63, green: 2, blue: 105)
-            ))
-        }
+//        for i in 0...5 {
+//            scene.addLight(Light(
+//                direction: Vector3D(x: -1 + Float(i) * 0.4, y: 1, z: -1),
+//                color: Pixel(red: UInt8(100 - i * 10), green: 40 / 2, blue: UInt8(40 + i * 10))
+//            ))
+//        }
         
 //        triangles = [
         scene.addObject(
@@ -101,13 +101,16 @@ struct ConsoleRenderer: ParsableCommand {
 //            matrix: try! Matrix(translation: Vector3D(x: -0.25, y: 0, z: 0)) * Matrix(rotateAroundZForAngle: -Float.pi / 18),
             matrix: Matrix(),
             fov: 60,
-            aspectRatio: 16 / 9,
-            verticalResolutoion: 1080
+            aspectRatio: 2560 / 1600,
+            verticalResolutoion: 3200
         )
         
         camera.scene = scene
-//        let frame = camera.capture(with: Pixel.self)
-        let frame = camera.capture()
+//        let frame = camera.capture()
+        let start = Date.timeIntervalSinceReferenceDate
+        let frame = camera.captureWithGpu()
+        let end = Date.timeIntervalSinceReferenceDate
+        print("Rendrering time: \(end - start)")
         let viewport = ImageViewport(frame: frame)
         viewport.display()
     }
