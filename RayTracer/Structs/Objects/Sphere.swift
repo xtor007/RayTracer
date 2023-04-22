@@ -11,6 +11,7 @@ struct Sphere: Object3D {
     
     let center: Point3D
     let radius: Float
+    var material: Material = .mirror
     
     func distance(forRay ray: Ray) -> Float? {
         let k = ray.startPoint - center

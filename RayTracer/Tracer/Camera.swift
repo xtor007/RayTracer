@@ -73,15 +73,19 @@ final class Camera: CameraProtocol {
             height: verticalResolution,
             defaultValue: Pixel(red: 0, green: 0, blue: 0)
         )
-
-        let triangles = self.scene.objects.map { $0 as! Triangle }
-
-        var lights = [Light]()
-        for light in self.scene.lights {
-            lights.append(light)
+        
+        var triangles = [Triangle]()
+        var spheres = [Sphere]()
+        
+        self.scene.objects.forEach {
+            if $0 is Triangle {
+                triangles.append($0 as! Triangle)
+            } else if $0 is Sphere {
+                spheres.append($0 as! Sphere)
+            }
         }
-
-        var threads = [Thread]()
+        
+        let lights = self.scene.lights.map { $0 }
         
         let device = MTLCreateSystemDefaultDevice()
         let commandQueue = device?.makeCommandQueue()
@@ -96,25 +100,43 @@ final class Camera: CameraProtocol {
         
         let maxThreadsPerThreadgroup = checkIntersectionPipelineState.maxTotalThreadsPerThreadgroup
         let threadsPerThreadgroup = MTLSize(width: maxThreadsPerThreadgroup, height: 1, depth: 1)
-
+        
+//        var trianglesBuff: MTLBuffer?
+//        var trianglesCountBuff: MTLBuffer?
+//        var sphereBuff: MTLBuffer?
+//        var spheresCountBuff: MTLBuffer?
+//        var lightsBuff: MTLBuffer?
+//        var lightsCountBuff: MTLBuffer?
         let trianglesBuff = device?.makeBuffer(
             bytes: triangles,
             length: MemoryLayout<Triangle>.stride * triangles.count,
             options: .storageModeShared
         )
-
+        
         let trianglesCountBuff = device?.makeBuffer(
             bytes: [triangles.count],
             length: MemoryLayout<Int>.stride,
             options: .storageModeShared
         )
-
+        
+        let sphereBuff = device?.makeBuffer(
+            bytes: spheres,
+            length: MemoryLayout<Sphere>.stride * spheres.count,
+            options: .storageModeShared
+        )
+        
+        let spheresCountBuff = device?.makeBuffer(
+            bytes: [spheres.count],
+            length: MemoryLayout<Int>.stride,
+            options: .storageModeShared
+        )
+        
         let lightsBuff = device?.makeBuffer(
             bytes: lights,
             length: MemoryLayout<Light>.stride * lights.count,
             options: .storageModeShared
         )
-
+        
         let lightsCountBuff = device?.makeBuffer(
             bytes: [lights.count],
             length: MemoryLayout<Int>.stride,
@@ -125,98 +147,132 @@ final class Camera: CameraProtocol {
         print(countOfThreads)
         
         for i in 0..<countOfThreads {
-            threads.append(Thread {
-                let start = i * (self.verticalResolution / countOfThreads)
-                let end = start + (self.verticalResolution / countOfThreads)
+            let start = i * (self.verticalResolution / countOfThreads)
+            let end = start + (self.verticalResolution / countOfThreads)
+            
+            var rays = [Ray]()
+            for yOffset in start..<end {
                 
-                var rays = [Ray]()
-                for yOffset in start..<end {
-                    
-                    for xOffset in 0..<self.horizontalResolution {
-                        let pixelCoordinates = self.getPixelCoordinates(basedOnX: xOffset, y: yOffset)
-                        let ray = Ray(
-                            startPoint: self.origin,
-                            vector: Vector3D(
-                                start: self.origin,
-                                end: pixelCoordinates
-                            )
+                for xOffset in 0..<self.horizontalResolution {
+                    let pixelCoordinates = self.getPixelCoordinates(basedOnX: xOffset, y: yOffset)
+                    let ray = Ray(
+                        startPoint: self.origin,
+                        vector: Vector3D(
+                            start: self.origin,
+                            end: pixelCoordinates
                         )
-                        rays.append(ray)
-                    }
+                    )
+                    rays.append(ray)
                 }
-                                
-                let threadsPerGrid = MTLSize(width: rays.count, height: 1, depth: 1)
-                
-                let raysBuff = device?.makeBuffer(
-                    bytes: rays,
-                    length: MemoryLayout<Ray>.stride * rays.count,
-                    options: .storageModeShared
-                )
-                
-                let pixelBuff = device?.makeBuffer(
-                    length: MemoryLayout<Pixel>.stride * rays.count,
-                    options: .storageModeShared
-                )
-                
-                let commandBuffer = commandQueue?.makeCommandBuffer()
-                let commandEncoder = commandBuffer?.makeComputeCommandEncoder()
-                commandEncoder?.setComputePipelineState(checkIntersectionPipelineState)
-
-                commandEncoder?.setBuffer(raysBuff, offset: 0, index: 0)
-                commandEncoder?.setBuffer(trianglesBuff, offset: 0, index: 1)
-                commandEncoder?.setBuffer(trianglesCountBuff, offset: 0, index: 2)
-                commandEncoder?.setBuffer(lightsBuff, offset: 0, index: 3)
-                commandEncoder?.setBuffer(lightsCountBuff, offset: 0, index: 4)
-                commandEncoder?.setBuffer(pixelBuff, offset: 0, index: 5)
-                                
-                commandEncoder?.dispatchThreads(threadsPerGrid,
-                                                threadsPerThreadgroup: threadsPerThreadgroup)
-                
-                commandEncoder?.endEncoding()
-                commandBuffer?.commit()
-                commandBuffer?.waitUntilCompleted()
-                self.progress += 100 / Float(countOfThreads)
-                print("Rendering progress: \(round(self.progress * 100) / 100)%")
-                
-                var pixelBufferPointer = pixelBuff?.contents().bindMemory(to: Pixel.self,
-                                                                          capacity: MemoryLayout<Pixel>.stride * rays.count)
-                for i in start..<end {
-                    for j in 0..<self.horizontalResolution {
-                        frame[j, i] = pixelBufferPointer!.pointee
-                        pixelBufferPointer = pixelBufferPointer?.advanced(by: 1)
-                    }
-                }
-
-            })
-        }
-        
-        for thread in threads {
-            thread.start()
-            while !thread.isFinished {
-                sleep(1)
             }
+            
+            let threadsPerGrid = MTLSize(width: rays.count, height: 1, depth: 1)
+            
+            let raysBuff = device?.makeBuffer(
+                bytes: rays,
+                length: MemoryLayout<Ray>.stride * rays.count,
+                options: .storageModeShared
+            )
+            
+            let pixelBuff = device?.makeBuffer(
+                length: MemoryLayout<Pixel>.stride * rays.count,
+                options: .storageModeShared
+            )
+            
+            let commandBuffer = commandQueue?.makeCommandBuffer()
+            let commandEncoder = commandBuffer?.makeComputeCommandEncoder()
+            commandEncoder?.setComputePipelineState(checkIntersectionPipelineState)
+            
+            commandEncoder?.setBuffer(raysBuff, offset: 0, index: 0)
+            commandEncoder?.setBuffer(trianglesBuff, offset: 0, index: 1)
+            commandEncoder?.setBuffer(trianglesCountBuff, offset: 0, index: 2)
+            commandEncoder?.setBuffer(lightsBuff, offset: 0, index: 3)
+            commandEncoder?.setBuffer(lightsCountBuff, offset: 0, index: 4)
+            commandEncoder?.setBuffer(sphereBuff, offset: 0, index: 5)
+            commandEncoder?.setBuffer(spheresCountBuff, offset: 0, index: 6)
+            commandEncoder?.setBuffer(pixelBuff, offset: 0, index: 7)
+            
+            commandEncoder?.dispatchThreads(
+                threadsPerGrid,
+                threadsPerThreadgroup: threadsPerThreadgroup
+            )
+            
+            commandEncoder?.endEncoding()
+            commandBuffer?.commit()
+            commandBuffer?.waitUntilCompleted()
+            
+            self.progress += 100 / Float(countOfThreads)
+            print("Rendering progress: \(round(self.progress * 100) / 100)%")
+            
+            var pixelBufferPointer = pixelBuff?.contents()
+                .bindMemory(
+                    to: Pixel.self,
+                    capacity: MemoryLayout<Pixel>.stride * rays.count
+                )
+            
+            for i in start..<end {
+                for j in 0..<self.horizontalResolution {
+                    frame[j, i] = pixelBufferPointer!.pointee
+                    pixelBufferPointer = pixelBufferPointer?.advanced(by: 1)
+                }
+            }
+            
         }
         
         return frame
     }
     
     func capture() -> Frame<Pixel> {
-        var frame = Frame<Pixel>(width: horizontalResolution, height: verticalResolution, defaultValue: Pixel(red: 0, green: 0, blue: 0))
-        for yOffset in 0..<verticalResolution {
-            for xOffset in 0..<horizontalResolution {
-                let pixelCoordinates = getPixelCoordinates(basedOnX: xOffset, y: yOffset)
-                let ray = Ray(
-                    startPoint: origin,
-                    vector: Vector3D(
-                        start: origin,
-                        end: pixelCoordinates
-                    )
-                )
-                
-                frame[xOffset, yOffset] = scene.checkIntersectionWithLighting(usingRay: ray)
-            }
+        var threads = [Thread]()
+        let countOfThreads = (verticalResolution / 4)
+        
+        var frame = Frame<Pixel>(
+            width: horizontalResolution,
+            height: verticalResolution,
+            defaultValue: Pixel(red: 0, green: 0, blue: 0)
+        )
+        
+        for i in 0..<countOfThreads {
+            threads.append(
+                Thread {
+                    let start = i * self.verticalResolution / countOfThreads
+                    let end = start + self.verticalResolution / countOfThreads
+                    for yOffset in start..<end {
+                        for xOffset in 0..<self.horizontalResolution {
+                            let pixelCoordinates = self.getPixelCoordinates(basedOnX: xOffset, y: yOffset)
+                            let ray = Ray(
+                                startPoint: self.origin,
+                                vector: Vector3D(
+                                    start: self.origin,
+                                    end: pixelCoordinates
+                                )
+                            )
+                            
+                            frame[xOffset, yOffset] = self.scene.checkIntersectionWithLighting(usingRay: ray)
+                        }
+                        self.progress += 100 / Float(self.verticalResolution)
+                        print("progress: \(round(self.progress * 100) / 100)%")
+                    }
+                }
+            )
         }
         
+        threads.forEach {
+            $0.threadPriority = 0.1
+            $0.start()
+        }
+        
+        outerloop: while(true) {
+            for thread in threads {
+                if !thread.isFinished {
+                    sleep(1)
+                    continue outerloop
+                }
+                threads.remove(at: 0)
+                continue outerloop
+            }
+            break
+        }
         return frame
     }
     

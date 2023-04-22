@@ -11,6 +11,7 @@ struct Plane: Object3D {
     
     let point: Point3D
     let normal: Vector3D
+    let material: Material = .regular
     
     func distance(forRay ray: Ray) -> Float? {
         let D = -(normal * point)

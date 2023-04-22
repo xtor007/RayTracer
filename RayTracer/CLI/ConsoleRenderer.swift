@@ -65,30 +65,38 @@ struct ConsoleRenderer: ParsableCommand {
             direction: Vector3D(x: 0.5, y: 0.6, z: -1),
             color: Pixel(red: 255, green: 0, blue: 0)
         ))
-        scene.addLight(Light(
-            direction: Vector3D(x: 0, y: 0.5, z: -0.5),
-            color: Pixel(red: 0, green: 122, blue: 0)
-        ))
+//        scene.addLight(Light(
+//            direction: Vector3D(x: 0, y: 0.5, z: -0.5),
+//            color: Pixel(red: 0, green: 122, blue: 0)
+//        ))
         
-        scene.addObject(
-            Triangle(
-                point1: Point3D(x: 200, y: 20, z: -0.31),
-                point2: Point3D(x: -200, y: 20, z: -0.31),
-                point3: Point3D(x: 0, y: 0.2, z: -0.31)
-            )
+        var triangle = Triangle(
+            point1: Point3D(x: 3, y: 3, z: -0.28),
+            point2: Point3D(x: -3, y: 3, z: -0.34),
+            point3: Point3D(x: 0, y: -200, z: -0.3)
         )
+        triangle.material = .mirror
+        scene.addObject(triangle)
         
+        var sphere = Sphere(center: Point3D(x: -0.6, y: 0.3, z: -0.2), radius: 0.1)
+//        sphere.material = .mirror
+        scene.addObject(sphere)
+        var sphere2 = Sphere(center: Point3D(x: -0.6, y: 0.3, z: 0), radius: 0.1)
+//        sphere2.material = .regular
+        scene.addObject(sphere2)
+        scene.addObject(Sphere(center: Point3D(x: -0.6, y: 0.3, z: 0.2), radius: 0.1))
+
         let camera = Camera(
 //            matrix: try! Matrix(translation: Vector3D(x: -0.25, y: 0, z: 0)) * Matrix(rotateAroundZForAngle: -Float.pi / 18),
-            matrix: Matrix(),
+            matrix: try! Matrix(translation: Vector3D(x: -0.3, y: -0.5, z: 0.2)) * Matrix(rotateAroundXForAngle: -Float.pi / 18),
             fov: 60,
             aspectRatio: 16 / 9,
             verticalResolutoion: 2160
         )
         
         camera.scene = scene
-//        let frame = camera.capture()
         let start = Date.timeIntervalSinceReferenceDate
+//        let frame = camera.capture()
         let frame = camera.captureWithGpu()
         let end = Date.timeIntervalSinceReferenceDate
         print("Rendrering time: \(end - start)")

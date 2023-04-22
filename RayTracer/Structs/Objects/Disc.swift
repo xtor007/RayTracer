@@ -12,6 +12,7 @@ struct Disc: Object3D {
     let center: Point3D
     let normal: Vector3D
     let radius: Float
+    let material: Material = .regular
     
     init(center: Point3D, normal: Vector3D, radius: Float) {
         self.center = center

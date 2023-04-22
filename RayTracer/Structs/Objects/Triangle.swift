@@ -13,6 +13,7 @@ struct Triangle: Object3D {
     let point2: Point3D
     let point3: Point3D
     let normal: Vector3D
+    var material: Material = .regular
 
     init(point1: Point3D, point2: Point3D, point3: Point3D) {
         self.point1 = point1

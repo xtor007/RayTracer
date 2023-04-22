@@ -31,6 +31,13 @@
 		97A9201729E63D7C009E5053 /* ObjParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9200729E61449009E5053 /* ObjParser.swift */; };
 		D32ED0B729F1C0A00093A0A1 /* Compute.metal in Sources */ = {isa = PBXBuildFile; fileRef = D32ED0B629F1C0A00093A0A1 /* Compute.metal */; };
 		D32ED0B829F1C0A00093A0A1 /* Compute.metal in Sources */ = {isa = PBXBuildFile; fileRef = D32ED0B629F1C0A00093A0A1 /* Compute.metal */; };
+		D3B0559829F3E80D008D3EEC /* Point3D.metal in Sources */ = {isa = PBXBuildFile; fileRef = D3B0559729F3E80D008D3EEC /* Point3D.metal */; };
+		D3B0559B29F3EA92008D3EEC /* Vector3D.metal in Sources */ = {isa = PBXBuildFile; fileRef = D3B0559A29F3EA92008D3EEC /* Vector3D.metal */; };
+		D3B0559E29F3EBF2008D3EEC /* Ray.metal in Sources */ = {isa = PBXBuildFile; fileRef = D3B0559C29F3EBF2008D3EEC /* Ray.metal */; };
+		D3B055A229F3ECC8008D3EEC /* Pixel.metal in Sources */ = {isa = PBXBuildFile; fileRef = D3B055A029F3ECC8008D3EEC /* Pixel.metal */; };
+		D3B055A529F3ED99008D3EEC /* Light.metal in Sources */ = {isa = PBXBuildFile; fileRef = D3B055A329F3ED99008D3EEC /* Light.metal */; };
+		D3B055A829F3EE66008D3EEC /* Triangle.metal in Sources */ = {isa = PBXBuildFile; fileRef = D3B055A629F3EE66008D3EEC /* Triangle.metal */; };
+		D3B055AB29F3EF57008D3EEC /* Sphere.metal in Sources */ = {isa = PBXBuildFile; fileRef = D3B055A929F3EF57008D3EEC /* Sphere.metal */; };
 		FF56902929B3961B0000AC1E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF56902829B3961B0000AC1E /* main.swift */; };
 		FF9476CC29E2BF7C009AA5F1 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */; };
 		FF9476CD29E2CCDD009AA5F1 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */; };
@@ -94,6 +101,20 @@
 		97A9201029E61891009E5053 /* FaceObjFieldParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceObjFieldParser.swift; sourceTree = "<group>"; };
 		97A9201229E63CDF009E5053 /* ParsingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingTest.swift; sourceTree = "<group>"; };
 		D32ED0B629F1C0A00093A0A1 /* Compute.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Compute.metal; sourceTree = "<group>"; };
+		D3B0559529F3E4D1008D3EEC /* Point3D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Point3D.hpp; sourceTree = "<group>"; };
+		D3B0559729F3E80D008D3EEC /* Point3D.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Point3D.metal; sourceTree = "<group>"; };
+		D3B0559929F3EA61008D3EEC /* Vector3D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector3D.hpp; sourceTree = "<group>"; };
+		D3B0559A29F3EA92008D3EEC /* Vector3D.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Vector3D.metal; sourceTree = "<group>"; };
+		D3B0559C29F3EBF2008D3EEC /* Ray.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Ray.metal; sourceTree = "<group>"; };
+		D3B0559D29F3EBF2008D3EEC /* Ray.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Ray.hpp; sourceTree = "<group>"; };
+		D3B055A029F3ECC8008D3EEC /* Pixel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Pixel.metal; sourceTree = "<group>"; };
+		D3B055A129F3ECC8008D3EEC /* Pixel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Pixel.hpp; sourceTree = "<group>"; };
+		D3B055A329F3ED99008D3EEC /* Light.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Light.metal; sourceTree = "<group>"; };
+		D3B055A429F3ED99008D3EEC /* Light.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Light.hpp; sourceTree = "<group>"; };
+		D3B055A629F3EE66008D3EEC /* Triangle.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Triangle.metal; sourceTree = "<group>"; };
+		D3B055A729F3EE66008D3EEC /* Triangle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Triangle.hpp; sourceTree = "<group>"; };
+		D3B055A929F3EF57008D3EEC /* Sphere.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Sphere.metal; sourceTree = "<group>"; };
+		D3B055AA29F3EF57008D3EEC /* Sphere.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sphere.hpp; sourceTree = "<group>"; };
 		FF56902529B3961B0000AC1E /* RayTracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RayTracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF56902829B3961B0000AC1E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
@@ -192,9 +213,47 @@
 		D32ED0B529F1C0A00093A0A1 /* Metal */ = {
 			isa = PBXGroup;
 			children = (
+				D3B0559F29F3ECB5008D3EEC /* Graphics */,
+				D3B0559329F3E4B8008D3EEC /* Vectors */,
+				D3B0559229F3E4A2008D3EEC /* Objects */,
 				D32ED0B629F1C0A00093A0A1 /* Compute.metal */,
 			);
 			path = Metal;
+			sourceTree = "<group>";
+		};
+		D3B0559229F3E4A2008D3EEC /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				D3B055A629F3EE66008D3EEC /* Triangle.metal */,
+				D3B055A729F3EE66008D3EEC /* Triangle.hpp */,
+				D3B055A929F3EF57008D3EEC /* Sphere.metal */,
+				D3B055AA29F3EF57008D3EEC /* Sphere.hpp */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		D3B0559329F3E4B8008D3EEC /* Vectors */ = {
+			isa = PBXGroup;
+			children = (
+				D3B0559529F3E4D1008D3EEC /* Point3D.hpp */,
+				D3B0559729F3E80D008D3EEC /* Point3D.metal */,
+				D3B0559929F3EA61008D3EEC /* Vector3D.hpp */,
+				D3B0559A29F3EA92008D3EEC /* Vector3D.metal */,
+				D3B0559C29F3EBF2008D3EEC /* Ray.metal */,
+				D3B0559D29F3EBF2008D3EEC /* Ray.hpp */,
+			);
+			path = Vectors;
+			sourceTree = "<group>";
+		};
+		D3B0559F29F3ECB5008D3EEC /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				D3B055A029F3ECC8008D3EEC /* Pixel.metal */,
+				D3B055A129F3ECC8008D3EEC /* Pixel.hpp */,
+				D3B055A329F3ED99008D3EEC /* Light.metal */,
+				D3B055A429F3ED99008D3EEC /* Light.hpp */,
+			);
+			path = Graphics;
 			sourceTree = "<group>";
 		};
 		FF56901C29B3961B0000AC1E = {
@@ -359,6 +418,7 @@
 				TargetAttributes = {
 					FF56902429B3961B0000AC1E = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 					FFA9ED9329B506FC00ECF980 = {
 						CreatedOnToolsVersion = 14.2;
@@ -403,19 +463,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3B055A529F3ED99008D3EEC /* Light.metal in Sources */,
 				FFA9ED8129B3B62600ECF980 /* Sphere.swift in Sources */,
+				D3B0559E29F3EBF2008D3EEC /* Ray.metal in Sources */,
 				9716CA5C29B7CFDE0097EEEF /* ConsoleViewport.swift in Sources */,
+				D3B0559829F3E80D008D3EEC /* Point3D.metal in Sources */,
 				FFA9ED7A29B3B2FA00ECF980 /* VectorValue.swift in Sources */,
 				FFA9ED7B29B3B2FA00ECF980 /* Point3D.swift in Sources */,
 				FFA9ED8A29B3BECF00ECF980 /* Light.swift in Sources */,
 				FFA9ED7F29B3B57B00ECF980 /* Ray.swift in Sources */,
 				9772622B29E372B600554749 /* ConsoleRenderer.swift in Sources */,
 				D32ED0B729F1C0A00093A0A1 /* Compute.metal in Sources */,
+				D3B055A829F3EE66008D3EEC /* Triangle.metal in Sources */,
 				FF56902929B3961B0000AC1E /* main.swift in Sources */,
 				FF9476CC29E2BF7C009AA5F1 /* Triangle.swift in Sources */,
 				97A9200F29E616D7009E5053 /* PointObjFieldParser.swift in Sources */,
 				FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */,
+				D3B0559B29F3EA92008D3EEC /* Vector3D.metal in Sources */,
 				97A9200829E61449009E5053 /* ObjParser.swift in Sources */,
+				D3B055AB29F3EF57008D3EEC /* Sphere.metal in Sources */,
 				97A9201129E61891009E5053 /* FaceObjFieldParser.swift in Sources */,
 				FFA9ED8829B3BA8D00ECF980 /* Camera.swift in Sources */,
 				9716CA5A29B7CF350097EEEF /* Viewport.swift in Sources */,
@@ -428,6 +494,7 @@
 				FFA9ED7D29B3B55200ECF980 /* Object3D.swift in Sources */,
 				9716CA4D29B6AEBB0097EEEF /* Frame.swift in Sources */,
 				9716CA6129B7DAFB0097EEEF /* ContrastViewport.swift in Sources */,
+				D3B055A229F3ECC8008D3EEC /* Pixel.metal in Sources */,
 				97A9200D29E61672009E5053 /* ObjFieldParser.swift in Sources */,
 				FFA9ED8629B3B9B600ECF980 /* Scene.swift in Sources */,
 				FFA9ED8D29B3C46700ECF980 /* Math.swift in Sources */,
@@ -586,12 +653,19 @@
 		FF56902D29B3961B0000AC1E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = RayTracer/RayTracer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -599,10 +673,16 @@
 		FF56902E29B3961B0000AC1E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = RayTracer/RayTracer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

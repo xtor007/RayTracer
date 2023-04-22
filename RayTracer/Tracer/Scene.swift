@@ -37,9 +37,18 @@ class Scene {
         var newObjects = objects
         newObjects.remove(at: closestIntersection.index)
         var pixel = Pixel(red: 0, green: 0, blue: 0)
+        
+        if closestIntersection.object.material == .mirror {
+            let normal = closestIntersection.object.getNormal(forPoint: closestIntersection.point).unitVector
+            let reflectedVector = ray.vector - (Float(2) * ray.vector * normal * normal)
+            let reflectedRay = Ray(startPoint: closestIntersection.point, vector: reflectedVector)
+            
+            return checkIntersectionWithLighting(usingRay: reflectedRay)
+        }
 
         for light in lights {
             let newRay = Ray(startPoint: closestIntersection.point, vector: -1 * light.direction)
+            
             let lighting = normal.unitVector * light.direction.unitVector
             if lighting > 0 {
                 if Scene.checkIntersection(withObjects: newObjects, usingRay: newRay) {
@@ -55,19 +64,21 @@ class Scene {
     
     func getClosestIntersection(usingRay ray: Ray) -> (Object3D, Float, Point3D, Int)? {
 
-        var intersections = [(object: Object3D, distance: Float, point: Point3D, index: Int)]()
-        var index = 0
+        var minDistance = Float.greatestFiniteMagnitude
+        var intersection: (object: Object3D, distance: Float, point: Point3D, index: Int)?
         
-        for object in objects {
+        for i in 0..<objects.count {
             
-            if let point = object.getIntersectionPoint(forRay: ray) {
+            if let point = objects[i].getIntersectionPoint(forRay: ray) {
                 let distance = point.distance(to: ray.startPoint)
-                intersections.append((object, distance, point, index))
+                if minDistance > distance && distance > 0.00001 {
+                    minDistance = distance
+                    intersection = (objects[i], distance, point, i)
+                }
             }
-            index += 1
             
         }
-        return intersections.min(by: { $0.distance < $1.distance })
+        return intersection
     }
     
     static func checkIntersection(withObjects objects: [Object3D], usingRay ray: Ray) -> Bool {
