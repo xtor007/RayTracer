@@ -7,7 +7,6 @@
 
 import Foundation
 import PluginInterface
-import PPM_Core
 
 final class PPMReaderPlugin: ReaderPlugin {
     
@@ -39,7 +38,7 @@ final class PPMReaderPlugin: ReaderPlugin {
                 row = []
                 if components.count % 3 == 0 {
                     for pixelIndex in 0..<widthHeight[0] {
-                        let pixel = Pixel(red: components[3 * pixelIndex], green: components[3 * pixelIndex + 1], blue: components[3 * pixelIndex + 2])
+                        let pixel = Pixel(red: UInt8(components[3 * pixelIndex]), green: UInt8(components[3 * pixelIndex + 1]), blue: UInt8(components[3 * pixelIndex + 2]))
                         row.append(pixel)
                     }
                 }
@@ -60,7 +59,7 @@ final class PPMReaderPlugin: ReaderPlugin {
                     let red = Int(pixelData[pixelDataIndex])
                     let green = Int(pixelData[pixelDataIndex + 1])
                     let blue = Int(pixelData[pixelDataIndex + 2])
-                    let pixel = Pixel(red: red, green: green, blue: blue)
+                    let pixel = Pixel(red: UInt8(red), green: UInt8(green), blue: UInt8(blue))
                     row.append(pixel)
                     pixelDataIndex += 3
                 }
