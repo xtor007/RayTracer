@@ -23,10 +23,10 @@ struct ConsoleConverter: ParsableCommand {
     )
     
     @Option(name: .shortAndLong, help: "The source image file.")
-    var source: String
+    var source: String = "example2.bmp"
     
     @Option(name: .shortAndLong, help: "The format to convert the image to.")
-    var goalFormat: String
+    var goalFormat: String = "bmp"
     
     func run() throws {
         let libsFactory = LibsFactory()
