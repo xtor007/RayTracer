@@ -6,23 +6,21 @@ import PackageDescription
 let package = Package(
     name: "PPMProcessor",
     products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library(
-            name: "PPMProcessor",
-            targets: ["PPMProcessor"]),
+        .library(name: "PPM.Reader.Plugin", type: .dynamic, targets: ["PPM.Reader"]),
+        .library(name: "PPM.Writer.Plugin", type: .dynamic, targets: ["PPM.Writer"])
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
+        .package(url: "https://github.com/Lastivky/PluginBuilder.git", branch: "test")
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .target(
-            name: "PPMProcessor",
-            dependencies: []),
-        .testTarget(
-            name: "PPMProcessorTests",
-            dependencies: ["PPMProcessor"]),
+        .target(name: "PPM.Core"),
+        .target(name: "PPM.Reader", dependencies: [
+            .product(name: "PluginInterface", package: "PluginBuilder"),
+            "PPM.Core"
+        ]),
+        .target(name: "PPM.Writer", dependencies: [
+            .product(name: "PluginInterface", package: "PluginBuilder"),
+            "PPM.Core"
+        ])
     ]
 )
