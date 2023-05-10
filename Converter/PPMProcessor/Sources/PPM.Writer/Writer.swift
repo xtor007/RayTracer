@@ -24,11 +24,11 @@ final class PPMWriterPlugin: WriterPlugin {
         let sizeInfo = width + " " + height + "\n" + maxValue
         data.append(Data(sizeInfo.utf8))
 
-        for row in matrix {
+        for row in matrix.reversed() {
             for pixel in row {
-                data.append(pixel.red)
-                data.append(pixel.green)
                 data.append(pixel.blue)
+                data.append(pixel.green)
+                data.append(pixel.red)
             }
         }
 

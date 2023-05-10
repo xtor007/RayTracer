@@ -38,8 +38,8 @@ final class PPMReaderPlugin: ReaderPlugin {
                 row = []
                 if components.count % 3 == 0 {
                     for pixelIndex in 0..<widthHeight[0] {
-                        let pixel = Pixel(red: UInt8(components[3 * pixelIndex]), green: UInt8(components[3 * pixelIndex + 1]), blue: UInt8(components[3 * pixelIndex + 2]))
-                        row.insert(pixel, at: 0)
+                        let pixel = Pixel(red: UInt8(components[3 * pixelIndex + 2]), green: UInt8(components[3 * pixelIndex + 1]), blue: UInt8(components[3 * pixelIndex + 0]))
+                        row.append(pixel)
                     }
                 }
                 if row.count == widthHeight[0] {
@@ -56,11 +56,11 @@ final class PPMReaderPlugin: ReaderPlugin {
 
             for _ in 0..<widthHeight[1] {
                 for _ in 0..<widthHeight[0] {
-                    let red = UInt8(pixelData[pixelDataIndex])
+                    let red = UInt8(pixelData[pixelDataIndex + 2])
                     let green = UInt8(pixelData[pixelDataIndex + 1])
-                    let blue = UInt8(pixelData[pixelDataIndex + 2])
+                    let blue = UInt8(pixelData[pixelDataIndex + 0])
                     let pixel = Pixel(red: red, green: green, blue: blue)
-                    row.insert(pixel, at: 0)
+                    row.append(pixel)
                     pixelDataIndex += 3
                 }
                 matrix.insert(row, at: 0)
