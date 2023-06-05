@@ -11,13 +11,13 @@ struct Matrix {
 
     private(set) var values: [[Float]]
 
-    static func *<T: VectorValue> (left: Matrix, right: T) throws -> T {
-        if left.values.isEmpty {
-            throw MatrixError.notRightSizeForMultiplication
-        }
-        guard left.values[0].count == 4 else {
-            throw MatrixError.notRightSizeForMultiplication
-        }
+    static func *<T: VectorValue> (left: Matrix, right: T) -> T {
+//        if left.values.isEmpty {
+//            throw MatrixError.notRightSizeForMultiplication
+//        }
+//        guard left.values[0].count == 4 else {
+//            throw MatrixError.notRightSizeForMultiplication
+//        }
         let vectorMatrix = Matrix(values: [
             [right.x],
             [right.y],
@@ -32,7 +32,7 @@ struct Matrix {
             matrix.values[2][3] = 0
         }
         
-        let resultMartix = try matrix * vectorMatrix
+        let resultMartix = matrix * vectorMatrix
         return T(
             x: resultMartix.values[0][0],
             y: resultMartix.values[1][0],
@@ -40,13 +40,13 @@ struct Matrix {
         )
     }
 
-    static func * (left: Matrix, right: Matrix) throws -> Matrix {
-        if left.values.isEmpty {
-            throw MatrixError.notRightSizeForMultiplication
-        }
-        guard left.values[0].count == right.values.count else {
-            throw MatrixError.notRightSizeForMultiplication
-        }
+    static func * (left: Matrix, right: Matrix) -> Matrix {
+//        if left.values.isEmpty {
+//            throw MatrixError.notRightSizeForMultiplication
+//        }
+//        guard left.values[0].count == right.values.count else {
+//            throw MatrixError.notRightSizeForMultiplication
+//        }
         var newValues: [[Float]] = Array(repeating: Array(repeating: 0, count: right.values[0].count), count: left.values.count)
         for i in 0..<newValues.count {
             for j in 0..<newValues[i].count {

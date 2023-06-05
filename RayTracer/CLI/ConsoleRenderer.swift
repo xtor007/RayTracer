@@ -47,9 +47,9 @@ struct ConsoleRenderer: ParsableCommand {
         let cowChangeColors = Matrix (translation: Vector3D(x: 0, y: 1, z: -0.2))
         var newTriangles = [Object3D]()
         triangles.forEach { triangle in
-            let point1 = try! cowChangeColors * triangle.point1
-            let point2 = try! cowChangeColors * triangle.point2
-            let point3 = try! cowChangeColors * triangle.point3
+            let point1 = cowChangeColors * triangle.point1
+            let point2 = cowChangeColors * triangle.point2
+            let point3 = cowChangeColors * triangle.point3
             newTriangles.append(Triangle(point1: point1, point2: point2, point3: point3))
         }
         
@@ -58,7 +58,7 @@ struct ConsoleRenderer: ParsableCommand {
         scene.addObject(Sphere(center: Point3D(x: 0, y: 0, z: -100.92), radius: 100))
 
         let camera = Camera(
-            matrix: try! Matrix(translation: Vector3D(x: 1, y: 0, z: 0)) * Matrix(rotateAroundZForAngle: Float.pi / 4),
+            matrix: Matrix(translation: Vector3D(x: 1, y: 0, z: 0)) * Matrix(rotateAroundZForAngle: Float.pi / 4),
             fov: 60,
             aspectRatio: 16 / 9,
             verticalResolutoion: 128

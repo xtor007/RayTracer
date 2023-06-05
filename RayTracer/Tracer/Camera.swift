@@ -50,9 +50,9 @@ final class Camera: CameraProtocol {
         aspectRatio: Float,
         verticalResolutoion: Int
     ) {
-        self.origin = try! matrix * Point3D(x: 0, y: 0, z: 0)
-        self.direction = try! matrix * Vector3D(x: 0, y: 1, z: 0)
-        self.upOrientation = try! matrix * Vector3D(x: 0, y: 0, z: 1).unitVector
+        self.origin = matrix * Point3D(x: 0, y: 0, z: 0)
+        self.direction = matrix * Vector3D(x: 0, y: 1, z: 0)
+        self.upOrientation = matrix * Vector3D(x: 0, y: 0, z: 1).unitVector
         self.fov = fov
         self.aspectRatio = aspectRatio
         self.verticalResolutoion = verticalResolutoion
