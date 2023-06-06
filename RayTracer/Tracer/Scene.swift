@@ -32,22 +32,14 @@ class Scene {
         }
 
         
-        let normal = closestIntersection.object.getNormal(forPoint: closestIntersection.point)
+        let normal = closestIntersection.object.getNormal(forPoint: closestIntersection.point).unitVector
         
         var newObjects = objects
         newObjects.remove(at: closestIntersection.index)
         var pixel = Pixel(red: 0, green: 0, blue: 0)
 
         for light in lights {
-            let newRay = Ray(startPoint: closestIntersection.point, vector: -1 * light.direction)
-            let lighting = normal.unitVector * light.direction.unitVector
-            if lighting > 0 {
-                if Scene.checkIntersection(withObjects: newObjects, usingRay: newRay) {
-                    pixel = pixel + lighting * Scene.shadowBrightness * light.color
-                } else {
-                    pixel = pixel + lighting * light.color
-                }
-            }
+            pixel = pixel + light.getPixel(normal: normal, objects: newObjects, reflectedFrom: closestIntersection.point)
         }
 
         return pixel
@@ -70,32 +62,5 @@ class Scene {
         return intersections.min(by: { $0.distance < $1.distance })
     }
     
-    static func checkIntersection(withObjects objects: [Object3D], usingRay ray: Ray) -> Bool {
-        for object in objects {
-            if object.getIntersectionPoint(forRay: ray) != nil {
-                return true
-            }
-        }
-
-        return false
-    }
 }
 
-fileprivate extension Pixel {
-    static func * (left: Float, right: Pixel) -> Pixel {
-        return Pixel(
-            red: UInt8(left * Float(right.red)),
-            green: UInt8(left * Float(right.green)),
-            blue: UInt8(left * Float(right.blue))
-        )
-    }
-    
-    static func + (left: Pixel, right: Pixel) -> Pixel {
-        return Pixel(
-            red: UInt8(min(Float(left.red) + Float(right.red), Float(UInt8.max))),
-            green: UInt8(min(Float(left.green) + Float(right.green), Float(UInt8.max))),
-            blue: UInt8(min(Float(left.blue) + Float(right.blue), Float(UInt8.max)))
-        )
-    }
-
-}

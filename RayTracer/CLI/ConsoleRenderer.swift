@@ -56,40 +56,26 @@ struct ConsoleRenderer: ParsableCommand {
         let scene = Scene()
         newTriangles.forEach(scene.addObject)
         scene.addObject(Sphere(center: Point3D(x: 0, y: 0, z: -100.3), radius: 100))
-        //        scene.addLight(Light(
-        //            direction: Vector3D(x: -0.5, y: 0.5, z: -1),
-        //            color: Pixel(red: 0, green: 0, blue: 255)
-        //        ))
-        //        scene.addLight(Light(
-        //            direction: Vector3D(x: 0.5, y: 0.5, z: -1),
-        //            color: Pixel(red: 255, green: 0, blue: 0)
-        //        ))
-        //        scene.addLight(Light(
-        //            direction: Vector3D(x: 0, y: 0.5, z: -0.3),
-        //            color: Pixel(red: 0, green: 122, blue: 0)
-        //        ))
+
+        scene.addLight(AmbientLight(color: Pixel(red: 0, green: 0, blue: 100), intensity: 0.5))
         
-        //        scene.addLight(Light(
-        //            direction: Vector3D(x: 0, y: 0.3, z: -1),
-        //            color: Pixel(red: 0, green: 87, blue: 183)
-        //        ))
-        //        scene.addLight(Light(
-        //            direction: Vector3D(x: 0, y: 0.3, z: 1),
-        //            color: Pixel(red: 162, green: 25, blue: 255)
-        //        ))
+        scene.addLight(PointLight(
+            origin: Point3D(x: 0.4, y: 0.4, z: 0.3),
+            color: Pixel(red: 255, green: 0, blue: 122),
+            intensity: 1.0
+        ))
         
-        for i in 0...10 {
-            scene.addLight(Light(
-                direction: Vector3D(x: -1 + Float(i) * 0.2, y: 0.5, z: -0.5),
-                color: Pixel(red: 142, green: 5, blue: 235)
-            ))
-        }
+        scene.addLight(DirectionLight(
+            direction: Vector3D(x: 0.4, y: -0.1, z: -0.6),
+            color: Pixel(red: 0, green: 255, blue: 0),
+            intensity: 0.3
+        ))
         
         let camera = Camera(
             matrix: try! Matrix(translation: Vector3D(x: -0.25, y: 0, z: 0)) * Matrix(rotateAroundZForAngle: -Float.pi / 18),
             fov: 60,
             aspectRatio: 16 / 9,
-            verticalResolutoion: 256
+            verticalResolutoion: 1080
         )
         
         camera.scene = scene
