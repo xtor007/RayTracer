@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import PluginInterface
 
 class PointLight: Light {
     let origin: Point3D

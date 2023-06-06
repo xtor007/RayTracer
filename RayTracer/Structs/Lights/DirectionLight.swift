@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import PluginInterface
 
 class DirectionLight: Light {
     let direction: Vector3D

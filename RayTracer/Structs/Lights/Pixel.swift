@@ -1,14 +1,23 @@
 //
-//  Pixel+Extension.swift
+//  Pixel.swift
 //  RayTracer
 //
 //  Created by Yasha Serhiienko on 06.06.2023.
 //
 
 import Foundation
-import PluginInterface
 
-extension Pixel {
+struct Pixel: Equatable {
+    let red: UInt8
+    let green: UInt8
+    let blue: UInt8
+
+    init(red: UInt8, green: UInt8, blue: UInt8) {
+        self.red = red
+        self.green = green
+        self.blue = blue
+    }
+    
     static func * (left: Float, right: Pixel) -> Pixel {
         return Pixel(
             red: UInt8(left * Float(right.red)),

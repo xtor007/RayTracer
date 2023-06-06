@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import PluginInterface
 
 class AmbientLight: Light {
     let color: Pixel
