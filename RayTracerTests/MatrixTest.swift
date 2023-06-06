@@ -17,7 +17,7 @@ final class MatrixTest: XCTestCase {
         ])
         let vector = Vector3D(x: 1, y: -1, z: 0)
         do {
-            let newVector = try matrix * vector
+            let newVector = matrix * vector
             XCTAssertEqual(newVector.x, 0.9, accuracy: 0.01)
             XCTAssertEqual(newVector.y, -1.4, accuracy: 0.01)
         } catch {
@@ -29,7 +29,7 @@ final class MatrixTest: XCTestCase {
         let matrix = Matrix(scale: Vector3D(x: 2, y: 2, z: 2))
         let vector = Vector3D(x: 1, y: -1, z: 2)
         do {
-            let newVector = try matrix * vector
+            let newVector = matrix * vector
             XCTAssertEqual(newVector.x, 2, accuracy: 0.01)
             XCTAssertEqual(newVector.y, -2, accuracy: 0.01)
             XCTAssertEqual(newVector.z, 4, accuracy: 0.01)
@@ -42,7 +42,7 @@ final class MatrixTest: XCTestCase {
         let matrix = Matrix(translation: Vector3D(x: 1, y: 1, z: -2))
         let point = Point3D(x: 1, y: -1, z: 2)
         do {
-            let newPoint = try matrix * point
+            let newPoint = matrix * point
             XCTAssertEqual(newPoint.x, 2, accuracy: 0.01)
             XCTAssertEqual(newPoint.y, 0, accuracy: 0.01)
             XCTAssertEqual(newPoint.z, 0, accuracy: 0.01)
@@ -55,7 +55,7 @@ final class MatrixTest: XCTestCase {
         let matrix = Matrix(rotateAroundXForAngle: Float.pi / 2)
         let vector = Vector3D(x: 1, y: -1, z: 2)
         do {
-            let newVector = try matrix * vector
+            let newVector = matrix * vector
             XCTAssertEqual(newVector.x, 1, accuracy: 0.01)
             XCTAssertEqual(newVector.y, -2, accuracy: 0.01)
             XCTAssertEqual(newVector.z, -1, accuracy: 0.01)

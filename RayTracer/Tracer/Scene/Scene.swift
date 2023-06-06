@@ -8,7 +8,7 @@
 import Foundation
 import PluginInterface
 
-class Scene {
+class Scene: SceneProtocol {
     
     private(set) var objects = [Object3D]()
     private(set) var lights = [Light]()

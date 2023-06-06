@@ -14,7 +14,7 @@ protocol CameraProtocol {
     var upOrientation: Vector3D { get }
     var fov: Float { get }
     
-    func setScene(_ scene: Scene)
+    func setScene(_ scene: SceneProtocol)
     func capture() -> Frame<Pixel>
 }
 
@@ -25,7 +25,7 @@ final class Camera: CameraProtocol {
     var upOrientation: Vector3D
     /// degrees
     var fov: Float
-    unowned var scene: Scene!
+    var scene: SceneProtocol!
     
     /// width/height ratio
     private var aspectRatio: Float
@@ -52,16 +52,16 @@ final class Camera: CameraProtocol {
         aspectRatio: Float,
         verticalResolutoion: Int
     ) {
-        self.origin = try! matrix * Point3D(x: 0, y: 0, z: 0)
-        self.direction = try! matrix * Vector3D(x: 0, y: 1, z: 0)
-        self.upOrientation = try! matrix * Vector3D(x: 0, y: 0, z: 1).unitVector
+        self.origin = matrix * Point3D(x: 0, y: 0, z: 0)
+        self.direction = matrix * Vector3D(x: 0, y: 1, z: 0)
+        self.upOrientation = matrix * Vector3D(x: 0, y: 0, z: 1).unitVector
         self.fov = fov
         self.aspectRatio = aspectRatio
         self.verticalResolution = verticalResolutoion
         self.horizontalResolution = Int(Float(verticalResolutoion) * aspectRatio)
     }
     
-    func setScene(_ scene: Scene) {
+    func setScene(_ scene: SceneProtocol) {
         self.scene = scene
     }
     

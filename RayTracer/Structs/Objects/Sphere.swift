@@ -49,4 +49,18 @@ struct Sphere: Object3D {
         return Vector3D(x: normal.x, y: normal.y, z: normal.z)
     }
     
+    func isFullInCube(leftDownPoint: Point3D, rightUpPoint: Point3D) -> Bool {
+        guard leftDownPoint.x...rightUpPoint.x ~= center.x + radius &&
+                leftDownPoint.y...rightUpPoint.y ~= center.y + radius &&
+                leftDownPoint.z...rightUpPoint.z ~= center.z + radius else {
+            return false
+        }
+        guard leftDownPoint.x...rightUpPoint.x ~= center.x - radius &&
+                leftDownPoint.y...rightUpPoint.y ~= center.y - radius &&
+                leftDownPoint.z...rightUpPoint.z ~= center.z - radius else {
+            return false
+        }
+        return true
+    }
+    
 }

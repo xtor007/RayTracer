@@ -55,4 +55,25 @@ struct Disc: Object3D {
     func getNormal(forPoint point: Point3D) -> Vector3D {
         return normal
     }
+    
+    func isFullInCube(leftDownPoint: Point3D, rightUpPoint: Point3D) -> Bool {
+        guard leftDownPoint.x...rightUpPoint.x ~= center.x &&
+                leftDownPoint.y...rightUpPoint.y ~= center.y &&
+                leftDownPoint.z...rightUpPoint.z ~= center.z else {
+            return false
+        }
+        let projection = radius * normal
+        guard leftDownPoint.x...rightUpPoint.x ~= center.x + projection.x &&
+                leftDownPoint.y...rightUpPoint.y ~= center.y + projection.y &&
+                leftDownPoint.z...rightUpPoint.z ~= center.z + projection.z else {
+            return false
+        }
+        guard leftDownPoint.x...rightUpPoint.x ~= center.x - projection.x &&
+                leftDownPoint.y...rightUpPoint.y ~= center.y - projection.y &&
+                leftDownPoint.z...rightUpPoint.z ~= center.z - projection.z else {
+            return false
+        }
+        return true
+    }
+    
 }
