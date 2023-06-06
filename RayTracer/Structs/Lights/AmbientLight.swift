@@ -16,6 +16,10 @@ class AmbientLight: Light {
         self.intensity = intensity
     }
     
+    func getPixel(normal: Vector3D, root: OctNode, reflectedFrom point: Point3D) -> Pixel {
+        return intensity * color
+    }
+    
     func getPixel(normal: Vector3D, objects: [Object3D], reflectedFrom point: Point3D) -> Pixel {
         return intensity * color
     }

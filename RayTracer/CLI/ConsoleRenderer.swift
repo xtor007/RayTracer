@@ -54,33 +54,33 @@ struct ConsoleRenderer: ParsableCommand {
         }
         
         let scene = SceneWithTree()
-        // let scene = Scene()
+//         let scene = Scene()
         newTriangles.forEach(scene.addObject)
         scene.addObject(Sphere(center: Point3D(x: 0, y: 0, z: -100.3), radius: 100))
 
-//        scene.addLight(AmbientLight(color: Pixel(red: 0, green: 0, blue: 100), intensity: 0.5))
+        scene.addLight(AmbientLight(color: Pixel(red: 0, green: 0, blue: 100), intensity: 0.5))
         
         scene.addLight(PointLight(
-            origin: Point3D(x: 0.4, y: 0.4, z: 0.3),
+            origin: Point3D(x: 0.4, y: 0.4, z: 0.5),
             color: Pixel(red: 255, green: 0, blue: 122),
             intensity: 1.0
         ))
         
-//        scene.addLight(DirectionLight(
-//            direction: Vector3D(x: 0.4, y: -0.1, z: -0.6),
-//            color: Pixel(red: 0, green: 255, blue: 0),
-//            intensity: 0.3
-//        ))
+        scene.addLight(DirectionLight(
+            direction: Vector3D(x: 0.4, y: -0.1, z: -0.6),
+            color: Pixel(red: 0, green: 255, blue: 0),
+            intensity: 0.2
+        ))
         
         let camera = Camera(
             matrix: Matrix(translation: Vector3D(x: 1, y: 0, z: 0)) * Matrix(rotateAroundZForAngle: Float.pi / 4),
             fov: 60,
-            aspectRatio: 16 / 9,
-            verticalResolutoion: 128
+            aspectRatio: 2560 / 1600,
+            verticalResolutoion: 1600
         )
         
         camera.scene = scene
-        var frame = camera.capture()
+        let frame = camera.capture()
         
         let viewport = ImageViewport(frame: frame)
         viewport.display()

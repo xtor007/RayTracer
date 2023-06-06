@@ -20,7 +20,7 @@ struct Sphere: Object3D {
             c: k.scalarSquare() - radius * radius
         )
         distances.removeAll { distance in
-            return distance < 0
+            return distance < 0.0001
         }
         switch distances.count {
         case 0:

@@ -24,7 +24,7 @@ struct Plane: Object3D {
             return nil
         }
         let distance = -((normal * ray.startPoint) + D) / divider
-        if distance < 0 {
+        if distance < 0.0001 {
             return nil
         }
         return distance

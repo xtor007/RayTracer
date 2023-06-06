@@ -18,6 +18,21 @@ class DirectionLight: Light {
         self.intensity = intensity
     }
     
+    func getPixel(normal: Vector3D, root: OctNode, reflectedFrom point: Point3D) -> Pixel {
+        let rayDirection = -1 * direction
+        let ray = Ray(startPoint: point, vector: rayDirection)
+        
+        let lighting = normal * direction * intensity
+        
+        if lighting > 0 {
+            if !root.isInetersectedWithObject(byRay: ray) {
+                return lighting * color
+            }
+        }
+        
+        return Pixel(red: 0, green: 0, blue: 0)
+    }
+    
     func getPixel(normal: Vector3D, objects: [Object3D], reflectedFrom point: Point3D) -> Pixel {
         let rayDirection = -1 * direction
         let ray = Ray(startPoint: point, vector: rayDirection)

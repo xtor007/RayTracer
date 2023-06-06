@@ -9,5 +9,6 @@ import Foundation
 
 protocol SceneProtocol {
     func addObject(_ object: Object3D)
-    func checkIntersectionWithLighting(usingRay ray: Ray) -> Float
+    func addLight(_ light: Light)
+    func checkIntersectionWithLighting(usingRay ray: Ray) -> Pixel
 }

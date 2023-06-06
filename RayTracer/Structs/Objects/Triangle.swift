@@ -44,7 +44,7 @@ struct Triangle: Object3D {
             return nil
         }
         let result = (e2 * qvec) * invScalar
-        return result < 0 ? nil : result
+        return result < 0.0001 ? nil : result
     }
     
     func getIntersectionPoint(forRay ray: Ray) -> Point3D? {
