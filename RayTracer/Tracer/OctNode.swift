@@ -36,6 +36,36 @@ class OctNode {
         }
     }
     
+    func getIntersections(forRay ray: Ray) -> [(Float, Point3D, Object3D)] {
+        var intersections = [(Float, Point3D, Object3D)]()
+        objects.forEach { object in
+            if let point = object.getIntersectionPoint(forRay: ray) {
+                let distance = point.distance(to: ray.startPoint)
+                intersections.append((distance, point, object))
+            }
+        }
+        children.forEach { child in
+            if child.isIntersected(byRay: ray) {
+                intersections += child.getIntersections(forRay: ray)
+            }
+        }
+        return intersections
+    }
+    
+    func isIntersected(byRay ray: Ray) -> Bool {
+        let tMin = [
+            (leftDownPoint.x - ray.startPoint.x) / ray.vector.x,
+            (leftDownPoint.y - ray.startPoint.y) / ray.vector.y,
+            (leftDownPoint.z - ray.startPoint.z) / ray.vector.z
+        ]
+        let tMax = [
+            (rightUpPoint.x - ray.startPoint.x) / ray.vector.x,
+            (rightUpPoint.y - ray.startPoint.y) / ray.vector.y,
+            (rightUpPoint.z - ray.startPoint.z) / ray.vector.z
+        ]
+        return tMin.max()! <= tMax.min()!
+    }
+    
     private func generateChildren() {
         let xValues = [leftDownPoint.x, (leftDownPoint.x + rightUpPoint.x) / 2, rightUpPoint.x]
         let yValues = [leftDownPoint.y, (leftDownPoint.y + rightUpPoint.y) / 2, rightUpPoint.y]
