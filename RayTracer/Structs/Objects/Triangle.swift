@@ -53,5 +53,24 @@ struct Triangle: Object3D {
     func getNormal(forPoint point: Point3D) -> Vector3D {
         return Vector3D(start: point3, end: point1).crossProduct(Vector3D(start: point2, end: point1)).unitVector
     }
+    
+    func isFullInCube(leftDownPoint: Point3D, rightUpPoint: Point3D) -> Bool {
+        guard leftDownPoint.x...rightUpPoint.x ~= point1.x &&
+                leftDownPoint.y...rightUpPoint.y ~= point1.y &&
+                leftDownPoint.z...rightUpPoint.z ~= point1.z else {
+            return false
+        }
+        guard leftDownPoint.x...rightUpPoint.x ~= point2.x &&
+                leftDownPoint.y...rightUpPoint.y ~= point2.y &&
+                leftDownPoint.z...rightUpPoint.z ~= point2.z else {
+            return false
+        }
+        guard leftDownPoint.x...rightUpPoint.x ~= point3.x &&
+                leftDownPoint.y...rightUpPoint.y ~= point3.y &&
+                leftDownPoint.z...rightUpPoint.z ~= point3.z else {
+            return false
+        }
+        return true
+    }
 
 }

@@ -12,6 +12,11 @@ struct Plane: Object3D {
     let point: Point3D
     let normal: Vector3D
     
+    init(point: Point3D, normal: Vector3D) {
+        self.point = point
+        self.normal = normal.unitVector
+    }
+    
     func distance(forRay ray: Ray) -> Float? {
         let D = -(normal * point)
         let divider = normal * ray.vector
@@ -38,9 +43,8 @@ struct Plane: Object3D {
         return normal
     }
     
-    init(point: Point3D, normal: Vector3D) {
-        self.point = point
-        self.normal = normal.unitVector
+    func isFullInCube(leftDownPoint: Point3D, rightUpPoint: Point3D) -> Bool {
+        return false
     }
     
 }
