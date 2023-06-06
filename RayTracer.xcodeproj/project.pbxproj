@@ -61,6 +61,8 @@
 		FFA9EDAD29B645ED00ECF980 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8929B3BECF00ECF980 /* Light.swift */; };
 		FFA9EDAE29B645F200ECF980 /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8029B3B62600ECF980 /* Sphere.swift */; };
 		FFA9EDAF29B645F400ECF980 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8229B3B69300ECF980 /* Plane.swift */; };
+		FFC095242A2E047100252CB3 /* OctNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC095232A2E047100252CB3 /* OctNode.swift */; };
+		FFC095252A2E047800252CB3 /* OctNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC095232A2E047100252CB3 /* OctNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -111,6 +113,7 @@
 		FFA9ED8E29B3C48E00ECF980 /* QuadraticEquation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadraticEquation.swift; sourceTree = "<group>"; };
 		FFA9ED9429B506FC00ECF980 /* RayTracerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RayTracerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFA9ED9B29B507AB00ECF980 /* ObjectDistantionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDistantionTest.swift; sourceTree = "<group>"; };
+		FFC095232A2E047100252CB3 /* OctNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +273,7 @@
 				FFA9ED8529B3B9B600ECF980 /* Scene.swift */,
 				FFA9ED8729B3BA8D00ECF980 /* Camera.swift */,
 				FFA9ED8929B3BECF00ECF980 /* Light.swift */,
+				FFC095232A2E047100252CB3 /* OctNode.swift */,
 			);
 			path = Tracer;
 			sourceTree = "<group>";
@@ -407,6 +411,7 @@
 				FFA9ED8829B3BA8D00ECF980 /* Camera.swift in Sources */,
 				9716CA5A29B7CF350097EEEF /* Viewport.swift in Sources */,
 				9716CA5629B7CD3D0097EEEF /* Disc.swift in Sources */,
+				FFC095242A2E047100252CB3 /* OctNode.swift in Sources */,
 				FFA9ED8329B3B69300ECF980 /* Plane.swift in Sources */,
 				FFA9ED8F29B3C48E00ECF980 /* QuadraticEquation.swift in Sources */,
 				9772622D29E3771F00554749 /* ImageViewport.swift in Sources */,
@@ -449,6 +454,7 @@
 				FFA9EDAA29B645E500ECF980 /* QuadraticEquation.swift in Sources */,
 				9716CA5129B6B3400097EEEF /* Frame.swift in Sources */,
 				FFA9EDA529B645D800ECF980 /* Ray.swift in Sources */,
+				FFC095252A2E047800252CB3 /* OctNode.swift in Sources */,
 				FFA9EDAB29B645E900ECF980 /* Scene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
