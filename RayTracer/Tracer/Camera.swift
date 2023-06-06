@@ -66,60 +66,51 @@ final class Camera: CameraProtocol {
     }
     
     func capture() -> Frame<Pixel> {
-        var threads = [Thread]()
-        let countOfThreads = verticalResolution / 4
         
         var frame = Frame<Pixel>(
             width: horizontalResolution,
             height: verticalResolution,
             defaultValue: Pixel(red: 0, green: 0, blue: 0)
         )
+                
+        var tasks = [UnsafeTask<ContiguousArray<Pixel>>]()
         
-        for i in 0..<countOfThreads {
-            threads.append(
-                Thread {
-                    let start = i * self.verticalResolution / countOfThreads
-                    let end = start + self.verticalResolution / countOfThreads
-                    for yOffset in start..<end {
-                        for xOffset in 0..<self.horizontalResolution {
-                            let pixelCoordinates = self.getPixelCoordinates(basedOnX: xOffset, y: yOffset)
-                            let ray = Ray(
-                                startPoint: self.origin,
-                                vector: Vector3D(
-                                    start: self.origin,
-                                    end: pixelCoordinates
-                                )
-                            )
-                            
-                            frame[xOffset, yOffset] = self.scene.checkIntersectionWithLighting(usingRay: ray)
-                        }
-                        self.progress += round((100 / (Double(self.verticalResolution))) * 100) / 100
-                        print("progress: \(self.progress)%")
-                    }
-                }
-            )
+        for yOffset in 0..<verticalResolution {
+            tasks.append(UnsafeTask { [self] in
+                captureRow(at: yOffset, defaultValue: Pixel(red: 0, green: 0, blue: 0))
+            })
         }
-
-        threads.forEach {
-            $0.threadPriority = 0.1
-            $0.start()
+        
+        for yOffset in 0..<verticalResolution {
+            frame[yOffset] = tasks[yOffset].get()
+            
+            self.progress += round((100 / (Double(verticalResolution))) * 100) / 100
+            print("progress: \(self.progress)%")
         }
-
-        outerloop: while(true) {
-            for thread in threads {
-                if !thread.isFinished {
-                    sleep(1)
-                    continue outerloop
-                }
-                threads.remove(at: 0)
-                continue outerloop
-            }
-            break
-        }
+        
+//            completion(frame)
         return frame
     }
     
+    private func captureRow(at yOffset: Int, defaultValue: Pixel) -> ContiguousArray<Pixel> {
+        var row = ContiguousArray<Pixel>(repeating: defaultValue, count: horizontalResolution)
+        for xOffset in 0..<horizontalResolution {
+            let pixelCoordinates = getPixelCoordinates(basedOnX: xOffset, y: yOffset)
+            let ray = Ray(
+                startPoint: origin,
+                vector: Vector3D(
+                    start: origin,
+                    end: pixelCoordinates
+                )
+            )
+            
+            row[xOffset] = self.scene.checkIntersectionWithLighting(usingRay: ray)
+        }
+        
+        return row
+    }
 }
+
 
 // MARK: Image Plane Setup
 private extension Camera {
@@ -141,4 +132,22 @@ private extension Camera {
         return topLeftFramePoint + ((Float(x) * pixelWidth + pixelHalfWidth) * v) - ((Float(y) * pixelHeight + pixelHalfHeight) * u)
     }
     
+}
+
+class UnsafeTask<T> {
+    let semaphore = DispatchSemaphore(value: 0)
+    private var result: T?
+    
+    init(block: @escaping () async -> T) {
+        Task {
+            result = await block()
+            semaphore.signal()
+        }
+    }
+
+    func get() -> T {
+        if let result = result { return result }
+        semaphore.wait()
+        return result!
+    }
 }

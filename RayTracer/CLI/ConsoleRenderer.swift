@@ -33,8 +33,7 @@ struct ConsoleRenderer: ParsableCommand {
         //        let goalURL = sourceURL.deletingLastPathComponent().appending(component: output)
         
         guard FilesHelper.fileExists(atPath: "\(FileManager.default.currentDirectoryPath)/\(source)") else {
-            print(sourceURL
-            )
+            print(sourceURL)
             print("Error: source file does not exist")
             return
         }
@@ -89,12 +88,13 @@ struct ConsoleRenderer: ParsableCommand {
         let camera = Camera(
             matrix: try! Matrix(translation: Vector3D(x: -0.25, y: 0, z: 0)) * Matrix(rotateAroundZForAngle: -Float.pi / 18),
             fov: 60,
-            aspectRatio: 3840 / 2160,
-            verticalResolutoion: 2160
+            aspectRatio: 16 / 9,
+            verticalResolutoion: 256
         )
         
         camera.scene = scene
-        let frame = camera.capture()
+        var frame = camera.capture()
+        
         let viewport = ImageViewport(frame: frame)
         viewport.display()
     }
