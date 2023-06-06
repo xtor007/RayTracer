@@ -76,8 +76,8 @@ final class Camera: CameraProtocol {
         var tasks = [UnsafeTask<ContiguousArray<Pixel>>]()
         
         for yOffset in 0..<verticalResolution {
-            tasks.append(UnsafeTask { [self] in
-                captureRow(at: yOffset, defaultValue: Pixel(red: 0, green: 0, blue: 0))
+            tasks.append(UnsafeTask {
+                self.captureRow(at: yOffset, defaultValue: Pixel(red: 0, green: 0, blue: 0))
             })
         }
         
@@ -88,7 +88,6 @@ final class Camera: CameraProtocol {
             print("progress: \(self.progress)%")
         }
         
-//            completion(frame)
         return frame
     }
     
