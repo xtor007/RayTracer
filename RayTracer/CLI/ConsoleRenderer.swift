@@ -53,7 +53,8 @@ struct ConsoleRenderer: ParsableCommand {
             newTriangles.append(Triangle(point1: point1, point2: point2, point3: point3))
         }
         
-        let scene = Scene()
+        let scene = SceneWithTree()
+        // let scene = Scene()
         newTriangles.forEach(scene.addObject)
         scene.addObject(Sphere(center: Point3D(x: 0, y: 0, z: -100.92), radius: 100))
 

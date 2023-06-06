@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Scene {
+class Scene: SceneProtocol {
     
     private(set) var objects = [Object3D]()
     static let shadowBrightness: Float = 0.2
