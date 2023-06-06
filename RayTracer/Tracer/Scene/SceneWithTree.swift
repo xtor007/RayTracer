@@ -12,8 +12,8 @@ class SceneWithTree: SceneProtocol {
     private(set) var lights = [Light]()
     
     private let root = OctNode(
-        leftDownPoint: Point3D(x: -3000, y: -3000, z: -3000),
-        rightUpPoint: Point3D(x: 3000, y: 3000, z: 3000)
+        leftDownPoint: Point3D(x: -5, y: -5, z: -5),
+        rightUpPoint: Point3D(x: 5, y: 5, z: 5)
     )
     
     func addObject(_ object: Object3D) {

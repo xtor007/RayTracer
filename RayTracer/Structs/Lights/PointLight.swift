@@ -25,7 +25,7 @@ class PointLight: Light {
         let lighting = normal * (-1 * rayDirection) * intensity
         
         if lighting > 0 {
-            if !root.isInetersectedWithObject(byRay: ray) {
+            if !root.isInetersectedWithObject(byRay: ray, beforePoint: origin) {
                 return lighting * color
             }
         }
@@ -50,8 +50,10 @@ class PointLight: Light {
 
     func checkIntersection(withObjects objects: [Object3D], usingRay ray: Ray) -> Bool {
         for object in objects {
-            if object.getIntersectionPoint(forRay: ray) != nil {
-                return true
+            if let intersectionPoint = object.getIntersectionPoint(forRay: ray) {
+                if ray.startPoint.distance(to: intersectionPoint) < ray.startPoint.distance(to: origin) {
+                    return true
+                }
             }
         }
 

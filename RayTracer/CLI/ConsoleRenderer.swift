@@ -25,8 +25,8 @@ struct ConsoleRenderer: ParsableCommand {
     @Option(name: .shortAndLong, help: "The source image file.")
     var source: String
     
-    //    @Option(name: .shortAndLong, help: "The format to convert the image to.")
-    //    var output: String
+//    @Option(name: .shortAndLong, help: "The format to convert the image to.")
+//    var output: String
     
     func run() throws {
         let sourceURL = URL(fileURLWithPath: "\(FileManager.default.currentDirectoryPath)/\(source)")
@@ -54,30 +54,32 @@ struct ConsoleRenderer: ParsableCommand {
         }
         
         let scene = SceneWithTree()
-//         let scene = Scene()
+//        let scene = Scene()
         newTriangles.forEach(scene.addObject)
         scene.addObject(Sphere(center: Point3D(x: 0, y: 0, z: -100.3), radius: 100))
 
-        scene.addLight(AmbientLight(color: Pixel(red: 0, green: 0, blue: 100), intensity: 0.5))
+        scene.addLight(AmbientLight(color: Pixel(red: 100, green: 100, blue: 100), intensity: 0.2))
         
         scene.addLight(PointLight(
-            origin: Point3D(x: 0.4, y: 0.4, z: 0.5),
-            color: Pixel(red: 255, green: 0, blue: 122),
+            origin: Point3D(x: -0.6, y: 0, z: 0.2),
+            color: Pixel(red: 200, green: 0, blue: 50),
             intensity: 1.0
         ))
         
         scene.addLight(DirectionLight(
-            direction: Vector3D(x: 0.4, y: -0.1, z: -0.6),
+            direction: Vector3D(x: 1, y: 0, z: -0.2),
             color: Pixel(red: 0, green: 255, blue: 0),
-            intensity: 0.2
+            intensity: 1
         ))
         
         let camera = Camera(
             matrix: Matrix(translation: Vector3D(x: 1, y: 0, z: 0)) * Matrix(rotateAroundZForAngle: Float.pi / 4),
             fov: 60,
-            aspectRatio: 2560 / 1600,
-            verticalResolutoion: 1600
+            aspectRatio: 16 / 9,
+            verticalResolutoion: 480
         )
+        
+//        scene.addObject(Plane(point: Point3D(x: -10, y: 0, z: 0), normal: Vector3D(x: 1, y: 0, z: 0)))
         
         camera.scene = scene
         let frame = camera.capture()

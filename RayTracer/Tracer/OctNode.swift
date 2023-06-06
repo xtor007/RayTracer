@@ -70,6 +70,27 @@ class OctNode {
         return false
     }
     
+    func isInetersectedWithObject(byRay ray: Ray, beforePoint point: Point3D) -> Bool {
+        for object in objects {
+            if let intersectionPoint = object.getIntersectionPoint(forRay: ray) {
+                if ray.startPoint.distance(to: intersectionPoint) < ray.startPoint.distance(to: point) {
+                    return true
+                }
+            }
+        }
+        
+        for child in children {
+            if child.isIntersected(byRay: ray) {
+                if child.isInetersectedWithObject(byRay: ray) {
+                    return true
+                }
+            }
+        }
+        
+        return false
+    }
+
+    
     func isIntersected(byRay ray: Ray) -> Bool {
         let t1 = (leftDownPoint.x - ray.startPoint.x) / ray.vector.x
         let t2 = (rightUpPoint.x - ray.startPoint.x) / ray.vector.x
