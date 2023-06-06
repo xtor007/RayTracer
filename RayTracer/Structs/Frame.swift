@@ -37,6 +37,15 @@ struct Frame<T> {
         }
     }
     
+    subscript(x: Int) -> ContiguousArray<T> {
+        get {
+            return matrix[x]
+        }
+        set (newValue) {
+            matrix[x] = newValue
+        }
+    }
+    
     subscript(safeX x: Int, y: Int) -> T? {
         get {
             matrix[safe: y]?[safe: x]

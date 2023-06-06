@@ -12,17 +12,21 @@ struct Triangle: Object3D {
     let point1: Point3D
     let point2: Point3D
     let point3: Point3D
+    let normal: Vector3D
+    let e1: Vector3D
+    let e2: Vector3D
 
     init(point1: Point3D, point2: Point3D, point3: Point3D) {
         self.point1 = point1
         self.point2 = point2
         self.point3 = point3
+        self.normal = Vector3D(start: point3, end: point1).crossProduct(Vector3D(start: point2, end: point1))
+        self.e1 = Vector3D(start: point1, end: point2)
+        self.e2 = Vector3D(start: point1, end: point3)
     }
 
     /// Möller–Trumbore intersection algorithm https://en.wikipedia.org/wiki/Möller–Trumbore_intersection_algorithm
     func distance(forRay ray: Ray) -> Float? {
-        let e1 = Vector3D(start: point1, end: point2)
-        let e2 = Vector3D(start: point1, end: point3)
         let pvec = ray.vector.crossProduct(e2)
         let scalar = e1 * pvec
         if -0.000001...0.000001 ~= scalar {
@@ -51,7 +55,7 @@ struct Triangle: Object3D {
     }
     
     func getNormal(forPoint point: Point3D) -> Vector3D {
-        return Vector3D(start: point3, end: point1).crossProduct(Vector3D(start: point2, end: point1)).unitVector
+        return normal
     }
     
     func isFullInCube(leftDownPoint: Point3D, rightUpPoint: Point3D) -> Bool {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PluginInterface
 
 protocol CameraProtocol {
     var origin: Point3D { get }
@@ -14,7 +15,7 @@ protocol CameraProtocol {
     var fov: Float { get }
     
     func setScene(_ scene: SceneProtocol)
-    func capture() -> Frame<Float>
+    func capture() -> Frame<Pixel>
 }
 
 final class Camera: CameraProtocol {
@@ -28,7 +29,7 @@ final class Camera: CameraProtocol {
     
     /// width/height ratio
     private var aspectRatio: Float
-    private var verticalResolutoion: Int
+    private var verticalResolution: Int
     private var horizontalResolution: Int
 
     private lazy var n = direction.unitVector
@@ -38,11 +39,12 @@ final class Camera: CameraProtocol {
     private lazy var topLeftFramePoint = getTopLeftFramePoint()
     private lazy var height = getHeight()
     private lazy var width = height * aspectRatio
-    private lazy var pixelHeight = height / Float(verticalResolutoion)
+    private lazy var pixelHeight = height / Float(verticalResolution)
     private lazy var pixelWidth = width / Float(horizontalResolution)
     private lazy var pixelHalfHeight: Float = pixelHeight / 2
     private lazy var pixelHalfWidth: Float = pixelWidth / 2
     private lazy var pointOfInterest: Point3D = origin + direction
+    var progress = 0.0
     
     init(
         matrix: Matrix,
@@ -55,7 +57,7 @@ final class Camera: CameraProtocol {
         self.upOrientation = matrix * Vector3D(x: 0, y: 0, z: 1).unitVector
         self.fov = fov
         self.aspectRatio = aspectRatio
-        self.verticalResolutoion = verticalResolutoion
+        self.verticalResolution = verticalResolutoion
         self.horizontalResolution = Int(Float(verticalResolutoion) * aspectRatio)
     }
     
@@ -63,27 +65,51 @@ final class Camera: CameraProtocol {
         self.scene = scene
     }
     
-    func capture() -> Frame<Float> {
-        var frame = Frame<Float>(width: horizontalResolution, height: verticalResolutoion, defaultValue: 0)
-        for yOffset in 0..<verticalResolutoion {
-            for xOffset in 0..<horizontalResolution {
-                let pixelCoordinates = getPixelCoordinates(basedOnX: xOffset, y: yOffset)
-                let ray = Ray(
-                    startPoint: origin,
-                    vector: Vector3D(
-                        start: origin,
-                        end: pixelCoordinates
-                    )
-                )
+    func capture() -> Frame<Pixel> {
+        
+        var frame = Frame<Pixel>(
+            width: horizontalResolution,
+            height: verticalResolution,
+            defaultValue: Pixel(red: 0, green: 0, blue: 0)
+        )
                 
-                frame[xOffset, yOffset] = scene.checkIntersectionWithLighting(usingRay: ray)
-            }
+        var tasks = [UnsafeTask<ContiguousArray<Pixel>>]()
+        
+        for yOffset in 0..<verticalResolution {
+            tasks.append(UnsafeTask {
+                self.captureRow(at: yOffset, defaultValue: Pixel(red: 0, green: 0, blue: 0))
+            })
+        }
+        
+        for yOffset in 0..<verticalResolution {
+            frame[yOffset] = tasks[yOffset].get()
+            
+            self.progress += round((100 / (Double(verticalResolution))) * 100) / 100
+            print("progress: \(self.progress)%")
         }
         
         return frame
     }
     
+    private func captureRow(at yOffset: Int, defaultValue: Pixel) -> ContiguousArray<Pixel> {
+        var row = ContiguousArray<Pixel>(repeating: defaultValue, count: horizontalResolution)
+        for xOffset in 0..<horizontalResolution {
+            let pixelCoordinates = getPixelCoordinates(basedOnX: xOffset, y: yOffset)
+            let ray = Ray(
+                startPoint: origin,
+                vector: Vector3D(
+                    start: origin,
+                    end: pixelCoordinates
+                )
+            )
+            
+            row[xOffset] = self.scene.checkIntersectionWithLighting(usingRay: ray)
+        }
+        
+        return row
+    }
 }
+
 
 // MARK: Image Plane Setup
 private extension Camera {
@@ -105,4 +131,22 @@ private extension Camera {
         return topLeftFramePoint + ((Float(x) * pixelWidth + pixelHalfWidth) * v) - ((Float(y) * pixelHeight + pixelHalfHeight) * u)
     }
     
+}
+
+class UnsafeTask<T> {
+    let semaphore = DispatchSemaphore(value: 0)
+    private var result: T?
+    
+    init(block: @escaping () async -> T) {
+        Task {
+            result = await block()
+            semaphore.signal()
+        }
+    }
+
+    func get() -> T {
+        if let result = result { return result }
+        semaphore.wait()
+        return result!
+    }
 }

@@ -6,37 +6,43 @@
 //
 
 import Foundation
+import PluginInterface
 
 class Scene: SceneProtocol {
     
     private(set) var objects = [Object3D]()
+    private(set) var lights = [Light]()
     static let shadowBrightness: Float = 0.2
     
     func addObject(_ object: Object3D) {
         objects.append(object)
     }
     
-    func checkIntersectionWithLighting(usingRay ray: Ray) -> Float {
+    func addLight(_ light: Light) {
+        lights.append(light)
+    }
+    
+    func checkIntersectionWithLighting(usingRay ray: Ray) -> Pixel {
         
         let closestIntersection: (object: Object3D, distance: Float, point: Point3D, index: Int)? = getClosestIntersection(usingRay: ray)
         
         
         guard let closestIntersection = closestIntersection else {
-            return 0
+            return Pixel(red: 0, green: 0, blue: 0)
         }
 
-        let newRay = Ray(startPoint: closestIntersection.point, vector: -1 * Light.direction)
+        
+        let normal = closestIntersection.object.getNormal(forPoint: closestIntersection.point).unitVector
+        
         var newObjects = objects
         newObjects.remove(at: closestIntersection.index)
-        
-        let normal = closestIntersection.object.getNormal(forPoint: closestIntersection.point)
-        let lighting = normal.unitVector * Light.direction.unitVector
+        var pixel = Pixel(red: 0, green: 0, blue: 0)
 
-        if Scene.checkIntersection(withObjects: newObjects, usingRay: newRay) {
-            return lighting * Scene.shadowBrightness
-        } else {
-            return lighting
+        for light in lights {
+            pixel = pixel + light.getPixel(normal: normal, objects: newObjects, reflectedFrom: closestIntersection.point)
         }
+
+        return pixel
     }
     
     func getClosestIntersection(usingRay ray: Ray) -> (Object3D, Float, Point3D, Int)? {
@@ -56,13 +62,5 @@ class Scene: SceneProtocol {
         return intersections.min(by: { $0.distance < $1.distance })
     }
     
-    static func checkIntersection(withObjects objects: [Object3D], usingRay ray: Ray) -> Bool {
-        for object in objects {
-            if object.getIntersectionPoint(forRay: ray) != nil {
-                return true
-            }
-        }
-
-        return false
-    }
 }
+

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9716CA4D29B6AEBB0097EEEF /* Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA4C29B6AEBB0097EEEF /* Frame.swift */; };
 		9716CA5029B6B26C0097EEEF /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA4F29B6B26C0097EEEF /* Collection+Extension.swift */; };
-		9716CA5129B6B3400097EEEF /* Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA4C29B6AEBB0097EEEF /* Frame.swift */; };
 		9716CA5229B6B4AA0097EEEF /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA4F29B6B26C0097EEEF /* Collection+Extension.swift */; };
 		9716CA5629B7CD3D0097EEEF /* Disc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA5529B7CD3D0097EEEF /* Disc.swift */; };
 		9716CA5729B7CD9D0097EEEF /* Disc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716CA5529B7CD3D0097EEEF /* Disc.swift */; };
@@ -29,6 +28,16 @@
 		97A9201529E63D77009E5053 /* PointObjFieldParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9200E29E616D7009E5053 /* PointObjFieldParser.swift */; };
 		97A9201629E63D7A009E5053 /* FaceObjFieldParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9201029E61891009E5053 /* FaceObjFieldParser.swift */; };
 		97A9201729E63D7C009E5053 /* ObjParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9200729E61449009E5053 /* ObjParser.swift */; };
+		D30964472A2F798F00FFA6FC /* AmbientLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30964462A2F798F00FFA6FC /* AmbientLight.swift */; };
+		D30964492A2F79DB00FFA6FC /* PointLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30964482A2F79DB00FFA6FC /* PointLight.swift */; };
+		D309644B2A2F79F500FFA6FC /* DirectionLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D309644A2A2F79F500FFA6FC /* DirectionLight.swift */; };
+		D309644D2A2F82F300FFA6FC /* LightsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D309644C2A2F82F300FFA6FC /* LightsTest.swift */; };
+		D309645C2A2F88F600FFA6FC /* AmbientLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30964462A2F798F00FFA6FC /* AmbientLight.swift */; };
+		D309645D2A2F88FF00FFA6FC /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8929B3BECF00ECF980 /* Light.swift */; };
+		D30964602A2F894200FFA6FC /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D309645F2A2F894100FFA6FC /* Pixel.swift */; };
+		D30964612A2F8B2300FFA6FC /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D309645F2A2F894100FFA6FC /* Pixel.swift */; };
+		D30964622A2F8C1300FFA6FC /* PointLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30964482A2F79DB00FFA6FC /* PointLight.swift */; };
+		D30964632A2F8C1600FFA6FC /* DirectionLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D309644A2A2F79F500FFA6FC /* DirectionLight.swift */; };
 		FF56902929B3961B0000AC1E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF56902829B3961B0000AC1E /* main.swift */; };
 		FF9476CC29E2BF7C009AA5F1 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */; };
 		FF9476CD29E2CCDD009AA5F1 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */; };
@@ -56,9 +65,6 @@
 		FFA9EDA829B645E000ECF980 /* VectorValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED7729B3B2FA00ECF980 /* VectorValue.swift */; };
 		FFA9EDA929B645E300ECF980 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8C29B3C46700ECF980 /* Math.swift */; };
 		FFA9EDAA29B645E500ECF980 /* QuadraticEquation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8E29B3C48E00ECF980 /* QuadraticEquation.swift */; };
-		FFA9EDAB29B645E900ECF980 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8529B3B9B600ECF980 /* Scene.swift */; };
-		FFA9EDAC29B645EB00ECF980 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8729B3BA8D00ECF980 /* Camera.swift */; };
-		FFA9EDAD29B645ED00ECF980 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8929B3BECF00ECF980 /* Light.swift */; };
 		FFA9EDAE29B645F200ECF980 /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8029B3B62600ECF980 /* Sphere.swift */; };
 		FFA9EDAF29B645F400ECF980 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9ED8229B3B69300ECF980 /* Plane.swift */; };
 		FFC095242A2E047100252CB3 /* OctNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC095232A2E047100252CB3 /* OctNode.swift */; };
@@ -98,6 +104,11 @@
 		97A9200E29E616D7009E5053 /* PointObjFieldParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointObjFieldParser.swift; sourceTree = "<group>"; };
 		97A9201029E61891009E5053 /* FaceObjFieldParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceObjFieldParser.swift; sourceTree = "<group>"; };
 		97A9201229E63CDF009E5053 /* ParsingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingTest.swift; sourceTree = "<group>"; };
+		D30964462A2F798F00FFA6FC /* AmbientLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientLight.swift; sourceTree = "<group>"; };
+		D30964482A2F79DB00FFA6FC /* PointLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointLight.swift; sourceTree = "<group>"; };
+		D309644A2A2F79F500FFA6FC /* DirectionLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionLight.swift; sourceTree = "<group>"; };
+		D309644C2A2F82F300FFA6FC /* LightsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsTest.swift; sourceTree = "<group>"; };
+		D309645F2A2F894100FFA6FC /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
 		FF56902529B3961B0000AC1E /* RayTracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RayTracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF56902829B3961B0000AC1E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		FF9476CB29E2BF7C009AA5F1 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
@@ -197,6 +208,18 @@
 			path = FieldParsers;
 			sourceTree = "<group>";
 		};
+		D30964432A2F691300FFA6FC /* Lights */ = {
+			isa = PBXGroup;
+			children = (
+				FFA9ED8929B3BECF00ECF980 /* Light.swift */,
+				D30964462A2F798F00FFA6FC /* AmbientLight.swift */,
+				D30964482A2F79DB00FFA6FC /* PointLight.swift */,
+				D309644A2A2F79F500FFA6FC /* DirectionLight.swift */,
+				D309645F2A2F894100FFA6FC /* Pixel.swift */,
+			);
+			path = Lights;
+			sourceTree = "<group>";
+		};
 		FF56901C29B3961B0000AC1E = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +267,7 @@
 		FF6C020829B39D3900D9A700 /* Structs */ = {
 			isa = PBXGroup;
 			children = (
+				D30964432A2F691300FFA6FC /* Lights */,
 				9716CA4C29B6AEBB0097EEEF /* Frame.swift */,
 				FF6C020929B39D4800D9A700 /* Objects */,
 				FF6C020A29B39D8600D9A700 /* Vectors */,
@@ -303,6 +327,7 @@
 				FF9476D329E2FC07009AA5F1 /* MatrixTest.swift */,
 				97A9201229E63CDF009E5053 /* ParsingTest.swift */,
 				FFCDA95F2A2F847500B04A70 /* TreeTest.swift */,
+				D309644C2A2F82F300FFA6FC /* LightsTest.swift */,
 			);
 			path = RayTracerTests;
 			sourceTree = "<group>";
@@ -423,12 +448,16 @@
 				FFA9ED7F29B3B57B00ECF980 /* Ray.swift in Sources */,
 				9772622B29E372B600554749 /* ConsoleRenderer.swift in Sources */,
 				FF56902929B3961B0000AC1E /* main.swift in Sources */,
+				D30964602A2F894200FFA6FC /* Pixel.swift in Sources */,
 				FF9476CC29E2BF7C009AA5F1 /* Triangle.swift in Sources */,
+				D309644B2A2F79F500FFA6FC /* DirectionLight.swift in Sources */,
 				97A9200F29E616D7009E5053 /* PointObjFieldParser.swift in Sources */,
+				D30964472A2F798F00FFA6FC /* AmbientLight.swift in Sources */,
 				FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */,
 				97A9200829E61449009E5053 /* ObjParser.swift in Sources */,
 				97A9201129E61891009E5053 /* FaceObjFieldParser.swift in Sources */,
 				FFA9ED8829B3BA8D00ECF980 /* Camera.swift in Sources */,
+				D30964492A2F79DB00FFA6FC /* PointLight.swift in Sources */,
 				9716CA5A29B7CF350097EEEF /* Viewport.swift in Sources */,
 				9716CA5629B7CD3D0097EEEF /* Disc.swift in Sources */,
 				FFC095242A2E047100252CB3 /* OctNode.swift in Sources */,
@@ -453,25 +482,29 @@
 			files = (
 				FFA9EDA829B645E000ECF980 /* VectorValue.swift in Sources */,
 				FFA9ED9C29B507AB00ECF980 /* ObjectDistantionTest.swift in Sources */,
+				D30964632A2F8C1600FFA6FC /* DirectionLight.swift in Sources */,
 				97A9201529E63D77009E5053 /* PointObjFieldParser.swift in Sources */,
 				FFCDA9672A2F9BED00B04A70 /* SceneWithTree.swift in Sources */,
 				FFA9EDAE29B645F200ECF980 /* Sphere.swift in Sources */,
 				FFA9EDAF29B645F400ECF980 /* Plane.swift in Sources */,
 				FF9476CD29E2CCDD009AA5F1 /* Triangle.swift in Sources */,
+				D309645D2A2F88FF00FFA6FC /* Light.swift in Sources */,
+				D309644D2A2F82F300FFA6FC /* LightsTest.swift in Sources */,
 				97A9201629E63D7A009E5053 /* FaceObjFieldParser.swift in Sources */,
 				9716CA5229B6B4AA0097EEEF /* Collection+Extension.swift in Sources */,
 				FFA9EDA629B645DC00ECF980 /* Point3D.swift in Sources */,
-				FFA9EDAD29B645ED00ECF980 /* Light.swift in Sources */,
 				FF9476D429E2FC07009AA5F1 /* MatrixTest.swift in Sources */,
 				FFA9EDA929B645E300ECF980 /* Math.swift in Sources */,
+				D30964622A2F8C1300FFA6FC /* PointLight.swift in Sources */,
+				D309645C2A2F88F600FFA6FC /* AmbientLight.swift in Sources */,
 				9716CA5729B7CD9D0097EEEF /* Disc.swift in Sources */,
 				97A9201429E63D74009E5053 /* ObjFieldParser.swift in Sources */,
 				97A9201729E63D7C009E5053 /* ObjParser.swift in Sources */,
+				D30964612A2F8B2300FFA6FC /* Pixel.swift in Sources */,
 				97A9201329E63CDF009E5053 /* ParsingTest.swift in Sources */,
 				FFA9EDA429B645BE00ECF980 /* Object3D.swift in Sources */,
 				FFA9EDA729B645DE00ECF980 /* Vector3D.swift in Sources */,
 				FF9476CF29E2CD27009AA5F1 /* TriangleDistanceTest.swift in Sources */,
-				FFA9EDAC29B645EB00ECF980 /* Camera.swift in Sources */,
 				FF9476D229E2FBF4009AA5F1 /* Matrix.swift in Sources */,
 				FFA9EDAA29B645E500ECF980 /* QuadraticEquation.swift in Sources */,
 				FFCDA9642A2F9B6600B04A70 /* SceneProtocol.swift in Sources */,
@@ -606,7 +639,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -619,7 +652,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -631,14 +664,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3MZDX9DG27;
+				DEVELOPMENT_TEAM = V6FC2DVK94;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = lastivky.RayTracerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -654,14 +687,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3MZDX9DG27;
+				DEVELOPMENT_TEAM = V6FC2DVK94;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = lastivky.RayTracerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

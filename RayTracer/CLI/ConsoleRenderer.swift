@@ -8,6 +8,7 @@
 import Foundation
 import ArgumentParser
 import ConverterCore
+import PluginInterface
 
 struct ConsoleRenderer: ParsableCommand {
     
@@ -23,17 +24,16 @@ struct ConsoleRenderer: ParsableCommand {
     
     @Option(name: .shortAndLong, help: "The source image file.")
     var source: String
-
-//    @Option(name: .shortAndLong, help: "The format to convert the image to.")
-//    var output: String
+    
+    //    @Option(name: .shortAndLong, help: "The format to convert the image to.")
+    //    var output: String
     
     func run() throws {
         let sourceURL = URL(fileURLWithPath: "\(FileManager.default.currentDirectoryPath)/\(source)")
-//        let goalURL = sourceURL.deletingLastPathComponent().appending(component: output)
+        //        let goalURL = sourceURL.deletingLastPathComponent().appending(component: output)
         
         guard FilesHelper.fileExists(atPath: "\(FileManager.default.currentDirectoryPath)/\(source)") else {
-            print(sourceURL
-            )
+            print(sourceURL)
             print("Error: source file does not exist")
             return
         }
@@ -44,7 +44,7 @@ struct ConsoleRenderer: ParsableCommand {
         let fileParser = ObjParser(stringData: stringData)
         let triangles = try fileParser.getTriangles()
         
-        let cowChangeColors = Matrix (translation: Vector3D(x: 0, y: 1, z: -0.2))
+        let cowChangeColors = Matrix (translation: Vector3D(x: 0, y: 1, z: 0.0))
         var newTriangles = [Object3D]()
         triangles.forEach { triangle in
             let point1 = cowChangeColors * triangle.point1
@@ -56,8 +56,22 @@ struct ConsoleRenderer: ParsableCommand {
         let scene = SceneWithTree()
         // let scene = Scene()
         newTriangles.forEach(scene.addObject)
-        scene.addObject(Sphere(center: Point3D(x: 0, y: 0, z: -100.92), radius: 100))
+        scene.addObject(Sphere(center: Point3D(x: 0, y: 0, z: -100.3), radius: 100))
 
+//        scene.addLight(AmbientLight(color: Pixel(red: 0, green: 0, blue: 100), intensity: 0.5))
+        
+        scene.addLight(PointLight(
+            origin: Point3D(x: 0.4, y: 0.4, z: 0.3),
+            color: Pixel(red: 255, green: 0, blue: 122),
+            intensity: 1.0
+        ))
+        
+//        scene.addLight(DirectionLight(
+//            direction: Vector3D(x: 0.4, y: -0.1, z: -0.6),
+//            color: Pixel(red: 0, green: 255, blue: 0),
+//            intensity: 0.3
+//        ))
+        
         let camera = Camera(
             matrix: Matrix(translation: Vector3D(x: 1, y: 0, z: 0)) * Matrix(rotateAroundZForAngle: Float.pi / 4),
             fov: 60,
@@ -66,7 +80,8 @@ struct ConsoleRenderer: ParsableCommand {
         )
         
         camera.scene = scene
-        let frame = camera.capture()
+        var frame = camera.capture()
+        
         let viewport = ImageViewport(frame: frame)
         viewport.display()
     }
