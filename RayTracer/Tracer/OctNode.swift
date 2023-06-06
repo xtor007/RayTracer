@@ -53,17 +53,17 @@ class OctNode {
     }
     
     func isIntersected(byRay ray: Ray) -> Bool {
-        let tMin = [
-            (leftDownPoint.x - ray.startPoint.x) / ray.vector.x,
-            (leftDownPoint.y - ray.startPoint.y) / ray.vector.y,
-            (leftDownPoint.z - ray.startPoint.z) / ray.vector.z
-        ]
-        let tMax = [
-            (rightUpPoint.x - ray.startPoint.x) / ray.vector.x,
-            (rightUpPoint.y - ray.startPoint.y) / ray.vector.y,
-            (rightUpPoint.z - ray.startPoint.z) / ray.vector.z
-        ]
-        return tMin.max()! <= tMax.min()!
+        let t1 = (leftDownPoint.x - ray.startPoint.x) / ray.vector.x
+        let t2 = (rightUpPoint.x - ray.startPoint.x) / ray.vector.x
+        let t3 = (leftDownPoint.y - ray.startPoint.y) / ray.vector.y
+        let t4 = (rightUpPoint.y - ray.startPoint.y) / ray.vector.y
+        let t5 = (leftDownPoint.z - ray.startPoint.z) / ray.vector.z
+        let t6 = (rightUpPoint.z - ray.startPoint.z) / ray.vector.z
+        
+        let tmin = max(min(t1, t2), min(t3, t4), min(t5, t6))
+        let tmax = min(max(t1, t2), max(t3, t4), max(t5, t6))
+        
+        return tmax >= max(0, tmin)
     }
     
     private func generateChildren() {

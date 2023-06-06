@@ -63,9 +63,14 @@ struct Disc: Object3D {
             return false
         }
         let projection = radius * normal
-        guard leftDownPoint.x...rightUpPoint.x ~= projection.x &&
-                leftDownPoint.y...rightUpPoint.y ~= projection.y &&
-                leftDownPoint.z...rightUpPoint.z ~= projection.z else {
+        guard leftDownPoint.x...rightUpPoint.x ~= center.x + projection.x &&
+                leftDownPoint.y...rightUpPoint.y ~= center.y + projection.y &&
+                leftDownPoint.z...rightUpPoint.z ~= center.z + projection.z else {
+            return false
+        }
+        guard leftDownPoint.x...rightUpPoint.x ~= center.x - projection.x &&
+                leftDownPoint.y...rightUpPoint.y ~= center.y - projection.y &&
+                leftDownPoint.z...rightUpPoint.z ~= center.z - projection.z else {
             return false
         }
         return true
