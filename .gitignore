@@ -135,4 +135,5 @@ iOSInjectionProject/
 
 **/*.bmp
 **/*.obj
+**/*.ppm
 plugins

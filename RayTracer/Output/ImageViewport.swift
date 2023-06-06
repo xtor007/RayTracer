@@ -19,7 +19,7 @@ final class ImageViewport: Viewport {
     func display() {
         let bitmap: PluginInterface.Matrix = frame.matrix
             .map { row in
-                row.map { $0 }
+                row.map { PluginInterface.Pixel(red: $0.red, green: $0.green, blue: $0.blue) }
             }
         
         let imageCreator = ImageCreator()
