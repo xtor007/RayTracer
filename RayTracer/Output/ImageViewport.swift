@@ -10,16 +10,16 @@ import PluginInterface
 
 final class ImageViewport: Viewport {
     
-    private let frame: Frame<Float>
+    private let frame: Frame<Pixel>
     
-    init(frame: Frame<Float>) {
+    init(frame: Frame<Pixel>) {
         self.frame = frame
     }
     
     func display() {
         let bitmap: PluginInterface.Matrix = frame.matrix
             .map { row in
-                row.map { Pixel(repeatingValue: UInt8(max(Float(UInt8.max) * $0, 0))) }
+                row.map { $0 }
             }
         
         let imageCreator = ImageCreator()

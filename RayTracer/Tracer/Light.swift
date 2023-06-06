@@ -6,7 +6,14 @@
 //
 
 import Foundation
+import PluginInterface
 
 class Light {
-    static let direction = Vector3D(x: -1, y: 1, z: -2)
+    let direction: Vector3D
+    let color: Pixel
+    
+    init(direction: Vector3D, color: Pixel) {
+        self.direction = direction
+        self.color = color
+    }
 }
