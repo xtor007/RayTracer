@@ -9,14 +9,8 @@ import ImageCreator
 import PluginInterface
 
 final class ImageViewport: Viewport {
-    
-    private let frame: Frame<Pixel>
-    
-    init(frame: Frame<Pixel>) {
-        self.frame = frame
-    }
-    
-    func display() {
+
+    func display(frame: Frame<Pixel>) {
         let bitmap: PluginInterface.Matrix = frame.matrix
             .map { row in
                 row.map { PluginInterface.Pixel(red: $0.red, green: $0.green, blue: $0.blue) }

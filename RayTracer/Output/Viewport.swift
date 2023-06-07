@@ -10,8 +10,7 @@ import Foundation
 protocol Viewport<T> {
     
     associatedtype T
-    init(frame: Frame<T>)
     
-    func display()
+    func display(frame: Frame<T>)
     
 }

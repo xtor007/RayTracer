@@ -9,13 +9,7 @@ import Foundation
 
 final class ContrastViewport: Viewport {
     
-    private let frame: Frame<Float>
-    
-    init(frame: Frame<Float>) {
-        self.frame = frame
-    }
-    
-    func display() {
+    func display(frame: Frame<Float>) {
         
         for x in 0..<frame.width {
             for y in 0..<frame.height {
