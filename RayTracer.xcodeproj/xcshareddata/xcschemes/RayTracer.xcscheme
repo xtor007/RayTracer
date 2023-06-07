@@ -52,7 +52,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--source sphere.obj"
+            argument = "--source ./objects/cow.obj"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--scene-name scene-1"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

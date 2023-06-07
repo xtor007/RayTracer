@@ -28,6 +28,7 @@
 		97A9201529E63D77009E5053 /* PointObjFieldParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9200E29E616D7009E5053 /* PointObjFieldParser.swift */; };
 		97A9201629E63D7A009E5053 /* FaceObjFieldParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9201029E61891009E5053 /* FaceObjFieldParser.swift */; };
 		97A9201729E63D7C009E5053 /* ObjParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9200729E61449009E5053 /* ObjParser.swift */; };
+		97E307962A308511004ACFF8 /* ScenesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E307952A308511004ACFF8 /* ScenesStore.swift */; };
 		D30964472A2F798F00FFA6FC /* AmbientLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30964462A2F798F00FFA6FC /* AmbientLight.swift */; };
 		D30964492A2F79DB00FFA6FC /* PointLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30964482A2F79DB00FFA6FC /* PointLight.swift */; };
 		D309644B2A2F79F500FFA6FC /* DirectionLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D309644A2A2F79F500FFA6FC /* DirectionLight.swift */; };
@@ -108,6 +109,7 @@
 		97A9200E29E616D7009E5053 /* PointObjFieldParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointObjFieldParser.swift; sourceTree = "<group>"; };
 		97A9201029E61891009E5053 /* FaceObjFieldParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceObjFieldParser.swift; sourceTree = "<group>"; };
 		97A9201229E63CDF009E5053 /* ParsingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingTest.swift; sourceTree = "<group>"; };
+		97E307952A308511004ACFF8 /* ScenesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesStore.swift; sourceTree = "<group>"; };
 		D30964462A2F798F00FFA6FC /* AmbientLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientLight.swift; sourceTree = "<group>"; };
 		D30964482A2F79DB00FFA6FC /* PointLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointLight.swift; sourceTree = "<group>"; };
 		D309644A2A2F79F500FFA6FC /* DirectionLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionLight.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				FF56902829B3961B0000AC1E /* main.swift */,
+				97E307952A308511004ACFF8 /* ScenesStore.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				D30964472A2F798F00FFA6FC /* AmbientLight.swift in Sources */,
 				FFA9ED7929B3B2FA00ECF980 /* Vector3D.swift in Sources */,
 				97A9200829E61449009E5053 /* ObjParser.swift in Sources */,
+				97E307962A308511004ACFF8 /* ScenesStore.swift in Sources */,
 				97A9201129E61891009E5053 /* FaceObjFieldParser.swift in Sources */,
 				FFA9ED8829B3BA8D00ECF980 /* Camera.swift in Sources */,
 				D30964492A2F79DB00FFA6FC /* PointLight.swift in Sources */,

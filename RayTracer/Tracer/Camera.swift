@@ -25,7 +25,7 @@ final class Camera: CameraProtocol {
     var upOrientation: Vector3D
     /// degrees
     var fov: Float
-    var scene: SceneProtocol!
+    private var scene: SceneProtocol!
     
     /// width/height ratio
     private var aspectRatio: Float
