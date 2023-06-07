@@ -7,20 +7,18 @@
 
 import Foundation
 
-final class ObjParser {
+protocol ObjParserType {
+    func getTriangles(stringData: String) throws -> [Triangle]
+}
+
+final class ObjParser: ObjParserType {
     
     private enum Key {
         static var vertex = "v"
         static var face = "f"
     }
     
-    private let stringData: String
-    
-    init(stringData: String) {
-        self.stringData = stringData
-    }
-    
-    func getTriangles() throws -> [Triangle] {
+    func getTriangles(stringData: String) throws -> [Triangle] {
         let lines = stringData.components(separatedBy: .newlines)
         let lookupTable = lines.reduce(into: [String : [StringComponents]]()) { dict, line in
             let components = line.components(separatedBy: .whitespaces)

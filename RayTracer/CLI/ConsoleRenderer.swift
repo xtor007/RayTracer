@@ -41,10 +41,10 @@ struct ConsoleRenderer: ParsableCommand {
         let data = try Data(contentsOf: sourceURL)
         guard let stringData = String(data: data, encoding: .utf8) else { return }
         
-        let fileParser = ObjParser(stringData: stringData)
-        let triangles = try fileParser.getTriangles()
+        let fileParser = DIContainer.shared.resolve(type: ObjParserType.self)
+        let triangles = try fileParser.getTriangles(stringData: stringData)
         
-        let cowChangeColors = Matrix (translation: Vector3D(x: 0, y: 1, z: 0.0))
+        let cowChangeColors = Matrix(translation: Vector3D(x: 0, y: 1, z: 0.0))
         var newTriangles = [Object3D]()
         triangles.forEach { triangle in
             let point1 = cowChangeColors * triangle.point1
@@ -53,8 +53,7 @@ struct ConsoleRenderer: ParsableCommand {
             newTriangles.append(Triangle(point1: point1, point2: point2, point3: point3))
         }
         
-        let scene = SceneWithTree()
-//        let scene = Scene()
+        let scene = DIContainer.shared.resolve(type: SceneProtocol.self)
         newTriangles.forEach(scene.addObject)
         scene.addObject(Sphere(center: Point3D(x: 0, y: 0, z: -100.3), radius: 100))
 
@@ -84,8 +83,8 @@ struct ConsoleRenderer: ParsableCommand {
         camera.scene = scene
         let frame = camera.capture()
         
-        let viewport = ImageViewport(frame: frame)
-        viewport.display()
+        let viewport = DIContainer.shared.resolve(type: (any Viewport<Pixel>).self)
+        viewport.display(frame: frame)
     }
     
 }

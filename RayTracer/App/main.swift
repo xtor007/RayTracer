@@ -7,6 +7,8 @@
 
 import Foundation
 
+DIRegister.register()
+
 let start = Date.timeIntervalSinceReferenceDate
 print("Exec path: \(FileManager.default.currentDirectoryPath)\n")
 

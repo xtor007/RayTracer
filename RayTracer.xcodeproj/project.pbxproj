@@ -28,6 +28,8 @@
 		97A9201529E63D77009E5053 /* PointObjFieldParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9200E29E616D7009E5053 /* PointObjFieldParser.swift */; };
 		97A9201629E63D7A009E5053 /* FaceObjFieldParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9201029E61891009E5053 /* FaceObjFieldParser.swift */; };
 		97A9201729E63D7C009E5053 /* ObjParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9200729E61449009E5053 /* ObjParser.swift */; };
+		97E307912A306872004ACFF8 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E307902A306872004ACFF8 /* DIContainer.swift */; };
+		97E307932A306980004ACFF8 /* DIRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E307922A306980004ACFF8 /* DIRegister.swift */; };
 		D30964472A2F798F00FFA6FC /* AmbientLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30964462A2F798F00FFA6FC /* AmbientLight.swift */; };
 		D30964492A2F79DB00FFA6FC /* PointLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30964482A2F79DB00FFA6FC /* PointLight.swift */; };
 		D309644B2A2F79F500FFA6FC /* DirectionLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D309644A2A2F79F500FFA6FC /* DirectionLight.swift */; };
@@ -104,6 +106,8 @@
 		97A9200E29E616D7009E5053 /* PointObjFieldParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointObjFieldParser.swift; sourceTree = "<group>"; };
 		97A9201029E61891009E5053 /* FaceObjFieldParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceObjFieldParser.swift; sourceTree = "<group>"; };
 		97A9201229E63CDF009E5053 /* ParsingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingTest.swift; sourceTree = "<group>"; };
+		97E307902A306872004ACFF8 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		97E307922A306980004ACFF8 /* DIRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIRegister.swift; sourceTree = "<group>"; };
 		D30964462A2F798F00FFA6FC /* AmbientLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientLight.swift; sourceTree = "<group>"; };
 		D30964482A2F79DB00FFA6FC /* PointLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointLight.swift; sourceTree = "<group>"; };
 		D309644A2A2F79F500FFA6FC /* DirectionLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionLight.swift; sourceTree = "<group>"; };
@@ -208,6 +212,15 @@
 			path = FieldParsers;
 			sourceTree = "<group>";
 		};
+		97E3078F2A306806004ACFF8 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				97E307902A306872004ACFF8 /* DIContainer.swift */,
+				97E307922A306980004ACFF8 /* DIRegister.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
 		D30964432A2F691300FFA6FC /* Lights */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +256,7 @@
 		FF56902729B3961B0000AC1E /* RayTracer */ = {
 			isa = PBXGroup;
 			children = (
+				97E3078F2A306806004ACFF8 /* DI */,
 				976DDD6E29E3800700908926 /* RayTracer.entitlements */,
 				9772622929E3709D00554749 /* CLI */,
 				9716CA5829B7CF0D0097EEEF /* Output */,
@@ -304,7 +318,6 @@
 			children = (
 				FFCDA9612A2F9B5200B04A70 /* Scene */,
 				FFA9ED8729B3BA8D00ECF980 /* Camera.swift */,
-				FFA9ED8929B3BECF00ECF980 /* Light.swift */,
 				FFC095232A2E047100252CB3 /* OctNode.swift */,
 			);
 			path = Tracer;
@@ -446,6 +459,7 @@
 				FFCDA9632A2F9B6600B04A70 /* SceneProtocol.swift in Sources */,
 				FFA9ED8A29B3BECF00ECF980 /* Light.swift in Sources */,
 				FFA9ED7F29B3B57B00ECF980 /* Ray.swift in Sources */,
+				97E307912A306872004ACFF8 /* DIContainer.swift in Sources */,
 				9772622B29E372B600554749 /* ConsoleRenderer.swift in Sources */,
 				FF56902929B3961B0000AC1E /* main.swift in Sources */,
 				D30964602A2F894200FFA6FC /* Pixel.swift in Sources */,
@@ -459,6 +473,7 @@
 				FFA9ED8829B3BA8D00ECF980 /* Camera.swift in Sources */,
 				D30964492A2F79DB00FFA6FC /* PointLight.swift in Sources */,
 				9716CA5A29B7CF350097EEEF /* Viewport.swift in Sources */,
+				97E307932A306980004ACFF8 /* DIRegister.swift in Sources */,
 				9716CA5629B7CD3D0097EEEF /* Disc.swift in Sources */,
 				FFC095242A2E047100252CB3 /* OctNode.swift in Sources */,
 				FFA9ED8329B3B69300ECF980 /* Plane.swift in Sources */,
@@ -508,11 +523,9 @@
 				FF9476D229E2FBF4009AA5F1 /* Matrix.swift in Sources */,
 				FFA9EDAA29B645E500ECF980 /* QuadraticEquation.swift in Sources */,
 				FFCDA9642A2F9B6600B04A70 /* SceneProtocol.swift in Sources */,
-				9716CA5129B6B3400097EEEF /* Frame.swift in Sources */,
 				FFA9EDA529B645D800ECF980 /* Ray.swift in Sources */,
 				FFCDA9602A2F847500B04A70 /* TreeTest.swift in Sources */,
 				FFC095252A2E047800252CB3 /* OctNode.swift in Sources */,
-				FFA9EDAB29B645E900ECF980 /* Scene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,7 +652,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -652,7 +665,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
